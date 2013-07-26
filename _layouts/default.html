@@ -6,41 +6,55 @@
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width">
 
+        <!-- Le fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+
+        <!-- Custom CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/css/main.css">
 
+
+        
+
+
     </head>
     <body>
+      <div class="header">
+        <div class="container">
+          <section class="title">
+            <a href="/"><span class="orange">WILL</span>TOWNSEND</a>
+          </section>
+          <p class="subtitle">iOS Developer, Node.js apprentice, markdown fan</p>
+          <ul class="menu">
+            <li><a href="/about">About</a></li>
+            <li><a href="/talks">Talks</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/videos">Videos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero orangebox"></div>
+
 
         <div class="container">
           <div class="site">
-            <div class="header">
-              <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-              <a class="extra" href="/">home</a>
-            </div>
+
 
                 {{ content }}
 
             <div class="footer">
-              <div class="contact">
-                <p>
-                  Will Townsend<br />
-                  iOS Developer, Node.js apprentice, markdown fan<br />
-                  will@townsend.io
-                </p>
-              </div>
-              <div class="contact">
-                <p>
-                  <a href="http://github.com/wtsnz/">github.com/wtsnz</a><br />
-                  <a href="http://twitter.com/vfxguynz/">twitter.com/vfxguynz</a><br />
-                </p>
-              </div>
             </div>
           </div>
         </div> <!-- /container -->
-
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
