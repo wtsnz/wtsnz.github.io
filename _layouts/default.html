@@ -1,3 +1,6 @@
+{% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
+{% capture relative %}{% for i in (2..lvl) %}../{% endfor %}{% endcapture %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,41 +15,33 @@
 
 
         <!-- Custom CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="{{ relative }}css/bootstrap.min.css" rel="stylesheet" media="screen">
 
         <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
+        <link rel="stylesheet" href="{{ relative }}css/syntax.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
-
-
-        
+        <link rel="stylesheet" href="{{ relative }}css/main.css">
 
 
     </head>
     <body>
-      <div class="header">
-        <div class="container">
-          <section class="title">
-            <a href="/"><span class="orange">WILL</span>TOWNSEND</a>
-          </section>
-          <p class="subtitle">iOS Developer, Node.js apprentice, markdown fan</p>
-          <ul class="menu">
-            <li><a href="/about">About</a></li>
-            <li><a href="/talks">Talks</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/videos">Videos</a></li>
-          </ul>
-        </div>
+        <div class="header">
+          <div class="container">
+              <section class="title">
+                  <a href="/"><span class="orange">WILL</span>TOWNSEND</a>
+              </section>
+              <p class="subtitle">iOS Developer, Node.js apprentice, markdown fan</p>
+              <ul class="menu">
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/projects">Projects</a></li>
+              </ul>
+          </div>
       </div>
 
       <div class="hero orangebox"></div>
-
-
         <div class="container">
           <div class="site">
-
 
                 {{ content }}
 
@@ -55,6 +50,6 @@
           </div>
         </div> <!-- /container -->
         <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="{{ relative }}js/bootstrap.min.js"></script>
     </body>
 </html>
