@@ -32,18 +32,18 @@ You're amazing, btw 😉.
         <!-- Meta stuff -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
+
+        <meta name="author" content="Will Townsend" />
+        <meta name="description" content="Ramblings and projects of Will Townsend on many topics including life, the answers to the universe but mainly design, iOS and Node.js" />
+        <meta name="keywords" content="will, townsend, will townsend, ios, wellington, iphone, node, nodejs" />
 
         <!-- Le fonts -->
         <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>        
 
-        <!-- Custom CSS -->
-        <link href="{{ relative }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-        <!-- Mobile CSS -->
-        <link media="only screen and (max-device-width: 480px)" href="{{ relative }}css/mobile.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ relative }}css/bootstrap.min.css">
 
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="{{ relative }}css/syntax.css">
@@ -51,24 +51,27 @@ You're amazing, btw 😉.
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ relative }}css/main.css">
 
+        <!-- Mobile CSS -->
+        <link media="only screen and (max-device-width: 480px)" href="{{ relative }}css/mobile.css" type="text/css" rel="stylesheet" />
+
 
     </head>
 
     <!-- Actual stuff -->
     <body>
 
-        <!-- Best have a header.. -->
-        <div class="header">
-          <div class="container">
-              <section class="title">
-                  <a href="/"><span class="orange">WILL</span>TOWNSEND</a>
-              </section>
-              <p class="subtitle">iOS Developer, Node.js apprentice, markdown fan</p>
-              <ul class="menu">
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/projects">Projects</a></li>
-              </ul>
-          </div>
+      <!-- Best have a header.. -->
+      <div class="header">
+        <div class="container">
+            <section class="title">
+                <a href="/"><span class="orange">WILL</span>TOWNSEND</a>
+            </section>
+            <p class="subtitle">iOS Developer, Node.js apprentice, markdown fan</p>
+            <ul class="menu">
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects">Projects</a></li>
+            </ul>
+        </div>
       </div>
 
       <!-- Cool orange line div -->
@@ -78,16 +81,12 @@ You're amazing, btw 😉.
       <div class="container">
         <div class="site">
           {{ content }}
-
-
           <div class="footer">
           </div>
         </div>
       </div> 
 
-      <!-- Scripts and stuff. I don't know why I have jQuery, but every cool site has it. -->
-      <script src="http://code.jquery.com/jquery.js"></script>
-      <script src="{{ relative }}js/bootstrap.min.js"></script>
+      <!-- Scripts and stuff. -->
       <script type="text/javascript">
         var _gauges = _gauges || [];
         (function() {

@@ -29,17 +29,20 @@ p {
 }
 
 .container {
-  width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  //overflow-x: hidden;
 }
+
 
 .header {
-  margin: 100px 0 35px 0;
+  width: 100%;
+  margin: 20px 0 35px 0;
+  padding: 0px 10px 0px 10px;
 }
 
-
   .header a {
-    font-size: 40px;
+    font-size: 34px;
+    
     color: #777;
     font-weight: 200;
     transition: color 0.25s ease-in;
@@ -61,9 +64,11 @@ p {
   }
 
   .menu {
-    padding: 0;
-    margin: 5px 0;
+    //padding: 0;
+    padding-top: 30px;
+    //margin: 5px 0;
     font-weight: normal;
+    float: none;
   }
   .menu li {
     display: inline;
@@ -74,10 +79,9 @@ p {
   }
 
   .menu {
-    margin: -37px 0 0 0;
+    margin: 0px 0 0 0;
     padding: 0;
-    padding-top: 2px;
-    float: right;
+    padding-top: 0px;
   }
   .social li {
     display: inline;
@@ -104,7 +108,7 @@ p {
 
 
 .home {
-
+  padding: 20px;
 }
 
   .home .posts {
@@ -119,41 +123,13 @@ font-size: 18px;
   }
 
 
-.posts {
-  margin: 25px 0;
-  padding: 0;
-}
-  .posts li {
-    list-style-type: none;
-    padding: 7px 5px;
-    font-size: 20px;
-  }
-  a {
-    text-decoration: none;
-  }
-  .posts span {
-    padding-top: 2px;
-    float: right;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #999;
-  }
-
-  .when {
-    font-size: 14px;
-    text-transform: uppercase;
-    color: #999;
-    width: 150px;
-    display: block;
-    text-align: right;
-    //margin: 23px 0 0 -210px;
-    float: left;
+loat: left;
   }
 
 li {
   padding: 0;
   list-style-type: square;
-  font-size: 24px;
+  font-size: 20px;
   margin-left: 0;
   line-height: 160%;
 }
@@ -162,26 +138,26 @@ ul {
   padding-left: 20px;
 }
 
+#projects, #about, #home{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .project {
-  padding-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .project .left {
-  width: 200px;
-  float: left;
-  padding-right: 30px;
+  display: none;
+  overflow: hidden;
+  padding-right: 0px;
 }
 
 .project .right {
-  padding-left: 30px;
+  padding-left: 0px;
 }
-  .project h3 {
-    border-bottom: 2px;
-  }
 
-  .project p {
-
-  }
 
 /* terminal */
 .post pre.terminal {
@@ -199,12 +175,3 @@ ul {
   color: #FF7527
 }
 
-.yolo {
-  height: 200px;
-  background-image: url('/img/meee.jpg');
-  background-size: cover;
-}
-
-.footer {
-  padding-bottom: 30px;
-}
