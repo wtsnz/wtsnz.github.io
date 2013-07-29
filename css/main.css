@@ -254,7 +254,25 @@ ul {
 }
 
 .footer {
-  padding-bottom: 30px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.footer a {
+  color: #777;
+  transition: color 0.25s ease-in;
+  -webkit-transition: color 0.25s ease-in;
+}
+
+.footer a:hover {
+  color: #FF7527;
+  text-decoration: none;
+}
+
+.footer .menu {
+  float: none;
+  padding: auto 0 auto 0;
 }
 
 /*****************************************************************************/
