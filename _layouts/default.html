@@ -74,8 +74,37 @@ You're amazing, btw 😉.
         </div>
       </div>
 
+      
+
+      {% if page.mainfeature %}
+      <div class="orangeBoxFeature">
+        <div id="intro">
+          <h1>I make things for</h1>
+          <div class="container">
+            <div class="row-fluid">
+              <div class="span3 iphone scale">
+                <div class="device">iPhone</div>
+              </div>
+              <div class="span1 plus spin">
+                <div class="device"></div>
+              </div>
+              <div class="span3 ipad scale">
+                <div class="device">iPad</div>
+              </div>
+              <div class="span1 plus spin">
+                <div class=""></div>
+              </div>
+              <div class="span3 nodejs scale">
+                <div class="device">Node.js</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
       <!-- Cool orange line div -->
-      <div class="hero orangebox"></div>
+      <div class="hero orangeLine"></div>
+      {% endif %}
 
       <!-- Container, which contains stuff. (Just sets the width) -->
       <div class="container">

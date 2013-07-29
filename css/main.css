@@ -24,6 +24,8 @@ p {
   font-size: 16px;
 }
 
+
+
 .site {
   padding-top: 20px;
 }
@@ -84,18 +86,64 @@ p {
     font-size: 20px;
   }
 
-.hero {
-  //background-color: #2B2B2B;
-  background-size: cover;
+
+
+.orangeLine {
   height: 10px;
-  //box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+  background-color: #FF7527;
 }
 
-.orangebox {
+.orangeBoxFeature {
+  height: 300px;
   background-color: #FF7527;
-  //background-image: url('../img/squares.png');
-  //background-repeat: repeat;
-  //background-size: 20px;
+  background-image: url('../img/squares.png');
+  background-repeat: repeat;
+  background-size: 20px;
+}
+
+#intro {
+  color: #FFF;
+  padding-top: 10px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: 50% 140px;
+}
+
+#intro h1 {
+  color: #FFF;
+}
+
+.plus {
+  background-image: url('../img/icon_plus.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 72%;
+  height: 200px;
+}
+.iphone {
+  background-image: url('../img/icon_iphone.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 33%;
+  height: 200px;
+}
+.ipad {
+  background-image: url('../img/icon_ipad.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 50%;
+  height: 200px;
+}
+.nodejs {
+  background-image: url('../img/icon_cloud.png');
+  background-repeat: no-repeat;
+  height: 200px;
+  background-position: 50%;
+  background-size: 60%;
+}
+
+.device {
+  padding-top: 180px;
 }
 
 .subtitle {
@@ -207,4 +255,24 @@ ul {
 
 .footer {
   padding-bottom: 30px;
+}
+
+/*****************************************************************************/
+/*
+/* SUPER COOL ANIMATIONS!#!#!#!#!
+/*
+/*****************************************************************************/
+
+.scale { 
+  -webkit-transition: all .2s ease-in-out; 
+}
+.scale:hover { 
+  -webkit-transform: scale(1.05); 
+}
+
+.spin { 
+  -webkit-transition: all .2s ease-in-out; 
+}
+.spin:hover { 
+  -webkit-transform: rotate(10deg); 
 }
