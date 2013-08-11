@@ -78,6 +78,7 @@ You're amazing, btw 😉.
 
       
 
+
       {% if page.mainfeature %}
       <div class="orangeBoxFeature">
         <div id="intro">
@@ -103,6 +104,8 @@ You're amazing, btw 😉.
           </div>
         </div>
       </div>
+      {% elsif (page.featureImage) %}
+      <div class="imageFeatureBox" style="background-image: url('{{ page.featureImage }}')"></div>
       {% else %}
       <!-- Cool orange line div -->
       <div class="hero orangeLine"></div>

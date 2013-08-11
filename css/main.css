@@ -101,6 +101,12 @@ p {
   background-size: 20px;
 }
 
+.imageFeatureBox {
+  height: 300px;
+  background-size: cover;
+
+}
+
 #intro {
   color: #FFF;
   padding-top: 10px;
