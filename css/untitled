@@ -1,0 +1,341 @@
+@font-face {
+    font-family: 'fonts/amaranthregular';
+    src: url('fonts/amaranth-regular-webfont.eot');
+    src: url('fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/amaranth-regular-webfont.woff') format('woff'),
+         url('fonts/amaranth-regular-webfont.ttf') format('truetype'),
+         url('fonts/amaranth-regular-webfont.svg#amaranthregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #21272d;
+  font-family: 'Lato', sans-serif;
+}
+
+::selection {
+  background-color: #2B2B2B;
+  color: #eee;
+}
+
+
+.quicksand {
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  color: #FF7527;
+  font-weight: 700;
+  #font-family: 'Lato', sans-serif;
+}
+
+.effect{
+color: #fafafa;
+letter-spacing: 0;
+text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135 }
+
+h1 {
+
+}
+
+h3 {
+  padding-top: 20px;
+}
+
+p {
+  font-size: 1.4em;
+  line-height: 1.8em;
+  font-family: 'amaranthregular', sans-serif;
+  font-weight: 300;
+  color: #2A2936;
+}
+
+
+
+.site {
+  padding-top: 20px;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  margin: 100px 0 35px 0;
+}
+
+
+  .header a {
+    font-size: 40px;
+    color: #777;
+    font-weight: 200;
+    transition: color 0.25s ease-in;
+    -webkit-transition: color 0.25s ease-in;
+  }
+
+  .header a:hover {
+    color: #FF7527;
+    text-decoration: none;
+  }
+
+  .header a:hover .orange{
+    color: #777;
+    text-decoration: none;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+  }
+
+  .menu {
+    padding: 0;
+    margin: 5px 0;
+    #font-weight: normal;
+  }
+  .menu li {
+    display: inline;
+    padding-right: 15px;
+  }
+  .menu li a{
+    font-size: 20px;
+  }
+
+  .menu {
+    margin: -37px 0 0 0;
+    padding: 0;
+    padding-top: 2px;
+    float: right;
+  }
+  .social li {
+    display: inline;
+    font-size: 20px;
+  }
+
+
+
+.orangeLine {
+  height: 10px;
+  background-color: #FF7527;
+}
+
+.orangeBoxFeature {
+  height: 300px;
+  background-color: #FF7527;
+  background-image: url('../img/squares.png');
+  background-repeat: repeat;
+  background-size: 20px;
+}
+
+.imageFeatureBox {
+  height: 300px;
+  background-size: cover;
+
+}
+
+#intro {
+  color: #FFF;
+  padding-top: 10px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: 50% 140px;
+}
+
+#intro h1 {
+  color: #FFF;
+}
+
+.plus {
+  background-image: url('../img/icon_plus.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 72%;
+  height: 200px;
+}
+.iphone {
+  background-image: url('../img/icon_iphone.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 33%;
+  height: 200px;
+}
+.ipad {
+  background-image: url('../img/icon_ipad.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 50%;
+  height: 200px;
+}
+.nodejs {
+  background-image: url('../img/icon_cloud.png');
+  background-repeat: no-repeat;
+  height: 200px;
+  background-position: 50%;
+  background-size: 60%;
+}
+
+.device {
+  padding-top: 180px;
+}
+
+.subtitle {
+  color: #AAA;
+}
+
+
+.home {
+
+}
+
+  .home .posts {
+
+  }
+
+
+  .home .posts li {
+    list-style-type: none;
+padding: 7px 5px;
+font-size: 18px;
+  }
+
+
+.posts {
+  margin: 25px 0;
+  padding: 0;
+}
+  .posts li {
+    list-style-type: none;
+    padding: 7px 5px;
+    font-size: 20px;
+  }
+  a {
+    text-decoration: none;
+  }
+  .posts span {
+    padding-top: 2px;
+    float: right;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #999;
+  }
+
+  .when {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #999;
+    width: 150px;
+    display: block;
+    text-align: right;
+    //margin: 23px 0 0 -210px;
+    float: left;
+  }
+
+li {
+  padding: 0;
+  list-style-type: circle;
+  //font-size: 24px;
+  margin-left: 0;
+  line-height: 160%;
+}
+
+ul {
+  font-size: 1.2em;
+  padding-left: 20px;
+}
+
+.project {
+  //padding-top: 40px;
+}
+
+.project .left {
+  width: 200px;
+  float: left;
+  padding-right: 30px;
+}
+
+.project .right {
+  padding-left: 30px;
+}
+  .project h3 {
+    border-bottom: 2px;
+  }
+
+  .project p {
+
+  }
+
+/* terminal */
+.post pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF;
+}
+
+.post pre.terminal code {
+  background-color: #333;
+}
+
+
+.orange {
+  color: #FF7527
+}
+
+.yolo {
+  height: 200px;
+  background-image: url('/img/meee.jpg');
+  background-size: cover;
+}
+
+.footer {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.footer a {
+  color: #777;
+  transition: color 0.25s ease-in;
+  -webkit-transition: color 0.25s ease-in;
+}
+
+.footer a:hover {
+  color: #FF7527;
+  text-decoration: none;
+}
+
+.footer .menu {
+  float: none;
+  padding: auto 0 auto 0;
+}
+
+hr {
+  margin: 40px 0;
+}
+
+/*****************************************************************************/
+/*
+/* SUPER COOL ANIMATIONS!#!#!#!#!
+/*
+/*****************************************************************************/
+
+.scale { 
+  -webkit-transition: all .2s ease-in-out; 
+}
+.scale:hover { 
+  -webkit-transform: scale(1.05); 
+}
+
+.spin { 
+  -webkit-transition: all .2s ease-in-out; 
+}
+.spin:hover { 
+  -webkit-transform: rotate(10deg); 
+}

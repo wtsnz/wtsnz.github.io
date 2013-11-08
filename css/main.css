@@ -4,120 +4,126 @@
 /*
 /*****************************************************************************/
 
+@font-face {
+    font-family: 'fonts/amaranthregular';
+    src: url('fonts/amaranth-regular-webfont.eot');
+    src: url('fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/amaranth-regular-webfont.woff') format('woff'),
+         url('fonts/amaranth-regular-webfont.ttf') format('truetype'),
+         url('fonts/amaranth-regular-webfont.svg#amaranthregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Quicksand', sans-serif;
-}
-
-::selection {
-  background-color: #2B2B2B;
-  color: #eee;
+  color: #21272d;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4 {
   color: #FF7527;
+  font-weight: 700;
+  #font-family: 'Lato', sans-serif;
+}
+
+
+
+#title {
+  color: #3D3734;
+  font-weight: 400;
+  font-size: 2.3em;
+}
+
+p, li {
+  font-size: 1.2em;
+  line-height: 1.4em;
+  font-family: 'amaranthregular', sans-serif;
   font-weight: 300;
+  color: #3D3734;
+  padding-top: 0.5em;
 }
 
-p {
-  font-size: 16px;
+ul {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+/*
+
+  DESKTOP SIZES!
+
+*/
+
+@media screen and ( min-width: 700px ) {
+  #title {
+    color: #3D3734;
+    font-weight: 400;
+    font-size: 3.0em;
+  }
+
+  p, li {
+    font-size: 1.4em;
+    line-height: 1.6em;
+  }
+
 }
 
 
 
-.site {
-  padding-top: 20px;
-}
-
-.container {
-  width: 800px;
-  margin: 0 auto;
-}
-
-.header {
-  margin: 100px 0 35px 0;
+.project {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 
-  .header a {
-    font-size: 40px;
-    color: #777;
-    font-weight: 200;
-    transition: color 0.25s ease-in;
-    -webkit-transition: color 0.25s ease-in;
-  }
-
-  .header a:hover {
-    color: #FF7527;
-    text-decoration: none;
-  }
-
-  .header a:hover .orange{
-    color: #777;
-    text-decoration: none;
-  }
-
-  .header .subtitle {
-    font-size: 14px;
-  }
-
-  .menu {
-    padding: 0;
-    margin: 5px 0;
-    font-weight: normal;
-  }
-  .menu li {
-    display: inline;
-    padding-right: 15px;
-  }
-  .menu li a{
-    font-size: 20px;
-  }
-
-  .menu {
-    margin: -37px 0 0 0;
-    padding: 0;
-    padding-top: 2px;
-    float: right;
-  }
-  .social li {
-    display: inline;
-    font-size: 20px;
-  }
 
 
+.page-header a:hover {
+  text-decoration: none;
+}
+
+
+
+.orange {
+  color: #FF7527
+}
 
 .orangeLine {
   height: 10px;
   background-color: #FF7527;
 }
 
-.orangeBoxFeature {
-  height: 300px;
+.orangeBox {
+  #height: 300px;
   background-color: #FF7527;
   background-image: url('../img/squares.png');
   background-repeat: repeat;
   background-size: 20px;
 }
 
-.imageFeatureBox {
-  height: 300px;
-  background-size: cover;
-
+#title {
+  font-family: 'Quicksand', sans-serif;
 }
 
-#intro {
-  color: #FFF;
-  padding-top: 10px;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: 50% 140px;
+.quicksand {
+  font-family: 'Quicksand', sans-serif;
+}
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.container .credit {
+  margin: 20px 0;
 }
 
-#intro h1 {
-  color: #FFF;
-}
 
 .plus {
   background-image: url('../img/icon_plus.png');
@@ -148,116 +154,52 @@ p {
   background-size: 60%;
 }
 
-.device {
-  padding-top: 180px;
+
+/*
+
+  POSTS
+
+*/
+
+a {
+  text-decoration: none;
 }
-
-.subtitle {
-  color: #AAA;
-}
-
-
-.home {
-
-}
-
-  .home .posts {
-
-  }
-
-
-  .home .posts li {
-    list-style-type: none;
-padding: 7px 5px;
-font-size: 18px;
-  }
-
 
 .posts {
   margin: 25px 0;
   padding: 0;
 }
-  .posts li {
-    list-style-type: none;
-    padding: 7px 5px;
-    font-size: 20px;
-  }
-  a {
-    text-decoration: none;
-  }
-  .posts span {
-    padding-top: 2px;
-    float: right;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #999;
-  }
-
-  .when {
-    font-size: 14px;
-    text-transform: uppercase;
-    color: #999;
-    width: 150px;
-    display: block;
-    text-align: right;
-    //margin: 23px 0 0 -210px;
-    float: left;
-  }
-
-li {
-  padding: 0;
-  list-style-type: square;
-  //font-size: 24px;
-  margin-left: 0;
-  line-height: 160%;
+.posts li {
+  list-style-type: none;
+  padding: 7px 5px;
+  font-size: 20px;
 }
 
-ul {
-  padding-left: 20px;
+.posts span {
+  padding-top: 2px;
+  float: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #999;
 }
 
-.project {
-  //padding-top: 40px;
-}
-
-.project .left {
-  width: 200px;
+.when {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #999;
+  width: 150px;
+  display: block;
+  text-align: right;
+  //margin: 23px 0 0 -210px;
   float: left;
-  padding-right: 30px;
-}
-
-.project .right {
-  padding-left: 30px;
-}
-  .project h3 {
-    border-bottom: 2px;
-  }
-
-  .project p {
-
-  }
-
-/* terminal */
-.post pre.terminal {
-  border: 1px solid #000;
-  background-color: #333;
-  color: #FFF;
-}
-
-.post pre.terminal code {
-  background-color: #333;
 }
 
 
-.orange {
-  color: #FF7527
-}
+/*
 
-.yolo {
-  height: 200px;
-  background-image: url('/img/meee.jpg');
-  background-size: cover;
-}
+  FOOTER
+
+*/
 
 .footer {
   padding-top: 80px;
@@ -281,15 +223,12 @@ ul {
   padding: auto 0 auto 0;
 }
 
-hr {
-  margin: 40px 0;
-}
 
-/*****************************************************************************/
 /*
-/* SUPER COOL ANIMATIONS!#!#!#!#!
-/*
-/*****************************************************************************/
+
+  ANIMATIONS
+
+*/
 
 .scale { 
   -webkit-transition: all .2s ease-in-out; 
