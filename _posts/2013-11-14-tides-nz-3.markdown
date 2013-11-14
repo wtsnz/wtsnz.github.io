@@ -32,7 +32,7 @@ It was amazing to go through my original code that I wrote for the first time ju
 
 I had the original code to base everything off, so that helped speed things up. I tidied up the data loading classes, and made them a lot neater. 
 
-I've also added Pods, and made use of a selection of open source libraries. I would love to gie back to the community at some point in the near future.
+I've also added Pods, and made use of a selection of open source libraries. I would love to give back to the community at some point in the near future.
 
 ## Future
 
