@@ -55,6 +55,12 @@ ul {
   padding-bottom: 1em;
 }
 
+/* Second Level */
+ul ul{
+  margin-left:15px;
+  font-size: 13px;
+}
+
 /*
 
   DESKTOP SIZES!

@@ -1,0 +1,48 @@
+---
+layout: post
+title:  "2013 in Review"
+date:   2013-12-22 19:30:00
+categories: update personal
+---
+
+2013 has officially been the craziest year of my life, so far. I managed to do lot's of things that three years ago I would have never imagined possible.
+
+Some of the highlights
+
+* January 
+	- Kicked off the New Year at Rythm and Vines, something I'm glad I did, but something that I won't be doing again.
+	- Won a golden ticket to get to go to Kim Dotcom's MEGA launch party!
+	- Worked PaperKite for 6 weeks.
+	- Re-designed my website.
+* February
+	- Decided not to go back to Auckland University and accepted permanent job offer at [PaperKite](http://paperkite.co.nz) as an iOS Developer instead.
+* April
+	- Went to Brisbane for a week.
+* May
+	- Moved into a tiny apartment at Soho Apartments Wellington CBD.
+	- Started work on [Pushie](http://pushie.co.nz)
+* June
+	- Got VDSL, which ended up being slower than expected.
+	- Went to TEDxTeAro
+* August
+	- Went to Perth for a week.
+* September
+	- Turned 21.
+	- Went to New York for two weeks.
+* October
+	- Became Tech Lead at [PaperKite](http://paperkite.co.nz)
+	- Moved into flat #2 at Mt Victoria, Wellington. Much bigger place.
+	- Re-designed my website again, and 'promised' to write a post at least once per month.
+* November
+	- Released [Tides NZ 3.0](http://tidesapp.co.nz)
+	- Went to Rarotonga for a week.
+	- Went to Sydney for 10 hours
+	- Re-wrote what I had of [Pushie](http://pushie.co.nz) so I could get it moving again.
+* December
+	- Finished up my (nearly) first year of full time work!
+
+What a year!
+
+Next year I would like to do a few things. Mainly, update my other Tides Apps (US, AUS and UK) to 3.0, Ship [Pushie](http://pushie.co.nz) and ship another project I've started.
+
+Here goes...
