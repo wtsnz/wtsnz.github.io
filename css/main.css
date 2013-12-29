@@ -33,6 +33,17 @@ h1, h2, h3, h4 {
   #font-family: 'Lato', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 33px;
+    text-transform: none;
+}
+
+h1 { font-size: 26px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; margin-bottom: 20px; }
+h4 { font-size: 18px; margin-bottom: 18px; }
+h5 { font-size: 16px; margin-bottom: 15px; }
+h6 { font-size: 14px; margin-bottom: 12px; }
 
 
 #title {
@@ -50,10 +61,6 @@ p, li {
   padding-top: 0.5em;
 }
 
-ul {
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
 
 /* Second Level */
 ul ul{
@@ -230,6 +237,16 @@ a {
 }
 
 
+
+.meta {
+  font-size: 14px;
+  float: right;
+  text-transform: uppercase;
+  color: #999;
+  width: 150px;
+  display: block;
+  text-align: right;
+}
 /*
 
   ANIMATIONS
