@@ -4,108 +4,58 @@
 /*
 /*****************************************************************************/
 
-@font-face {
-    font-family: 'fonts/amaranthregular';
-    src: url('fonts/amaranth-regular-webfont.eot');
-    src: url('fonts/amaranth-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/amaranth-regular-webfont.woff') format('woff'),
-         url('fonts/amaranth-regular-webfont.ttf') format('truetype'),
-         url('fonts/amaranth-regular-webfont.svg#amaranthregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-html {
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  color: #21272d;
-  font-family: 'Lato', sans-serif;
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+h1 {
+  margin-top: 0.9em;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, p {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
   color: #FF7527;
-  font-weight: 700;
-  #font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 33px;
-    text-transform: none;
-}
-
-h1 { font-size: 26px; }
-h2 { font-size: 24px; }
-h3 { font-size: 20px; margin-bottom: 20px; }
-h4 { font-size: 18px; margin-bottom: 18px; }
-h5 { font-size: 16px; margin-bottom: 15px; }
-h6 { font-size: 14px; margin-bottom: 12px; }
-
-
-#title {
-  color: #3D3734;
+p {
+  font-size: 1.4em;
+  line-height: 1.6em;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 2.3em;
-}
-
-p, li {
-  font-size: 1.2em;
-  line-height: 1.4em;
-  font-family: 'amaranthregular', sans-serif;
-  font-weight: 300;
-  color: #3D3734;
   padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  color: #3D3734;
 }
 
-
-/* Second Level */
-ul ul{
-  margin-left:15px;
-  font-size: 13px;
+ul > li {
+  line-height: 1.6em;
+  font-size: 20px;
+  color: #3D3734;
 }
 
-/*
-
-  DESKTOP SIZES!
-
-*/
-
-@media screen and ( min-width: 700px ) {
-  #title {
-    color: #3D3734;
-    font-weight: 400;
-    font-size: 3.0em;
-  }
-
-  p, li {
-    font-size: 1.4em;
-    line-height: 1.6em;
-  }
-
+.project h3 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
-
-
-
-.project {
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-
-
-
 
 .page-header a:hover {
   text-decoration: none;
 }
 
 
-
 .orange {
-  color: #FF7527
+  color: #FF7527;
 }
 
 .orangeLine {
@@ -121,13 +71,6 @@ ul ul{
   background-size: 20px;
 }
 
-#title {
-  font-family: 'Quicksand', sans-serif;
-}
-
-.quicksand {
-  font-family: 'Quicksand', sans-serif;
-}
 .container {
   width: auto;
   max-width: 680px;
@@ -138,36 +81,51 @@ ul ul{
 }
 
 
-.plus {
-  background-image: url('../img/icon_plus.png');
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 72%;
-  height: 200px;
-}
-.iphone {
-  background-image: url('../img/icon_iphone.png');
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 33%;
-  height: 200px;
-}
-.ipad {
-  background-image: url('../img/icon_ipad.png');
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 50%;
-  height: 200px;
-}
-.nodejs {
-  background-image: url('../img/icon_cloud.png');
-  background-repeat: no-repeat;
-  height: 200px;
-  background-position: 50%;
-  background-size: 60%;
+.img-app-icon {
+  max-width: 100px;
 }
 
+ul.projects {
+  width: 100%;
+  margin-top: 2em;
+}
 
+ul.projects li {
+  text-align: center;
+  display: block;
+  list-style-type: none;
+  padding-right: 20px;
+  float: left;
+  height: 150px;
+  width: 33%;
+}
+
+ul.projects a {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+ul.projects a span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+ul.projects img {
+  width: 100px;
+  height: 100px;
+}
+
+ul.projects:after {
+  clear: both; 
+}
+
+@media all and (max-width: 550px) {
+  ul.projects li {
+    width: 50%; 
+  } 
+}
 /*
 
   POSTS
@@ -178,13 +136,17 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: none;
+  color: #FF7527;
+}
+
 .posts {
-  margin: 25px 0;
   padding: 0;
 }
 .posts li {
   list-style-type: none;
-  padding: 7px 5px;
+  padding: 7px 0px;
   font-size: 20px;
 }
 
@@ -236,8 +198,6 @@ a {
   padding: auto 0 auto 0;
 }
 
-
-
 .meta {
   font-size: 14px;
   float: right;
@@ -247,10 +207,9 @@ a {
   display: block;
   text-align: right;
 }
+
 /*
-
   ANIMATIONS
-
 */
 
 .scale { 
