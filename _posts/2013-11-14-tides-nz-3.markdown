@@ -7,7 +7,7 @@ categories: tidesnz 3 app tides
 
 It's out! I finally managed to sit down for a few weekends and create the next version of Tides.
 
-<img src="/img/tides-nz-3-hand.jpg" style="max-width: 100%">
+![Tides NZ Hand Shot](/img/tides-nz-3-hand.jpg "Tides NZ Hand")
 
 I've released the long awaited update to Tides NZ today. It's a complete rework, with new design and a couple more features. It's a free update to the existing app, though I decided against releasing it as a seperate app.
 
