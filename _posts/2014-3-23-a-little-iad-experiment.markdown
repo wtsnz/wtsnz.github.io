@@ -37,5 +37,5 @@ Of course it's all good me saying this, but I have no idea, hence the experiment
 
 *I'm still not 100% happy with the new icon, but hopefully the target market like it.*
 
-I'm [@vfxguynz](https://twitter.com/vfxguynz) on twitter, follow me because I'll post a write up as to how this experiment goes. 
+I'm [@vfxguynz](https://twitter.com/vfxguynz) on twitter, follow me to get notified when I write the followup of this experiment. 
 
