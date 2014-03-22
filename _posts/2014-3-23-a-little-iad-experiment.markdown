@@ -25,11 +25,11 @@ The period at the start where there was no profit, was the week I made Tides US 
  
 Having 325 downloads in a day got me to rank 110th in the US Navigation. **110th!** I didn't even get into the top 100 Navigation apps! Other apps must be getting a *lot* of downloads.
  
-**I've decided that I'm going to make it free, and play with iAd.**
+**I've decided that I'm going to make it free, and try iAd.**
 
 The US market has proven itself a lot harder to break into as a paid app than Australia or New Zealand. Perhaps it's because I don't have any contacts that could promote it to the right people - I've never run any ad campaigns, or have a network over there - yet.
 
-Being an app that seems to have a high retention, with people who keep opening the app every day (people who are into boating, fishing, water sports or even anyone who likes to walk on the beach) this may lend itself to be a good fit for and ad supported model.
+Being an app that seems to have a high retention, with people who keep opening the app every day (people who are into boating, fishing, water sports or even anyone who likes to walk on the beach) this may lend itself to be a good fit for an ad supported model.
 
 Of course it's all good me saying this, but I have no idea, hence the experiment. It may turn out to be a massive failure, and make no money - at the end of the day, the purpose of this experiment it to get Tides US into more hands and see how iAd performs on what I think will be relatively small userbase.
 
