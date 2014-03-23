@@ -17,7 +17,7 @@ Currently Tides US is bringing in about $1 NZD a day. I don't have any analytics
 
 As you can see, it's been fairly consistent at around $2-3 a day over the summer (Q2 to Q4). I raised the price from $0.99 to $1.99 around Q5 point - half the sales, similar amount of profit.
 
-The period at the start where there was no profit, was the week I made Tides US free. Look at that download spike!
+The brief dip at the start where there was no profit was the week I made Tides US free. Look at that download spike!
 
 ![alt text](/img/a-little-iad-experiment/us-units@2x.png "Tides US Sales")
 
