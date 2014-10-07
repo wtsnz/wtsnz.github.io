@@ -1,103 +1,16 @@
-{% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
-{% capture relative %}{% for i in (2..lvl) %}../{% endfor %}{% endcapture %}
-<!DOCTYPE html>
+---
+layout: template
+---
 
-<!-- 
- __        __ _  _  _   _____                                             _     _        
- \ \      / /(_)| || | |_   _|___ __      __ _ __   ___   ___  _ __    __| |   (_)  ___  
-  \ \ /\ / / | || || |   | | / _ \\ \ /\ / /| '_ \ / __| / _ \| '_ \  / _` |   | | / _ \ 
-   \ V  V /  | || || | _ | || (_) |\ V  V / | | | |\__ \|  __/| | | || (_| | _ | || (_) |
-    \_/\_/   |_||_||_|(_)|_| \___/  \_/\_/  |_| |_||___/ \___||_| |_| \__,_|(_)|_| \___/ 
-                                                                                         
-
-Why hello there! I guess you're interested what I've used to make this site if you're
-looking here. Well, cause I am SOOOO nice, I shall tell you.
-
-This site is a static site hosted on GitHub Pages with a custom domain. I've used
-Jekyll to dynamically generate the HTML. It's pretty rad.
-
-To redirect the naked domain to the 'will' subdomain, I have run my DNS through Amazon's 
-Route 53, and have set up an alias.
-
-You can checkout the source code on my GitHub page, it's nothing special though.
-
-https://github.com/wtsnz/wtsnz.github.io
-
-You're amazing, btw 😉.
-
--->
-
-<html>
-    <head>
-        <!-- Meta stuff -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-        <title>{{ page.title }}</title>
-
-        <meta name="author" content="Will Townsend" />
-        <meta name="description" content="Ramblings and projects of Will Townsend on many topics including life and all the answers to the universe, though mainly design, iOS and Node.js" />
-        <meta name="keywords" content="will, townsend, will townsend, ios, wellington, iphone, node, nodejs" />
-
-        <!-- Le fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap -->
-        <link href="{{ relative }}css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="{{ relative }}css/syntax.css">
-
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ relative }}css/main.css">
-
-        <link href="/img/favicon.ico" rel="icon" />
-
-        <!-- Mobile CSS -->
-        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-    </head>
-
-    <!-- Actual stuff -->
-    <body>
+<div class="container">
 
       <!-- Best have a header.. -->
-      <div class="container">
-          <div class="page-header">
 
-            <a href="/"><h1 id="title">Will Townsend</h1></a>
-            <p>I create software for the devices that live in your pocket.</p>
-          </div>
+        {% include nav.html %}
 
-      </div>
 
       <!-- Container, which contains stuff. (Just sets the width) -->
-      <div class="container">
 
           {{ content }}
 
-          <div class="footer">
-
-            <ul class="list-inline">
-                  <li><a href="http://twitter.com/vfxguynz"><i class="icon-twitter icon-large"></i></a></li>
-                  <li><a href="http://instagram.com/wtsnz"><i class="icon-instagram icon-large"></i></a></li>
-                  <li><a href="http://facebook.com/wtsnz"><i class="icon-facebook icon-large"></i></a></li>
-                  <li><a href="http://www.linkedin.com/in/wtsnz"><i class="icon-linkedin icon-large"></i></a></li>
-                  <li><a href="https://github.com/wtsnz"><i class="icon-github icon-large"></i></a></li>
-              </ul>
-          </div>
-      </div> 
-
-      <!-- Scripts and stuff. -->
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-47488115-1', 'townsend.io');
-        ga('send', 'pageview');
-      </script>
-
-    </body>
-</html>
+</div>

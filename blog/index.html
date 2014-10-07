@@ -1,0 +1,13 @@
+---
+layout: default
+title: Will Townsend | Blog
+---
+
+<h1>Blog</h1>
+<p>Here's a few words I've attempted to organize into an interesting and original order, enjoy.</p>
+
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}<span></li>
+  {% endfor %}
+</ul>

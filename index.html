@@ -4,72 +4,66 @@ title: Will Townsend
 mainfeature: true
 ---
 
-	          <div class="row">
-	            <div class="col-md-12">
-	              <h2>Hey</h2>
-
-				  <p>I'm a software developer in Wellington. I create things using Objective-C and Javascript. I have a passion for clean code and beautiful design.</p>
-
-				  <!--<p>, and spend most of my time as the Technical Lead at <a href="http://paperkite.co.nz">PaperKite</a>.</p>-->
-
-	              <p>I'm the Technical Lead at <a href="http://paperkite.co.nz">PaperKite</a>, where I've worked for the last 2 years, learnt a hell of a lot, and have had the chance to work on some amazing projects.</p>
-
-	              <!--<p>I write Objective-C (Learning Swift), Javascript and dabbling in Ruby. I play with Photoshop and Sketch. I have a passion for clean code and beautiful design.</p>-->
-	              
-	              <!--<p>I have a passion for beautiful products.  that I'm the Tech lead at <a href="http://paperkite.co.nz">PaperKite</a> in a <em>small</em> town called Wellington, New Zealand. And no, I've never seen a real life hobbit.</p><p>I enjoy writing software in my spare time, my platform of choice being iOS. <a href="http://tidesapp.co.nz">Tides NZ</a> was the first app I published to the App Store in May 2011, which between Tides NZ and twitter, actually lead to my current position.</p>-->
-	            </div>
-	          </div>
-	          <div class="row">
-	            <div class="col-md-12">
-	              <h2>Projects</h2>
-	              <p>I get a kick out of making things, so what better thing to do than bringing my own creations to life. My most successful project <a href="http://tidesapp.co.nz">Tides NZ</a>, has been the number 1 navigation app in New Zealand since it's release in May 2011!</p>
-	              <ul class="projects">
-	              	<li>
-	              	  <a href="http://tidesapp.co.nz/" title="Tides NZ">
-				        <img src="/img/icon_tides_nz.png">
-				        <span>Tides NZ</span>
-				      </a>
-	              	</li>
-	              	<li>
-	              	  <a href="http://getsalesapp.com/" title="Sales">
-				        <img src="/img/icon_sales.png">
-				        <span>Sales</span>
-				      </a>
-	              	</li>
-	              	<li>
-	              	  <a href="/2014/open-source-nz-herald-app/" title="Alt NZ Herald">
-				        <img src="/img/icon_nzh.png">
-				        <span>Alt NZ Herald</span>
-				      </a>
-	              	</li>
-	              	<!--<li>
-	              	  <a href="http://pushie.co.nz/" title="Pushie">
-				        <img src="/img/icon_pushie.png">
-				        <span>Pushie</span>
-				      </a>
-	              	</li>-->
-
-	              </ul>
+<h1>Hey</h1>
 
 
+<p>I'm a software developer currently living in Windy Wellington, New Zealand. I create <a href="https://github.com/wtsnz" target="_blank">software</a> for the devices that live in your pocket using Objective-C, Javascript, Ruby, Go, and recently Swift. I adore clean code and beautiful design with a nice cup of tea.</p>
 
-	            </div>
-	              
-	          </div>
-	          <div class="row">
-	            <div class="col-md-12">
-	              <p>I have released a few open source projects, most recently an iOS library for Hoist Apps and an alternative NZ Herald client. Check out my <a href="https://github.com/wtsnz">GitHub</a> page to see what I've been up to.</p>
-	            </div>
-	          </div>
-	          <div class="row">
-	            <div class="col-md-12">
-	              <h2>Words</h2>
-	              <p>I don't write much, but I'm trying to more often these days. Here's the works</p>
-	            </div>
-	          </div>
+<p>I'm the Technical Lead at <a href="http://paperkite.co.nz">PaperKite</a>, where I've worked for the last 2 years, learned an insane amount, and have been involved with <a href="https://itunes.apple.com/nz/app/all-blacks-the-rugby-union-app/id374882187?mt=8" target="_blank">some</a>, <a href="https://itunes.apple.com/nz/app/metservice/id525900888?mt=8" target="_blank">awesome</a>, <a href="https://itunes.apple.com/nz/app/randstad-timesheets/id785021889?mt=8" target="_blank">projects</a> - with a lot more in the works!</p>
 
-            <ul class="posts">
-              {% for post in site.posts %}
-                <li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}<span></li>
-              {% endfor %}
-            </ul>
+<p>I'm attempting to <a href="/blog">blog</a> more. Here's my last five posts.</p>
+
+
+<ul class="posts">
+	{% for post in site.posts limit:5 %}
+	<li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}<span></li>
+	{% endfor %}
+</ul>
+
+<hr />
+
+<h1>Personal Projects</h1>
+<p>I get a kick out of making things, so it doesn't stop when I get home. I'd love to make something that people love to use. Check out my <a href="https://github.com/wtsnz" target="_blank">GitHub</a> page to see what I've been up to recently.</p>
+<p>My product journey so far has been extremely educational. There's so much more to consider than a few lines of code! The most successful personal project of mine <a href="http://tidesapp.co.nz">Tides NZ</a>, has been a great success and has enjoyed being the #1 Navigation app in New Zealand since it's release in May 2011!</p>
+
+<div class="row project project-first">
+	<div class="col-xs-2">
+		<a href="http://tidesapp.co.nz/" target="_blank" title="Tides NZ">
+	        <img class="project-img" src="/img/icon_tides_nz.png"></img>
+	    </a>
+	</div>
+	<div class="col-md-10">
+			<h3><a href="http://tidesapp.co.nz" target="_blank">Tides NZ</a></h3>
+			<p>Tides NZ was the first iOS app I created. I got the idea through a summer of skimboarding, which knowing what the tide was doing was essential for me and my mates.</p>
+	</div>
+</div>
+
+<hr />
+
+<div class="row project">
+	<div class="col-xs-2">
+		<a href="http://getsalesapp.com/" target="_blank" title="Sales for AppFigures">
+	        <img class="project-img" src="/img/icon_sales.png"></img>
+	    </a>
+	</div>
+	<div class="col-md-10">
+			<h3><a href="http://getsalesapp.com" target="_blank">Sales</a></h3>
+			<p>After launching Tides NZ, I came accross AppFigures. While they don't have a companion app, they do provide a public API for third parties to play with. Hence Sales was born.</p>
+	</div>
+</div>
+
+<hr />
+
+<h1>Experiments</h1>
+<p>Things that haven't ended up in the AppStore.</p>
+<div class="row project project-first">
+	<div class="col-xs-2">
+		<a href="https://github.com/wtsnz/NZHerald" target="_blank" title="Alternate NZHerald Client">
+	        <img class="project-img" src="/img/icon_nzh.png"></img>
+	    </a>
+	</div>
+	<div class="col-md-10">
+			<h3><a href="https://github.com/wtsnz/NZHerald" target="_blank">Alternate NZ Herald Client</a></h3>
+			<p>I decided to reverse engineer the NZ Herald API and attempt to make a simple news client that replicates Medium's fantastic app (especially the scrolling).</p>
+	</div>
+</div>
