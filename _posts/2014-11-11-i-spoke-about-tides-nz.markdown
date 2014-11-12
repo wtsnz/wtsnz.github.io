@@ -25,6 +25,8 @@ A couple of hours later, I had this complete deck of slides and enough in my hea
 
 After it was over, I was so relieved and could chill and watch the other speakers. There were a lot of questions at the end, which I took as people found it interesting, not that I didn't explain everything!
 
+I found out that a couple of people actually used Tides NZ. That was the first time I've met someone who's organically downloaded an app of mine, that felt insane!
+
 It was a great night and the other speakers were fantastic.
 
 Go check out [Tides NZ](http://tidesapp.co.nz) now for the best tides app in New Zealand!
