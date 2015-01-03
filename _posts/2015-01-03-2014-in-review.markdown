@@ -1,0 +1,44 @@
+---
+layout: post
+title:  "2014 in Review"
+date:   2015-01-03 20:30:00
+categories: update personal
+---
+
+Another year has passed. After realising how much I enjoyed writing my [2013](https://will.townsend.io/2013/2013-in-review/) post I did this time last year I've decided to do it again for this past year.
+
+I don't keep a diary, never have. Although I decided to try something different this year; I decided to take a picture everyday and post it to my Instagram account. This proved challenging at times, and took a bit of getting used to but I've found it later insightful as to how I spend my time! (Many days it was easy to take a picture of food, but hey, eating is important for survival!) [Check out my instagram feed here](http://instagram.com/wtsnz/)
+
+Here's my random highlights from the year:
+
+* January 
+	- Released initial version of [Sales](http://getsalesapp.com/) app
+	- Researched the parts required and built a custom Quadrocopter.
+* February
+	- Went to the Wellington Sevens (a massive fancy dress party/sports event that everyone in Wellington appears to partake in)
+	- Moved into flat #3, another place in Mt Victoria, Wellington.
+	- Started using my flatmates guitar to learn the basic chords.
+	- Broke and fixed my quadrocopter multiple times
+	- Released my first Cocoapod, [Hoist](https://github.com/wtsnz/Hoist)
+* March
+	- My LIFX arrived; buy one, they're amazing.
+	- Released an update to Tides US
+* April
+	- Went to Fiji for a week with the PaperKite team
+	- Learned the basics of Rails
+	- Spoke about Kanji Cut at the iOS dev meetup (a game me and @olibridgman started to make)
+* May
+	- Went to Sydney for 2 days
+* June
+	- Successfully launched the new version of the All Blacks app. Monitored the backend intensely.
+* July
+	- Purchased a Boss RC-30 Loop Pedal + my own acoustic/electric guitar + amp.
+* September
+	- Turned 22.
+	- Went to the UK for 2 weeks.
+* October
+	- Got an iPhone 6.
+* December
+	- Spent Christmas and New Year in Auckland for the last 2 weeks of the year.
+
+Here's to 2015!
