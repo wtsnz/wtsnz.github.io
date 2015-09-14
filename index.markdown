@@ -4,15 +4,13 @@ title: Will Townsend
 mainfeature: true
 ---
 
-<h1>Hey</h1>
+I'm a __software engineer__ currently living in Windy Wellington, New Zealand. I create [software](https://github.com/wtsnz) for the Apple devices that live in your pocket using __Swift__ and __Objective-C__. I adore __clean code__, __beautiful design__ and a perfectly brewed __cup of tea__ ☕️.
 
+I'm the Technical Lead at [PaperKite](http://paperkite.co.nz), where I've been since March 2013, and have been involved with projects of all shapes and sizes. Being a service company we're lucky enough to play with a lot of new (_and old!_) technology and create apps that an incredible amount of people use everyday 🎉.
 
-<p>I'm a <b>software developer</b> currently living in Windy Wellington, New Zealand. I create <a href="https://github.com/wtsnz" target="_blank">software</a> for the devices that live in your pocket using <b>Objective-C</b>, Ruby, and recently <b>Swift</b>. I adore <b>clean code</b>, <b>beautiful design</b> and a nice <b>cup of tea</b>.</p>
+# Writing
 
-<p>I'm the Technical Lead at <a href="http://paperkite.co.nz">PaperKite</a>, where I've worked for the last 2 years, learned an insane amount, and have been involved with <a href="https://itunes.apple.com/nz/app/all-blacks-the-rugby-union-app/id374882187?mt=8" target="_blank">some</a>, <a href="https://itunes.apple.com/nz/app/metservice/id525900888?mt=8" target="_blank">awesome</a>, <a href="https://itunes.apple.com/nz/app/randstad-timesheets/id785021889?mt=8" target="_blank">projects</a> - with a lot more in the works!</p>
-
-<p>I'm attempting to <a href="/blog">blog</a> more. Here's my latest posts.</p>
-
+When I have nothing to do I sometime ramble about things on my [blog](/blog). Maybe one day there will be something of use to you. Here's my latest posts.
 
 <ul class="posts">
 	{% for post in site.posts limit:5 %}
@@ -22,9 +20,11 @@ mainfeature: true
 
 <hr />
 
-<h1>Personal Projects</h1>
-<p>I get a kick out of making things, so it doesn't stop when I get home. I'd love to make something that people love to use. Check out my <a href="https://github.com/wtsnz" target="_blank">GitHub</a> page to see what I've been up to recently.</p>
-<p>My product journey so far has been extremely educational. There's so much more to consider than a few lines of code! The most successful personal project of mine <a href="http://tidesapp.co.nz">Tides NZ</a>, has been a great success and has enjoyed being the #1 Navigation app in New Zealand since it's release in May 2011!</p>
+#Personal Projects
+
+I get a kick out of making things, so it doesn't stop when I get home. I'd love to make something that people love to use. Check out my [GitHub](https://github.com/wtsnz) page to see what I've been up to recently.
+
+My product journey so far has been extremely educational. There's so much more to consider than a few lines of code! The most successful personal project of mine <a href="http://tidesapp.co.nz">Tides NZ</a>, has been a great success and has enjoyed being the #1 Navigation app in New Zealand since it's release in May 2011!
 
 <div class="row project project-first">
 	<div class="col-xs-2">
