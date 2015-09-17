@@ -2,3 +2,11 @@ name: Will Townsend
 markdown: redcarpet
 pygments: true
 permalink: /:year/:title
+
+navigation:
+  - title: Blog
+    url: /blog/
+  - title: About
+    url: /about/
+  - title: AppStore
+    url: https://itunes.apple.com/nz/artist/will-townsend/id482491153

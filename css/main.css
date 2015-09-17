@@ -34,7 +34,7 @@ h1, h2, h3, h4, p {
 }
 
 p {
-  font-size: 1.4em;
+  font-size: 1.5em;
   line-height: 1.8em;
   font-family: 'Avenir', 'Open Sans', sans-serif;
   font-weight: normal;
@@ -187,6 +187,10 @@ ul.projects:after {
   .nav {
     font-size: 0.9em;
   }
+}
+
+.nav .active {
+    color: #FF7527;
 }
 
 .smallcaps, .nav a, .ocbutton, .ocborderedbutton, .caption2 {
@@ -365,16 +369,16 @@ a:hover {
   ANIMATIONS
 */
 
-.scale { 
-  -webkit-transition: all .2s ease-in-out; 
+.scale {
+  -webkit-transition: all .2s ease-in-out;
 }
-.scale:hover { 
-  -webkit-transform: scale(1.05); 
+.scale:hover {
+  -webkit-transform: scale(1.05);
 }
 
-.spin { 
-  -webkit-transition: all .1s ease-in-out; 
+.spin {
+  -webkit-transition: all .1s ease-in-out;
 }
-.spin:hover { 
-  -webkit-transform: rotate(10deg); 
+.spin:hover {
+  -webkit-transform: rotate(10deg);
 }

@@ -1,7 +1,17 @@
 <div class="nav">
   <a href="/" class="title">Will Townsend</a>
-  <a class="right" href="https://itunes.apple.com/nz/artist/will-townsend/id482491153" target="_blank">AppStore</a>
+  {% for item in site.navigation %}
+      {% assign class = nil %}
+      {% if page.url contains item.url %}
+          {% assign class = 'active' %}
+      {% endif %}
+      <a href="{{ item.url }}" class="right {{ class }}">
+          {{ item.title }}
+      </a>
+  {% endfor %}
+
+  <!-- <a class="right" href="https://itunes.apple.com/nz/artist/will-townsend/id482491153" target="_blank">AppStore</a>
   <a class="right" href="/about">About</a>
-  <a class="right" href="/blog">Blog</a>
+  <a class="right" href="/blog">Blog</a> -->
   <!--<a class="right" href="/projects">Projects</a>-->
 </div>
