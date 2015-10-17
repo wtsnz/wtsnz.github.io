@@ -1,7 +1,10 @@
 name: Will Townsend
 markdown: redcarpet
-pygments: true
+highlighter: pygments
 permalink: /:year/:title
+
+description: I like to make iOS apps and play guitar.
+url: https://will.townsend.io
 
 navigation:
   - title: Blog
