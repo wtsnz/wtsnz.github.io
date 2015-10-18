@@ -81,6 +81,6 @@ My product journey so far has been extremely educational. There's so much more t
 	</div>
 	<div class="col-md-10">
 			<h3><a href="https://github.com/wtsnz/Swift-Particles" target="_blank">Swift Particles</a></h3>
-			<p>Browsing the net today I came across Sketch.js and a <a href="http://soulwire.github.io/sketch.js/examples/particles.html">Particle demo</a>. I quite liked it so spent an hour or so to implement (port js really..) something similar in Swift. It brought back memories of writing games in action script.</p>
+			<p>I came across Sketch.js and a <a href="http://soulwire.github.io/sketch.js/examples/particles.html">Particle demo</a>. I quite liked it so spent an hour or so to implement (port js really..) something similar in Swift. It brought back memories of writing games in action script.</p>
 	</div>
 </div>
