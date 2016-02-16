@@ -3,7 +3,7 @@
         "apps": [],
         "details": [
             {
-                "appID": "com.ccamatil.VendSwift-Dev",
+                "appID": "7627W95S7Y.com.ccamatil.VendSwift-Dev",
                 "paths": [ "/","*","/redeem/*" ]
             }
         ]
