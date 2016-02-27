@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "7627W95S7Y.com.ccamatil.VendSwift-Dev",
+                "paths": ["/redeem/*"]
+            }
+        ]
+    }
+}
