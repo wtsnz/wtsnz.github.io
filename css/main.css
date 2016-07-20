@@ -383,3 +383,8 @@ a:hover {
 .spin:hover {
   -webkit-transform: rotate(10deg);
 }
+
+figure {
+    width: 120%;
+    margin: 0 -10%;
+}
