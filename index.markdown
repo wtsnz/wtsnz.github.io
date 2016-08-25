@@ -29,7 +29,7 @@ My product journey so far has been extremely educational. There's so much more t
 <div class="row project project-first">
 	<div class="col-xs-2">
 		<a href="http://tidesapp.co.nz/" target="_blank" title="Tides NZ">
-	        <img class="project-img" src="/img/icon_tides_nz.png"></img>
+	        <img class="project-img" src="/img/icon_tides_nz.png" />
 	    </a>
 	</div>
 	<div class="col-md-10">
@@ -64,7 +64,7 @@ My product journey so far has been extremely educational. There's so much more t
 <div class="row project project-first">
 	<div class="col-xs-2">
 		<a href="https://github.com/wtsnz/NZHerald" target="_blank" title="Alternate NZHerald Client">
-	        <img class="project-img" src="/img/icon_nzh.png"></img>
+	        <img class="project-img" src="/img/icon_nzh.png" />
 	    </a>
 	</div>
 	<div class="col-md-10">
@@ -76,7 +76,7 @@ My product journey so far has been extremely educational. There's so much more t
 <div class="row project project-first">
 	<div class="col-xs-2">
 		<a href="https://github.com/wtsnz/Swift-Particles" target="_blank" title="Swift Particles">
-	        <img class="project-img" src="/img/swift-particles.png"></img>
+	        <img class="project-img" src="/img/swift-particles.png" />
 	    </a>
 	</div>
 	<div class="col-md-10">
