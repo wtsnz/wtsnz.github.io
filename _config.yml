@@ -1,7 +1,15 @@
 name: Will Townsend
-markdown: redcarpet
-highlighter: pygments
+# markdown: kramdown
+# highlighter: pygments
 permalink: /:year/:title
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  parse_block_html: false
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 
 description: I like to make iOS apps and play guitar.
 url: https://will.townsend.io

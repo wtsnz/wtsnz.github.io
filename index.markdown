@@ -14,13 +14,13 @@ When I have nothing to do I sometime ramble about things on my [blog](/blog). Ma
 
 <ul class="posts">
 	{% for post in site.posts limit:5 %}
-	<li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}<span></li>
+	<li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}</span></li>
 	{% endfor %}
 </ul>
 
 <hr />
 
-#Personal Projects
+# Personal Projects
 
 I get a kick out of making things, so it doesn't stop when I get home. I'd love to make something that people love to use. Check out my [GitHub](https://github.com/wtsnz) page to see what I've been up to recently.
 
