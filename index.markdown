@@ -48,7 +48,7 @@ My product journey so far has been extremely educational. There's so much more t
 <div class="row project">
 	<div class="col-xs-2">
 		<a href="http://getsalesapp.com/" target="_blank" title="Sales for AppFigures">
-	        <img class="project-img" src="/img/icon_sales.png"></img>
+	        <img class="project-img" src="/img/icon_sales.png" />
 	    </a>
 	</div>
 	<div class="col-md-10">
