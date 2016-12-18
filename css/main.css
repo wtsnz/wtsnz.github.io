@@ -164,20 +164,35 @@ ol > li {
 
 .project {
   display: flex;
+  /*flex-flow: row wrap;*/
+  align-items: stretch;
   /*align-items: center;*/
 }
+
+
 
 .project h1 {
   /*font-size: 2em;*/
 }
 
 .project > .left {
-  margin-right: 20px;
-  /*flex-grow: 1;*/
+  flex: 1 50%;
+  flex-grow: 1;
 }
 
 .project > .right {
-  /*flex-grow: 1;*/
+  flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+  .project {
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .project > .left {
+    flex: 1 100%;
+    text-align: center;
+  }
 }
 
 .project h3 {
