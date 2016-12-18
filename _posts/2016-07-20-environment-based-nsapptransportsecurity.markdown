@@ -21,10 +21,10 @@ To modify the Info.plist file in a shell script, OSX comes with a tool called Pl
 
 First we must delete any existing NSAppTransportSecurity entries from the plist. If we don't do this, PlistBuddy fails when we try to add the dictionary, causing the build to fail.
 
-{% highlight sh %}
+```sh
 # Delete any existing NSAppTransportSecurity configurations
 /usr/libexec/PlistBuddy -c "Delete :NSAppTransportSecurity" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-{% endhighlight %}
+```
 
 Then we create the NSAppTransportSecurity dictionary again
 

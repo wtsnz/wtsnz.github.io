@@ -2,15 +2,6 @@
 layout: template
 ---
 
-<div class="container">
+{% include nav.html %}
 
-      <!-- Best have a header.. -->
-
-        {% include nav.html %}
-
-
-      <!-- Container, which contains stuff. (Just sets the width) -->
-
-          {{ content }}
-
-</div>
+{{ content }}
