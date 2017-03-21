@@ -202,7 +202,7 @@ let accountProvider = MigrationAccountProvider(current: sharedKeychainAccountPro
 let api = APIClient(accountProvider: accountProvider)
 ```
 
-![image](/img/refactoring/migration-.svg)
+![image](/img/refactoring/migration.svg)
 
 How cool is that!? 👍
 
