@@ -451,3 +451,40 @@ figure {
     width: 120%;
     margin: 0 -10%;
 }
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 25px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.grid-project-icon {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  align-self: center;
+}
+
+.grid-project {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.grid-project > h3 {
+  padding-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.grid-project > p {
+  padding-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
