@@ -15,25 +15,28 @@ title: OBS iPhone Camera Input Source Plugin
 </script>
 
 <style>
- img {
+ .cocoen-container {
   margin: 0 -30%;
   width: 160%;
 }
 
 @media (max-width: 1000px) {
-   img {
+	.cocoen-container {
     margin: 0 -10%;
     width: 120%;
   }
 }
 
 @media (max-width: 800px) {
-  img {
+	.cocoen-container {
     margin: 0 0;
     width: 100%;
   }
 }
 </style>
+
+<script src="./cocoen.min.js"></script>
+<link rel="stylesheet" href="./cocoen.min.css" />
 
 <!-- Event snippet for Signed up for email newsletter conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
@@ -70,7 +73,15 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 <p>Check out the comparison between the two sources looking at this webpage. </p>
 
-<img src="./c920.jpg" data-alt-src="./iphone-6.jpg"></img>
+<div class="cocoen-container">
+		<div class="cocoen">
+				<img src="./iphone-6.jpg" alt="">
+				<img src="./c920.jpg" alt="">
+		</div>
+</div>
+
+
+<!-- <img src="./c920.jpg" data-alt-src="./iphone-6.jpg"></img> -->
 <p style="text-align: center;"><sub><i>Hover your mouse over to see the iPhone 6 input</i></sub></p>
 
 <br />
@@ -273,7 +284,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
 <script>
+
+	new Cocoen(document.querySelector('.cocoen'));
 
 	var sourceSwap = function () {
 		var $this = $(this);
