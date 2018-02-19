@@ -14,6 +14,26 @@ title: Will Townsend | About
 	gtag('config', 'AW-816189720');
 </script>
 
+<style>
+ img {
+  margin: 0 -30%;
+  width: 160%;
+}
+
+@media (max-width: 1000px) {
+   img {
+    margin: 0 -10%;
+    width: 120%;
+  }
+}
+
+@media (max-width: 800px) {
+  img {
+    margin: 0 0;
+    width: 100%;
+  }
+}
+</style>
 
 <!-- Event snippet for Signed up for email newsletter conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
@@ -48,10 +68,14 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 <p>So I set out to create a plugin in OBS that would fix these two issues, and allow me to use my iPhone 6 as a video input
 	device into OBS.</p>
 
-<p>Comparison of C920 vs iPhone 6</p>
+<p>Check out the comparison between the two sources looking at this webpage. </p>
+
+<img src="./c920.jpg" data-alt-src="./iphone-6.jpg"></img>
+<p style="text-align: center;"><sub><i>Hover your mouse over to see the iPhone 6 input</i></sub></p>
 
 <br />
-
+<br />
+<br />
 
 <h2>📝 Features</h2>
 
@@ -90,7 +114,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 	#mc_embed_signup input.email {
 		font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
-		font-size: 15px;
+		font-size: 18px;
 		border: 1px solid #ABB0B2;
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
@@ -98,7 +122,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 		color: #343434;
 		background-color: #fff;
 		box-sizing: border-box;
-		height: 32px;
+		height: 40px;
 		padding: 0px 0.4em;
 		display: inline-block;
 		margin: 0;
@@ -108,7 +132,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 	#mc_embed_signup label {
 		display: block;
-		font-size: 16px;
+		font-size: 20px;
 		padding-bottom: 10px;
 		font-weight: bold;
 	}
@@ -120,7 +144,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 	/* positions button horizontally in line with input */
 
 	#mc_embed_signup .button {
-		font-size: 13px;
+		font-size: 15px;
 		border: none;
 		-webkit-border-radius: 3px;
 		-moz-border-radius: 3px;
@@ -129,8 +153,8 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 		color: #fff;
 		background-color: #aaa;
 		box-sizing: border-box;
-		height: 32px;
-		line-height: 32px;
+		height: 40px;
+		line-height: 40px;
 		padding: 0 18px;
 		display: inline-block;
 		margin: 0;
@@ -205,6 +229,12 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
 	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>
+
+
+<br />
+<br />
+<br />
+
 <div id="mc_embed_signup">
 	<form action="https://wtsnz.us7.list-manage.com/subscribe/post?u=c9f868b9ba268617447e33276&amp;id=2fe5d91266" method="post"
 	 id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -222,9 +252,35 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 	</form>
 </div>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
+
+	var sourceSwap = function () {
+		var $this = $(this);
+		var newSource = $this.data('alt-src');
+		$this.data('alt-src', $this.attr('src'));
+		$this.attr('src', newSource);
+	}
 
 	$(document).ready(function () {
 
@@ -236,6 +292,14 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 				eventLabel: 'submit'
 			});
 		});
+
+
+		$(function() {
+			$('img[data-alt-src]').each(function() { 
+				new Image().src = $(this).data('alt-src'); 
+			}).hover(sourceSwap, sourceSwap); 
+		});
+
 	});
 
 </script>
