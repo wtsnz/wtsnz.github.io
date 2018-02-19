@@ -146,15 +146,19 @@ section.post > article > p > img {
   }
 }
 
-ul > li {
+ul {
   line-height: 1.6em;
-  font-size: 1.2em;
+  font-size: 18px;
+}
+
+ul li {
+
   color: rgb(68, 68, 68);
 }
 
-ol > li {
+ol li {
   line-height: 1.6em;
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   color: rgb(68, 68, 68);
 }
 
