@@ -230,11 +230,11 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 		$('#mc-embedded-subscribe-form').submit(function () {
 			gtag_report_conversion();
-			// ga('send', 'event', {
-			// 	eventCategory: 'waiting-list',
-			// 	eventAction: 'signing-up',
-			// 	eventLabel: 'submit'
-			// });
+			ga('send', 'event', {
+				eventCategory: 'obs-iphone-list',
+				eventAction: 'sign-up',
+				eventLabel: 'submit'
+			});
 		});
 	});
 
