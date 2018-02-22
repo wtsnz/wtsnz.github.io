@@ -5,7 +5,7 @@ categories: project loop pedal
 date: 2018-02-19 10:00:00
 ---
 
-![Loop Station](/img/loop-pedal/loop-station.jpg)
+![Loop Station](/img/loop-pedal/chewie-3d.png)
 
 I've not experimented with many hardware projects before now. I've been working on a project on and off for almost a year now.
 
