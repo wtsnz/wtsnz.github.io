@@ -1,6 +1,8 @@
-name: Will Townsend
-# markdown: kramdown
-# highlighter: pygments
+name: "Will Townsend"
+title: "Will Townsend"
+description: iOS Developer
+url: https://will.townsend.io
+
 permalink: /:year/:title
 
 highlighter: rouge
@@ -15,9 +17,6 @@ kramdown:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-
-description: iOS Developer
-url: https://will.townsend.io
 
 navigation:
   - title: Blog
