@@ -3,6 +3,9 @@ layout: post
 title:  "Loop Pedal Project: Inspired by Chewie Monsta 2"
 categories: project loop pedal
 date: 2018-02-19 10:00:00
+author: 
+  twitter: wtsnz
+description: I'm creating a custom loop pedal inspired by Ed Sheeran's Chewie Monsta 2
 ---
 
 ![Loop Station](/img/loop-pedal/chewie-3d.png)

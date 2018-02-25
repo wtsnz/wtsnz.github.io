@@ -11,7 +11,11 @@ kramdown:
   auto_ids: true
   syntax_highlighter: rouge
 
-description: I like to make iOS apps and play guitar.
+# This will require each of these plugins automatically.
+plugins:
+  - jekyll-seo-tag
+
+description: iOS Developer
 url: https://will.townsend.io
 
 navigation:
