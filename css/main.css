@@ -459,10 +459,15 @@ figure {
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 100px auto;
   grid-gap: 25px;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+@media (max-width: 500px) {
+	.grid-container {
+		grid-template-columns: 100%;
+  }
 }
 
 .grid-project-icon {
@@ -474,10 +479,10 @@ figure {
 }
 
 .grid-project {
-  grid-column-start: 2;
+  /* grid-column-start: 2;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 1;
+  grid-row-end: 1; */
 }
 
 .grid-project > h3 {
