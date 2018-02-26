@@ -73,7 +73,7 @@ I've created a few apps on my own, with the most successful personal project of 
 	    </a>
 	</div>
 	<div class="grid-project">
-		<h3><a href="/products/obs-iphone">iPhone source Plugin for OBS Studio</a></h3>
+		<h3><a href="/products/obs-iphone">iPhone Camera Plugin for OBS Studio</a></h3>
 		<p>I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over usb.</p>
 	</div>
 </div>
