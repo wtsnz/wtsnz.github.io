@@ -5,7 +5,7 @@ title: Will Townsend
 
 I'm a __iOS software engineer__ from New Zealand. I create [software](https://github.com/wtsnz) for the Apple devices that live on your wrist, your pocket and under your tv using __Swift__ <s>and Objective-C</s>. I adore __clean code__, __beautiful design__ and a perfectly brewed __cup of tea__ ☕️.
 
-<b>I've worked as an iOS Developer, iOS Team Lead & Technical Lead, and am looking for iOS opportunities to join a company located in Vancouver, BC that would be able to help with a visa.</b>
+<b>I've worked as an iOS Developer, iOS Team Lead & Technical Lead, and am looking for iOS opportunities to join a company located in Vancouver, BC.</b>
 
 You can checkout my **[github](https://github.com/wtsnz)** profile for things I'm working on, my **[instagram](https://www.instagram.com/wtsnz/)** profile for photos that I take, and my **[twitter](https://twitter.com/wtsnz)** profile for whatever I feel like retweeting on a given day.
 
