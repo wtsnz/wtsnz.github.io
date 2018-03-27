@@ -1,27 +1,27 @@
 --- 
 layout: page 
 title: How to use the OBS iPhone Camera Plugin
-description: An OBS Plugin that allows you to stream your iPhone's camera video
+description: An OBS Studio Plugin that allows you to stream video from your iOS device's camera
 ---
 
 <p style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
 		<img style="border-radius: 25px; width: 128px; height: 128px" src="../app-icon.svg" />
 	</p>
 
-<h1>Using the plugin</h1>
+<h1>Getting Started: Using the plugin</h1>
 
-<p>Using the OBS iPhone Camera plugin is easy. Once you have the plugin installed and the <a href="https://itunes.apple.com/us/app/obs-studio-iphone-video-source/id1352834008?ls=1&ct=Landing%20Page&mt=8">iOS app</a> installed:</p>
+<p>Using the OBS iOS Camera plugin is easy. Once you have the plugin installed and the <a href="https://itunes.apple.com/us/app/obs-studio-iphone-video-source/id1352834008?ls=1&ct=Landing%20Page&mt=8">iOS app</a> installed:</p>
 
 <ol>
-	<li>Download and install the <a href="https://github.com/wtsnz/obs-iphone-source-plugin/releases/download/v0.1.0/obs-iphone-camera-62c86d8.-v0.1.0.pkg">OBS iPhone Camera Plugin</a></li>
-	<li>Connect your iPhone to your Mac.</li>
+	<li>Download and install the <a href="https://github.com/wtsnz/obs-ios-camera-source/releases">OBS Studio iOS Camera Plugin</a></li>
+	<li>Connect your iOS device to your computer.</li>
 	<li>Open the OBS Stream App on your iPhone.</li>
-	<li>Open OBS on your Mac.</li>
-	<li>Add a new "iPhone Camera" source to your scene.</li>
-	<li>Use your iPhone as a webcam and stream your heart out! 😃</li>
+	<li>Open OBS Studio on your computer.</li>
+	<li>Add a new "iOS Camera" source to your scene.</li>
+	<li>Use your iOS device as a webcam and stream your heart out! 😃</li>
 </ol>
 
-<p>Plugging in your iPhone with the app running automatically connects to OBS Studio.</p>
+<p>Plugging in your iOS device with the app running automatically connects to OBS Studio.</p>
 
 <hr />
 
@@ -44,8 +44,32 @@ description: An OBS Plugin that allows you to stream your iPhone's camera video
 <br />
 
 <h2>Changelog</h2>
-<pre>
-v1.0
+
+<style>
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+</style>
+
+<pre style="max-width: 100%;">
+v1.1.1
+ - Add installation instructions for Windows
+ - Add message about higher resolutions and framerates
+ - Set keyframe duration to every 10 frames to improve sync
+
+v1.1.0
+ - Add new icon
+ - Add link to the OBS Plugin in the settings screen
+ - Add ability to see which resolution is currently selected in the settings screen
+ - Fix issue where rotating your device in the settings screen, and then closing the settings screen would result in the video preview being laid out incorrectly
+ - Fix issue where the video would playback in super speed after closing settings after a minute or two
+ - Improve the appearance of the settings button
+
+ v1.0
  - Initial Release
 </pre>
 
