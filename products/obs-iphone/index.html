@@ -34,6 +34,12 @@ description: An OBS Plugin that allows you to stream your iPhone's camera video
     width: 100%;
   }
 }
+
+.subtitle_link {
+	text-align: center;
+	font-size: 14px;
+}
+
 </style>
 
 <script src="./cocoen.min.js"></script>
@@ -63,19 +69,22 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 
 
-<h1 style="text-align: center;">Use your iPhone camera as a video source in OBS Studio on macOS</h1>
+<h1 style="text-align: center;">Use your iPhone camera as a video source in OBS Studio</h1>
 <p style="text-align: center;">Stream high quality video from your iPhone's camera</p>
 
 <a href="https://itunes.apple.com/us/app/obs-studio-iphone-video-source/id1352834008?ls=1&ct=Landing%20Page&mt=8" style="width: 230px; margin-top: 3em; margin-left: auto; margin-right: auto; display: block;">
 	<img style='max-width: 100%;' src="appstore.png"/>
 </a>
+<p class="subtitle_link">
+	<a href="https://github.com/wtsnz/obs-ios-camera-source/releases">Download OBS plugin for macOS and Windows here.</a>
+</p>
 
 <hr />
 
 <!-- <br /> -->
 
 <p>If you've ever wanted to <b>use your iPhone camera as a video input</b> to stream using OBS Studio, we've got you covered. We've tried all the apps that let you
-	do it over wifi, but they're not fast enough, so we've created an app that streams video <b>over a wired USB connection</b> to your mac.</p>
+	do it over wifi, but they're not fast enough, so we've created an app that streams video <b>over a wired USB connection</b> to your mac and pc.</p>
 
 <hr />
 
@@ -116,12 +125,26 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 	padding-top: 0;
 }
 
+    .c {
+        grid-column: 1 / span 2;
+    }
+
 .box .center {
 	text-align: center;
 }
 
 .emoji-point {
 	font-size: 50px;
+}
+
+.link-like {
+	color: #428bca;
+	text-decoration: none;
+}
+
+.link-like:hover {
+	text-decoration: none;
+	color: #FF7527;
 }
 
 </style>
@@ -138,9 +161,9 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 		<p>Stream video over a wired USB connection. This avoids the issue of delay over wifi, as many other products suffer from.</p>
 	</div>
 	<div class="box c">
-		<span class="emoji-point">👩‍💻</span>
-		<h1>Made for macOS</h1>
-		<p>Supports iOS 10+ and macOS 10.12.6+. <b>There is no support for Linux or Windows</b>, send me a message if you'd be interested for either.</p>
+		<span class="emoji-point">👩‍💻 </span>
+		<h1>Made for macOS and Windows</h1>
+		<p>The app supports iOS 10+, and the OBS Studio plugin supports macOS 10.12.6+ and Windows.</p>
 	</div>
 </div>
 
@@ -174,12 +197,10 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 			</div>
 		</div>
 	</a>
-	<a class="box b" href="https://github.com/wtsnz/obs-iphone-source-plugin/releases/download/v0.1.0/obs-iphone-camera-62c86d8.-v0.1.0.pkg">
+	<a class="box b" href="https://github.com/wtsnz/obs-ios-camera-source/releases">
 		<div style="text-align:center;">
 			<h4>2. Install the OBS Studio Plugin</h4>
-			<div style='max-width: 200px; margin-left: auto; margin-right: auto;'>
-				<img style='max-width: 100%;' src="installer-package.png"/>
-			</div>
+			<p>The latest installers for <b>macOS</b> and <b>Windows</b> can be found <span class='link-like'>here</span> on the GitHub releases page.</p>
 		</div>
 	</a>
 </div>
@@ -362,12 +383,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
 <br />
 
-<a href="https://obsproject.com" style="width: 230px; margin-top: 3em; margin-left: auto; margin-right: auto; display: block;">
-	<img style="width: 256px;" src="made-for-obs.svg" />
-</a>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 
 <script>
 
