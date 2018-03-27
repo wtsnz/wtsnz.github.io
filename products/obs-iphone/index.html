@@ -125,9 +125,14 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 	padding-top: 0;
 }
 
-    .c {
-        grid-column: 1 / span 2;
-    }
+.c {
+	grid-column: 1 / span 2;
+}
+@media (max-width: 800px) {
+	.c {
+		grid-column: 1 / span 1;
+	}
+}
 
 .box .center {
 	text-align: center;
