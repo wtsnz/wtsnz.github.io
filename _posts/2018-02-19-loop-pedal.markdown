@@ -8,6 +8,11 @@ description: I'm building a custom DIY loop pedal inspired by Ed Sheeran's Chewi
 
 ![Loop Station](/img/loop-pedal/chewie-3d.png)
 
+<div style="background-color: #f343; border-radius: 10px; padding-left: 15px; padding-right: 15px; text-align: center;">
+  <p><a href="/2018/ls-1-loop-station">I've made more progress on this project! You can read the next post here: LS-1 Loopstation</a>
+  </p>
+</div>
+
 I've not experimented with many hardware projects before now. I've been working on a project on and off for almost a year now.
 
 If you know me in person, you know that I think Ed Sheeran is an incredible live performer. When he came back into the spotlight in 2017 with his new album ➗ and his new loop pedal, the Chewie Monsta 2, I had to find out all I could about it!
@@ -108,3 +113,8 @@ Over the last few months I've gotten it to a place where it all kinda works. My 
 Now I need to put all that mess in a case, and it's time to learn how to use CAD and contact some metal fabricators..! 
 
 I'll record a video of the loop pedal in action soon.
+
+<div style="background-color: #f343; border-radius: 10px; padding-left: 15px; padding-right: 15px; text-align: center;">
+  <p><a href="/2018/ls-1-loop-station">I've made more progress on this project! You can read the next post here: LS-1 Loopstation</a>
+  </p>
+</div>
