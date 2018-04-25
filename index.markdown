@@ -31,27 +31,31 @@ I've created a few apps on my own, with the most successful personal project of 
 
 <div class="grid-container">
 	<div class="grid-project-icon">
-		<a href="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8" target="_blank" title="Tides NZ">
-	        <img class="project-img" src="/img/icon_tides_nz.png" />
-	    </a>
-	</div>
-	<div class="grid-project">
-		<h3><a href="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8" target="_blank">Tides NZ</a></h3>
-		<p>Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!</p>
-	</div>
-</div>
-
-<div class="grid-container">
-	<div class="grid-project-icon">
 		<a href="/products/obs-iphone" title="OBS Studio iPhone Camera Plugin">
 			<img style="border-radius: 25px; width: 100px; height: 100px" src="/img/obs-camera-cource-app-icon.svg" />
 	    </a>
 	</div>
 	<div class="grid-project">
 		<h3><a href="/products/obs-iphone">iPhone Camera Plugin for OBS Studio</a></h3>
+		<p class='project-date'>2018 - Current</p>
 		<p>I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB.</p>
 	</div>
 </div>
+
+
+<div class="grid-container">
+	<div class="grid-project-icon">
+		<a href="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8" target="_blank" title="Tides NZ">
+	        <img class="project-img" src="/img/icon_tides_nz.png" />
+	    </a>
+	</div>
+	<div class="grid-project">
+		<h3><a href="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8" target="_blank">Tides NZ</a></h3>
+		<p class='project-date'>2011 - Current</p>
+		<p>Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!</p>
+	</div>
+</div>
+
 
 
 <p>I also collaborate with my good friend Walig via <a href="https://overflight.io" target="_blank">Overflight</a></p>
@@ -60,7 +64,7 @@ I've created a few apps on my own, with the most successful personal project of 
 <hr />
 
 <h1>Experiments</h1>
-<p>Things that aren't available in the AppStore.</p>
+<p>Previous projects that aren't available in the AppStore.</p>
 
 <div class="grid-container">
 	<div class="grid-project-icon">
@@ -70,6 +74,7 @@ I've created a few apps on my own, with the most successful personal project of 
 	</div>
 	<div class="grid-project">
 		<h3><a href="http://getsalesapp.com" target="_blank">Sales</a></h3>
+			<p class='project-date'>2014 - 2016</p>
 			<p>After launching Tides NZ, I came across AppFigures. While they don't have a companion app, they do provide a public API for third parties to play with. Hence Sales was born.</p>
 	</div>
 </div>
@@ -82,6 +87,7 @@ I've created a few apps on my own, with the most successful personal project of 
 	</div>
 	<div class="grid-project">
 		<h3><a href="https://github.com/wtsnz/NZHerald" target="_blank">Alternate NZ Herald Client</a></h3>
+			<p class='project-date'>2014</p>
 			<p>I decided to reverse engineer the NZ Herald API and attempt to make a simple news client that replicates Medium's fantastic app (especially the scrolling).</p>
 	</div>
 </div>
@@ -94,6 +100,7 @@ I've created a few apps on my own, with the most successful personal project of 
 	</div>
 	<div class="grid-project">
 			<h3><a href="https://github.com/wtsnz/Swift-Particles" target="_blank">Swift Particles</a></h3>
+			<p class='project-date'>2015</p>
 			<p>I came across Sketch.js and a <a href="http://soulwire.github.io/sketch.js/examples/particles.html">Particle demo</a>. I quite liked it so spent an hour or so to implement (port js really..) something similar in Swift. It brought back memories of writing games in action script.</p>
 	</div>
 </div>
