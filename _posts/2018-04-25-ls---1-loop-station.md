@@ -9,7 +9,7 @@ image:
   width: 1280
 ---
 
-![image](/img/lp13.jpg)
+![The complete LS-1!](/img/ls1.jpg)
 
 If you've been following me on any sort of social media over the last 6 months, you will have seen the progress I've made on the loop station that I've been building. Since my [last post](/2018/loop-pedal), I've been hard at work building the physical loop station box. It's been a fun month, full of soldering, sanding, driving back and forward to the workshop, and - ew! - countless phone calls. 😅 
 
