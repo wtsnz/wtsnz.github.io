@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🌀 LS-1: Loop Station"
-description: "LS-1 Loopstation. Custom loopstation inspired by Ed Sheerans' Chewie Monsta 2"
+description: "LS-1 Loop Station. Custom loop station inspired by Ed Sheerans' Chewie Monsta 2"
 categories: loopstation
 image:
   path: /img/lp13.jpg
