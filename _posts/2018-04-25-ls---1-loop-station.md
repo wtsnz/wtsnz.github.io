@@ -31,7 +31,7 @@ You can have each track record from any input channel and then output into their
 I'm in the process of splitting each of the ideas into _Need to Have_ and _Nice To Have_ columns in Trello. I have a lot of ideas for the software that I'd love to implement, but as with any project, you've got to start small and work towards a larger goal The great thing with software is that it can be updated! Now I've got the hardware to a point that I am happy with, it's time to focus on the software features.
 
 
-![image](/img/loop-station-software.png)
+![The LP-1 Software](/img/loop-station-software.png)
 
 Above is a screenshot of last nights build of the app. There are many more things to tweak and improve. It's been a lot of fun to do something different to my normal day-to-day work (iOS development) and write code using C++.
 
