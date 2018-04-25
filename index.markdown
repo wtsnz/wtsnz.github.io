@@ -15,7 +15,7 @@ You can checkout my **[github](https://github.com/wtsnz)** profile for things I'
 I like to sporadically write the occasional thing on my [blog](/blog). Here's my latest posts.
 
 <ul class="posts">
-	{% for post in site.posts limit:6 %}
+	{% for post in site.posts limit:7 %}
 	<li><a href="{{ post.url }}">{{ post.title }}</a> <span class="when hidden-xs">{{ post.date | date_to_long_string }}</span></li>
 	{% endfor %}
 </ul>
