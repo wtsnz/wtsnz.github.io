@@ -3,10 +3,13 @@ layout: page
 title: Will Townsend | About
 ---
 
-<p>I wore several hats at <a href="http://paperkite.co.nz">PaperKite</a> between March 2013 - July 2017. I spent the majority of time developing iOS applications for a wide variety of clients and use cases.</p>
+I'm a __passionate__, __driven__, self taught iOS developer, with a focus on __shipping great software__, writing __clean code__ and creating __great user experiences__ using Swift (previously Objective-C).
 
-<!-- <p>I drink a lot of tea, I like to code and when I'm in the right mood I enjoy to play around with music. Which I've found to be a lot of fun and may help to bring some of my wacky ideas to life.</p>
-<p>I play guitar.</p> -->
+I wore several hats at [PaperKite](http://paperkite.co.nz) between March 2013 - July 2017. I spent the majority of time developing iOS applications for a wide variety of clients and use cases.
+
+I was lucky enough to be interviewed for the Swift Coders podcast last year. You can [listen to the podcast](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) for an in-depth history of how I ended up here!
+
+I have experience in unusual iOS architectures using MVVM, RxSwift, VIPER and the [Coordinator Pattern](/2016/an-ios-coordinator-pattern). 
 
 <hr />
 
