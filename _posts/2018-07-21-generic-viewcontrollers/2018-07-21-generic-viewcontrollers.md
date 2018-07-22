@@ -242,7 +242,7 @@ When I first was fleshing this out the `safeAreaLayoutGuide` API didn't exist, s
 
 ## Summary
 
-In summary, this is a pattern that I've enjoyed using, it helps to reduce the blur between your View Controllers and their Views, and it helps set a standard that scales as your app grows by:
+In summary, this is a pattern that I've enjoyed using, it helps to reduce the blur between your View Controllers and their Views, and it helps set a standard that scales as your app grows:
 
 ```
 Profile View Controller
