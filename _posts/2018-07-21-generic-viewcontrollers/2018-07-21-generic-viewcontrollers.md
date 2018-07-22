@@ -2,16 +2,14 @@
 layout: post
 title: "🤓 Generic UIViewControllers"
 description: ""
-categories: work
+categories: swift
 ---
 
-I've been using this pattern on the last couple of large projects I've worked to help split up the dreaded Massive View Controller issue, that we as iOS developers are famous for.
+I've been using this pattern on the last couple of large projects I've worked to help split up the dreaded Massive View Controller issue, that we as iOS developers are famous for. You can view the finished project on [github](https://github.com/wtsnz/generic-viewcontroller) too.
 
-This technique allows you to specify the type of `UIView` that a `UIViewController` loads in a type safe way, allows you to keep all the layout code to the view, and helps separate the *View* and *Controller* aspects of the view controller that often get blended together.
+This technique allows you to specify the type of `UIView` that a `UIViewController` loads in a type safe way, allows you to keep all the layout code to the view, and helps separate the *View* and *Controller* aspects of the view controller that often get blended together. 
 
-
-
-I'll start with a little bit of a story as to how we got there.
+I'll start with a little bit of a story as to how we got there, touching on Generics, Protocols & Autolayout.
 
 ```swift
 open class GenericViewController<V: UIView>: UIViewController {
@@ -95,9 +93,9 @@ Awesome! Now we have access to our custom view from our generic view controller 
 
 ---
 
-Let's add a spanner in the works. 
+## Adding AutoLayout
 
-Our profile view has constraints that are laid out with respect to the view's bounds. We'll set up the constraints with layout anchors, as they're very similar to SnapKit.
+Let's add a spanner in the works. Our profile view has constraints that are laid out with respect to the view's bounds. We'll set up the constraints with layout anchors.
 
 Our ProfileView now looks like this.
 
@@ -107,6 +105,7 @@ class ProfileView: UIView {
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -141,17 +140,29 @@ Can you see an issue?
 
 With this layout, we're pinning the top of the `profileImageView` to the view's `topAnchor`. This doesn't take into account safe area insets so on devices like the iPhone X, so we'll find that the layout isn't quite what you have in mind.
 
-If we're tageting iOS 11 and up, you're in luck. `UIView` now has a property `safeAreaLayoutGuide` ([Docs](https://developer.apple.com/documentation/uikit/uiview/2891102-safearealayoutguide)). We can change the top layout anchor to this and be done with it.
+
+
+![issue-1](issue-1.png)
+
+
+
+If we're tageting iOS 11 and up, we're in luck. `UIView` now has a property `safeAreaLayoutGuide` ([Docs](https://developer.apple.com/documentation/uikit/uiview/2891102-safearealayoutguide)). We can change the top layout anchor to this and call it a day.
 
 ```swift
 self.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor)
 ```
 
-If we're targeting older versions of iOS we have to use, the now [deprecated](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621367-toplayoutguide), `topLayoutGuide` of the parent UIViewController. In order to do this, we have to make significant changes to our `GenericViewController`.
+
+
+## Fixing the layout on older versions of iOS
+
+If we're targeting older versions of iOS it gets a little trickier. We have to use the [deprecated](https://developer.apple.com/documentation/uikit/uiviewcontroller/1621367-toplayoutguide) `topLayoutGuide` of the parent UIViewController. Which in order to do this we have to make significant changes to our `GenericViewController`. 😅
 
 Under the assumption that the view is the correct place for the code that sets up the constraints we need to pass a reference of the parent view controller down into a function that is resposible of creating these constraints.
 
-As we've started down the generic route we don't want to simply add the function to the `ProfileView` and call it a day. No, because when we create the `LoginView`, or `RegisterView` we'll only run into the same issue and end up with invisible conventions who's knowledge is hard to share to the next developer that comes along and adds the `TimeLineView`. Let's see if we can define a few protocols that describe our intent.
+As we've started down the generic route we don't want to simply add the function to the `ProfileView` and call it a day. No, because when we create the `LoginView`, or `RegisterView` we'll only run into the same issue and end up with invisible conventions who's knowledge is hard to share to the next developer that comes along and adds the `TimeLineView`. It's always a good idea to make it obvious what the conventions are in a project.
+
+We can do this by defining some protocols, and introducing *Protocol Oriented Programming* [buzzword](https://youtu.be/0obMRztklqU?t=20) 🎉
 
 First we want to describe a view that can setup autolayout contraints relative to a parent view controller.
 
@@ -178,7 +189,7 @@ extension RootView {
 Fourth, we need to update our GenericViewController definition to require the view type to conform to our new protocol, and also be a UIView subclass - which we can do using the where clause.
 
 ```swift
-open class BaseViewController<V: RootView>: UIViewController where V: UIView {
+open class GenericViewController<V: RootView>: UIViewController where V: UIView {
     //...
     
     override open func loadView() {
@@ -193,8 +204,6 @@ open class BaseViewController<V: RootView>: UIViewController where V: UIView {
 And finally we go back to our ProfileView and add conformance to `RootView`. 
 
 we then can add this method to our `ProfileView` and if we're running on a device with < iOS 11 we can reference the parentViewControllers' layoutGuide. 😅
-
-
 
 ```swift
 class ProfileView: UIView, RootView {
@@ -223,15 +232,37 @@ class ProfileView: UIView, RootView {
 
 Isn't going to be great when everyone is on iOS 11 and up?! 😅
 
-When I first was fleshing this out the `safeAreaLayoutGuide` API didn't exist, so it's interesting for me to write this all out from scratch and see how much more work it is to support older APIs. It's not too bad when you figure it out though.
-
-![image](folder-image.png)
 
 
+![issue-1-fixed](issue-1-fixed.png)
+
+
+
+When I first was fleshing this out the `safeAreaLayoutGuide` API didn't exist, so it's interesting for me to write this all out from scratch and see how much more work it is to support older APIs.
+
+## Summary
+
+In summary, this is a pattern that I've enjoyed using, it helps to reduce the blur between your View Controllers and their Views, and it helps set a standard that scales as your app grows by:
+
+```
+Profile View Controller
+	- ProfileViewController.swift
+	- ProfileView.swift
+Login View Controller
+	- LoginViewController.swift
+	- LoginView.swift
+Register View Controller
+	- RegisterViewController.swift
+	- RegisterView.swift
+```
+
+I find protocols and generics a great way to improve the consistency of code style/organisation at compile time. A developer picking this project up will be able to quickly understand how this project is structured, and most importantly follow suit. Especially if you create [Xcode templates](https://github.com/uber/RIBs/tree/master/ios/tooling) that allow to to generate the `ViewController` and `View` in Xcode's File > New menu.
+
+[View the code on github](https://github.com/wtsnz/generic-viewcontroller)
 
 ---
 
-Bonus: This pattern scales quite well to adding View Models and going down the MVVM route. You can make your GenericViewController require a ViewModel type too. 
+*Bonus*: This pattern works well if you add View Models in the mix and are going down the MVVM route. You can make your GenericViewController require a ViewModel type and get typesafe view models. 
 
 ```swift
 open class GenericViewController<M: BaseViewModel, V: RootView>: UIViewController where V: UIView {
@@ -279,4 +310,4 @@ open class GenericViewController<M: BaseViewModel, V: RootView>: UIViewControlle
 
 
 
-Protocol orientated programming is awesome.
+Have fun!
