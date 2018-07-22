@@ -17,6 +17,7 @@ kramdown:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-postfiles
 
 navigation:
   - title: Blog
