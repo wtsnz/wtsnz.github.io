@@ -11,11 +11,11 @@ Two weeks ago I was in New York. It was amazing. The city is just as crazy as in
 
 We did all the tourist things apart from going to the Statue of Liberty, and managed to take some amazing photos!
 
-<img src="/img/photos/ny1.jpg" class="img-responsive">
-<img src="/img/photos/ny4.jpg" style="max-width: 60%"><img src="/img/photos/ny5.jpg" style="max-width: 60%">
-<img src="/img/photos/ny2.jpg" class="img-responsive">
+<img src="./ny1.jpg" class="img-responsive">
+<img src="./ny4.jpg" style="max-width: 60%"><img src="/img/photos/ny5.jpg" style="max-width: 60%">
+<img src="./ny2.jpg" class="img-responsive">
 <img src="http://distilleryimage7.ak.instagram.com/0988a7c623e811e3ac5222000a1f8ea3_7.jpg" style="max-width: 50%"><img src="http://distilleryimage2.ak.instagram.com/088aaffc1f4411e3aacd22000a1f932c_7.jpg" style="max-width: 50%">
-<img src="/img/photos/ny3.jpg" class="img-responsive">
+<img src="./ny3.jpg" class="img-responsive">
 
 There were a few highlights to the trip for myself
 

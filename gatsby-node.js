@@ -87,31 +87,52 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: parent.sourceInstanceName,
     })
 
-    let slug = createFilePath({ node, getNode})
+    if (parent.sourceInstanceName === "posts") {
 
-    if (node.frontmatter.slug) {
-      slug = node.frontmatter.slug
+      let slug = createFilePath({ node, getNode})
+
+      if (node.frontmatter.slug) {
+        slug = node.frontmatter.slug
+      }
+  
+      else if (node.frontmatter.date) {
+        let date = moment(node.frontmatter.date)
+
+        // Split file path by slashes, and select the last one
+        slug = slug.split('/')
+            .filter (string => string.length > 0)
+            .last()
+
+        // Remove slashes
+        let nameArr = slug.replace(/\//g, "").split("-");
+        // Remove the three entries as this is the date
+        // the file name is something like `2013-13-28-post-title.md`
+        nameArr.splice(0, 3).join("-");
+        let title = nameArr.join("-")
+                           .replace(".md", "") // Remove .md if there
+                           .replace(/-+/g, '-'); // collapse dashes;
+        slug = date.format("YYYY") + '/' + title
+      }
+  
+      createNodeField({
+        node,
+        name: `slug`,
+        value: slug,
+      })
+
+    } else {
+      const slug = createFilePath({ node, getNode})
+      createNodeField({
+        node,
+        name: `slug`,
+        value: slug,
+      })
     }
-
-    else if (node.frontmatter.date) {
-      let date = moment(node.frontmatter.date)
-
-      // Remove slashes
-      let nameArr = slug.replace(/\//g, "").split("-");
-      // Remove the three entries as this is the date
-      // the file name is something like `2013-13-28-post-title.md`
-      nameArr.splice(0, 3).join("-");
-      let title = nameArr.join("-")
-                         .replace(".md", "") // Remove .md
-                         .replace(/-+/g, '-'); // collapse dashes;
-      slug = date.format("YYYY") + '/' + title
-    }
-
-    createNodeField({
-      node,
-      name: `slug`,
-      value: slug,
-    })
-
   }
 }
+
+if (!Array.prototype.last){
+  Array.prototype.last = function(){
+      return this[this.length - 1];
+  };
+};

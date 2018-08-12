@@ -8,6 +8,15 @@ module.exports = {
   pathPrefix: '/',
   plugins: [
     {
+      resolve: `gatsby-mdx`,
+      options: {
+        defaultLayouts: {
+          posts: require.resolve("./src/templates/mdx-blog-post-layout.js"),
+          default: require.resolve("./src/templates/mdx-blog-post-layout.js"),
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/content/posts`,

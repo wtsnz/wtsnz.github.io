@@ -5,13 +5,13 @@ date: 2017-02-17 20:00:00
 categories: swift development notification app store push pushover
 ---
 
-![fabric](/img/pushover/notification.png)
+![fabric](./notification.png)
 
 I recently release a [side project](https://itunes.apple.com/nz/app/road-code-nz-theory-test-practice/id1163987935) I worked on with a friend of mine. As I'm sure you know, when you release something into the world it's really hard to go by your day without checking the analytics!
 
 As the stats freaks that we are, we decided to use [Fabric](https://fabric.io) for the app. We chose Fabric as they have a great mobile app with a widget (great for quickly monitoring active users when you're out and about) and they have an incredible live web dashboard too:
 
-![fabric](/img/pushover/fabric.png)
+![fabric](./fabric.png)
 
 However, during the day we've found ourselves only looking at one stat, _new users_. As all the stats are live, I thought it might be a fun challenge to try and use my skills to figure out if it would be possible to send myself an alert when we get a new user. _This might be annoying if you're app is super popular, although the script sends at most one notification per 5 minutes_
 

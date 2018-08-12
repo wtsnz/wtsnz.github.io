@@ -6,7 +6,7 @@ date: 2018-02-19 10:00:00
 description: I'm building a custom DIY loop pedal inspired by Ed Sheeran's Chewie Monsta 2
 ---
 
-![Loop Station](/img/loop-pedal/chewie-3d.png)
+![Loop Station](./chewie-3d.png)
 
 <div style="background-color: #f343; border-radius: 10px; padding-left: 15px; padding-right: 15px; text-align: center;">
   <p><a href="/2018/ls-1-loop-station">I've made more progress on this project! You can read the next post here: LS-1 Loopstation</a>
@@ -25,7 +25,7 @@ Before we get to my project here's a little background on the Chewie Monsta, and
 
 Ed Sheeran started out with a Boss-RC20 loop pedal. This loop pedal has two individual tracks that you can record into and then stop and start individually.
 
-![Ed Sheeran RC20](/img/loop-pedal/edsheeran-rc20.jpg)
+![Ed Sheeran RC20](./edsheeran-rc20.jpg)
 
 This pedal lasted a while, and sometime in 2014 Ed started his larger stadium tours, and moved to a custom designed midi controller dubbed 'The Chewie Monster".
 
@@ -33,7 +33,7 @@ This pedal lasted a while, and sometime in 2014 Ed started his larger stadium to
 
 # Chewie Monsta 1
 
-![Chewie Monsta](/img/loop-pedal/chewie-monsta.jpg)
+![Chewie Monsta](./chewie-monsta.jpg)
 
 This pedal controlled the Mobius VST hosted in Ableton Live. You can see the Mobuis UI on the screen on the machine. 
 Each of the foot pedals look like repurposed RC-20's! I assume this is because they were familiar to Ed.
@@ -42,7 +42,7 @@ Each of the foot pedals look like repurposed RC-20's! I assume this is because t
 
 # Chewie Monsta 2
 
-![Chewie Monsta 2](/img/loop-pedal/chewie-monsta-2.png)
+![Chewie Monsta 2](./chewie-monsta-2.png)
 
 Look at this beast! It's a step up from version 1, the finish and new screen graphics look great!
 
@@ -108,7 +108,7 @@ Following a few guides on how to get the Teensy to interact with Midi, how to us
 
 Over the last few months I've gotten it to a place where it all kinda works. My laptop isn't powerful enough to run Live and stream to youtube - I like to keep a record of my playing - so that's a little unfortunate!
 
-![Loop Station](/img/loop-pedal/loop-station.jpg)
+![Loop Station](./loop-station.jpg)
 
 Now I need to put all that mess in a case, and it's time to learn how to use CAD and contact some metal fabricators..! 
 

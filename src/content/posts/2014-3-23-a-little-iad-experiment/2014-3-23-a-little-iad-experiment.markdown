@@ -13,13 +13,13 @@ Tides US has not done anywhere near as well as the other three (NZ, AUS and UK) 
 
 Currently Tides US is bringing in about $1 NZD a day. I don't have any analytics, but here's the graph of profit since it's release.
 
-![alt text](/img/a-little-iad-experiment/us-sales@2x.png "Tides US Sales")
+![alt text](./us-sales@2x.png "Tides US Sales")
 
 As you can see, it's been fairly consistent at around $2-3 a day over the summer (Q2 to Q4). I raised the price from $0.99 to $1.99 around Q5 point - half the sales, similar amount of profit.
 
 The brief dip at the start where there was no profit was the week I made Tides US free. Look at that download spike!
 
-![alt text](/img/a-little-iad-experiment/us-units@2x.png "Tides US Sales")
+![alt text](./us-units@2x.png "Tides US Sales")
 
  **48.5% of all downloads happened 7 days, while it was free.**
  
@@ -33,7 +33,7 @@ Being an app that seems to have a high retention, with people who keep opening t
 
 Of course it's all good me saying this, but I have no idea, hence the experiment. It may turn out to be a massive failure, and make no money - at the end of the day, the purpose of this experiment it to get Tides US into more hands and see how iAd performs on what I think will be relatively small userbase.
 
-<img style="max-width: 200px; margin-left:auto; margin-right:auto; display: block; padding-top: 40px; padding-bottom: 40px;" src="/img/a-little-iad-experiment/us-icon@2x.png"></img>
+<img style="max-width: 200px; margin-left:auto; margin-right:auto; display: block; padding-top: 40px; padding-bottom: 40px;" src="./us-icon@2x.png"></img>
 
 *I'm still not 100% happy with the new icon, but hopefully the target market like it.*
 

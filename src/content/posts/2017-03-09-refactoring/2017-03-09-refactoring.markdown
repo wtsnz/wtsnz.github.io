@@ -202,7 +202,7 @@ let accountProvider = MigrationAccountProvider(current: sharedKeychainAccountPro
 let api = APIClient(accountProvider: accountProvider)
 ```
 
-![image](/img/refactoring/migration.svg)
+![image](./migration.svg)
 
 How cool is that!? 👍
 
@@ -237,7 +237,7 @@ class MockKeyValueStore: KeyValueType {
 
 When writing tests I like to follow the **Given**, **When**, **Then** test layout. I am not very experienced in testing - something I'm working on - and I find it helps when trying to break down the test. First you set up the state (given), then you perform an action (when) and then you test the state (when).
 
-![image](/img/refactoring/given-when-then.svg)
+![image](./given-when-then.svg)
 
 So basically we want to test 
 

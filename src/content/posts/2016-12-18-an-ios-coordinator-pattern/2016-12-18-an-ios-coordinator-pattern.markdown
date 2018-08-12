@@ -46,7 +46,7 @@ And boy, has my life been made a lot more awesome 🙌
 I have found that the Coordinator pattern is a great way to represent a lifecycle that's made up of a bunch of view controllers. Any user flow that has multiple steps over multiple view controllers such as user registration, adding a payment method (credit card) to an account, ordering a pizza is a perfect candidate.
 These examples work well because each have a clear "horizontal" flow that is made up of multiple steps that can be hosted inside of a `UINavigationController`, to which I have found the coordinator pattern perfect for.
 
-![](/img/coordinator-diagram.svg)
+![](./coordinator-diagram.svg)
 _A, B, C are View Controllers that are used by the Coordinator. Each view controller has a delegate to request any mutations to data, along with any interactions. The Coordinator then responds to these messages, and can perform the appropriate action, potentially 'completing' itself and sending a message to it's own delegate, which would be the coordinator that presented this coordinator! 💥_
 
 The Coordinator is in charge of creating the navigation controller and any of the child view controllers. The view controllers then are completely independent and have no knowledge of the context in which they are used, improving their reusability & testing.
@@ -110,7 +110,7 @@ extension Coordinator {
 
 Now let's have a look at a real life example from the brand new [BPMe NZ app](https://itunes.apple.com/nz/app/bpme-pay-for-fuel-from-your-car/id1116524739?mt=8) where the Coordinator pattern was used. There is a clear 'horizontal' flow during the pay in car process when you're paying for fuel.
 
-![](/img/bp-pic-coordinator-flow.png)
+![](./bp-pic-coordinator-flow.png)
 
 The flow is as follows:
 
