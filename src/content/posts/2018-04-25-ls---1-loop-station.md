@@ -3,6 +3,7 @@ layout: post
 title: "🌀 LS-1: Loop Station"
 description: "LS-1 Loop Station. Custom loop station inspired by Ed Sheerans' Chewie Monsta 2"
 categories: loopstation
+date: 2018-04-25 10:01:00
 image:
   path: /img/lp13.jpg
   height: 720

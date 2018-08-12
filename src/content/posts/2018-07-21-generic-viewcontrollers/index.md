@@ -3,6 +3,7 @@ layout: post
 title: "🤓 Generic UIViewControllers"
 description: ""
 categories: swift
+date: 2018-07-21 10:00:00
 ---
 
 I've been using this pattern on the last couple of large projects I've worked to help split up the dreaded Massive View Controller issue, that we as iOS developers are famous for. You can view the finished project on [github](https://github.com/wtsnz/generic-viewcontroller) too.

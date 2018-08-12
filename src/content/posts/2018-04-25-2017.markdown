@@ -2,6 +2,7 @@
 layout: post
 title:  "2017 in Review"
 categories: life
+date: 2018-04-25 10:00:00
 ---
 
 ___This post has been in my drafts since January. I was unsure if I should publish it as it felt too raw. My blog isn't a place I want to have to feel like someone else, so I've decided that I should publish it.___

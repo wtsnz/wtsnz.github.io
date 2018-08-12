@@ -24,6 +24,7 @@
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
     "lodash": "^4.17.5",
+    "moment": "^2.22.2",
     "prismjs": "^1.15.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
