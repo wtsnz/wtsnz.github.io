@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^0.15.0",
     "@mdx-js/tag": "^0.15.0",
+    "bulma": "^0.7.1",
     "gatsby": "next",
     "gatsby-mdx": "^0.0.10",
     "gatsby-plugin-feed": "next",
@@ -17,6 +18,7 @@
     "gatsby-plugin-mdx": "^1.0.1",
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
+    "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-plugin-typography": "next",
     "gatsby-remark-copy-linked-files": "next",
@@ -29,6 +31,7 @@
     "gatsby-transformer-sharp": "next",
     "lodash": "^4.17.5",
     "moment": "^2.22.2",
+    "node-sass": "^4.9.3",
     "prismjs": "^1.15.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
