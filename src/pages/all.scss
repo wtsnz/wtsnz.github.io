@@ -11,7 +11,7 @@
 // $pink-invert: #fff;
 // Add a serif family
 // $family-serif: 'Overpass', sans-serif;
-$family-serif: 'PT Sans', sans-serif;
+$family-serif: 'Opensans', sans-serif;
 // font-family: 'Hammersmith One', sans-serif;
 
 // font-family: 'Overpass', sans-serif;
@@ -19,6 +19,9 @@ $family-serif: 'PT Sans', sans-serif;
 $brand-color: #FF7527;
 
 $navbar-height: 6rem;
+
+$gap: 200px;
+$tablet: 500px;
 
 $widescreen-enabled: false;
 $fullhd-enabled: false;
@@ -46,7 +49,7 @@ $family-primary: $family-serif;
 $link: #428bca;
 
 // $text-strong: $brand-color;
-
+$pre-background: rgb(250, 250, 250);
 
 
 $title-color: $brand-color;
@@ -93,6 +96,10 @@ $content-heading-color: $brand-color;
 //   background: $blue;
 // }
 
+.has-no-top-padding {
+  padding-top: 0rem;
+}
+
 .brand-content {
   font-size: 2.2rem;
   color: $brand-color;
@@ -123,19 +130,63 @@ $content-heading-color: $brand-color;
 
 .blog-link {
   border-radius: 10px;
-  // padding: 1rem;
-  // position: relative;
-  // background-color: #009c3c;
   display: block;
   padding: 0.4rem 0.4rem;
-  // transition-duration: 86ms;
-
-// margin-left: 0.1rem;
-
-// margin-right: 0.1rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  transition: 83ms;
 }
 
 .blog-link:hover {
-  background-color: #fafafa;
+  background-color: rgba(255, 118, 39, 0.06);
   color: #FF7527;
+}
+
+.project-link {
+  border-radius: 10px;
+  display: block;
+  margin: 1rem 0;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.project-link:hover {
+  background-color: rgba(255, 118, 39, 0.06);
+  color: #FF7527;
+}
+
+.project-title {
+
+}
+
+.project-subtitle {
+  // font-size: 90%;
+  // padding-top: 2px;
+  // float: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #999;
+}
+
+.project-description {
+  color: $text;
+}
+
+.has-content-vertically-aligned {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-image {
+
+}
+
+.project-image > img {
+  // margin-bottom: 0;
+  margin: 0;
 }

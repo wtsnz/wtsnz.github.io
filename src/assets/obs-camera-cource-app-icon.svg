@@ -1,0 +1,34 @@
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="17.9261133%" y1="0%" x2="94.1395538%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#27282B" offset="0%"></stop>
+            <stop stop-color="#111114" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="79.94682%" y1="94.039442%" x2="12.8921584%" y2="4.35850711%" id="linearGradient-2">
+            <stop stop-color="#ECE4E3" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-3" cx="22.5" cy="22.5" r="22.5"></circle>
+        <filter x="-100.0%" y="-100.0%" width="300.0%" height="300.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.921635842   0 0 0 0 0.363923244   0 0 0 0 0.363923244  0 0 0 0.34301404 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Smooth-Corners">
+            <g id="icon">
+                <rect id="black-background" fill="url(#linearGradient-1)" x="0" y="0" width="512" height="512"></rect>
+                <g id="details" transform="translate(78.000000, 78.000000)">
+                    <path d="M178,324 C97.3664265,324 32,258.633573 32,178 C32,97.3664265 97.3664265,32 178,32 C258.633573,32 324,97.3664265 324,178 C324,258.633573 258.633573,324 178,324 Z M180,273 C231.362482,273 273,231.362482 273,180 C273,128.637518 231.362482,87 180,87 C128.637518,87 87,128.637518 87,180 C87,231.362482 128.637518,273 180,273 Z" id="lens" fill="url(#linearGradient-2)"></path>
+                    <g id="recording">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                        <use fill="#F23737" fill-rule="evenodd" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

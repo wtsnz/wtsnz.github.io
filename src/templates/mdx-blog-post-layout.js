@@ -12,7 +12,7 @@ export default class PageLayout extends React.Component {
       <div>
         <Header />
 
-        <section className='section'>
+        <section className='section has-no-top-padding'>
           <div className='container'>
             <div className='content'>
             {children}

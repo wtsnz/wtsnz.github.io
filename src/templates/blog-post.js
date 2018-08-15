@@ -27,7 +27,7 @@ class BlogPostTemplate extends React.Component {
 
         <Header />
 
-        <section className='section'>
+        <section className='section has-no-top-padding'>
           <div className='container'>
             <div className='content'>
               <h1>{post.frontmatter.title}</h1>

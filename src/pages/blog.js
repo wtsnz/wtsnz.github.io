@@ -30,7 +30,7 @@ class BlogIndex extends React.Component {
 
         <Header />
 
-        <section className='section'>
+        <section className='section has-no-top-padding'>
           <div className='container'>
 
             <div className='content'>
