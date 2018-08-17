@@ -29,7 +29,8 @@ $fullhd-enabled: false;
 $card-shadow: none;
 $card-background-color: 'transparent';
 
-$body-size: 1.2rem;
+$body-size: 1.1rem;
+$body-line-height: 1.6rem;
 
 $weight-light:	300;
 $weight-normal:	400;
@@ -136,7 +137,7 @@ $content-heading-color: $brand-color;
   margin-right: -0.75rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  transition: 83ms;
+  // transition: 83ms;
 }
 
 .blog-link:hover {

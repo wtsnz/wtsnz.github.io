@@ -13,6 +13,7 @@ import './all.scss'
 import iconOBS from '../assets/obs-camera-cource-app-icon.svg'
 import iconTidesNZ from '../assets/icon_tides_nz.png'
 import iconSales from '../assets/icon_sales.png'
+import iconRoadCodeNZ from '../assets/icon-road-code-nz.png'
 
 class BlogIndex extends React.Component {
   render() {
@@ -74,7 +75,7 @@ class BlogIndex extends React.Component {
             <Project
               title="Road Code NZ"
               subtitle="2017 - Current"
-              image={iconTidesNZ}
+              image={iconRoadCodeNZ}
               description="Learn the New Zealand road code with this app. Me and my co-creator Waleeg decided to make this app so we could learn the motorcycle road code."
               link="https://itunes.apple.com/nz/app/road-code-license-nz/id1163987935?mt=8"
             />
