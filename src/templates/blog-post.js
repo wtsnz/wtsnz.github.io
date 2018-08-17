@@ -9,6 +9,8 @@ import Header from '../components/Header'
 
 import '../pages/all.scss'
 
+require("prismjs/themes/prism.css");
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
