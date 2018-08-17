@@ -1,6 +1,7 @@
 
 import React from 'react'
-import { Link } from 'gatsby'
+import Link from './Link'
+
 
 const Project = ({ title, subtitle, image, description, link}) => (
     <Link className='project-link' to={link}>
