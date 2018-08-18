@@ -1,0 +1,21 @@
+/*
+This is required as bulma uses the .number class and adds it's own styles to it.
+
+https://github.com/jgthms/bulma/issues/1708
+
+*/
+
+.content .tag,
+.content .number {
+    display: inline;
+    padding: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    vertical-align: inherit;
+    border-radius: inherit;
+    font-weight: inherit;
+    white-space: inherit;
+    background: inherit;
+    margin: inherit;
+}

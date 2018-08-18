@@ -3,20 +3,40 @@ import React from 'react'
 import Link from './Link'
 
 
-const Project = ({ title, subtitle, image, description, link}) => (
-    <Link className='project-link' to={link}>
-        <div className='columns '>
-                <div className='column is-narrow project-image has-content-vertically-aligned'>
-                    <img style={{ width: '100px', height: '100px', borderRadius: '25px'}} src={image} />
+const Project = ({ title, subtitle, image, description, link}) => {
+    
+    if (link == null) {
+        return (
+            <div className='project-link'>
+                <div className='columns '>
+                        <div className='column is-narrow project-image has-content-vertically-aligned'>
+                            <img style={{ width: '100px', height: '100px', borderRadius: '25px'}} src={image} />
+                        </div>
+                        <div className='column'>
+                            <p className='project-title'>{title}</p>
+                            <p className='project-subtitle'>{subtitle}</p>
+                            <p className='project-description'>{description}</p>
+                        </div>
                 </div>
-                <div className='column'>
-                    <p className='project-title'>{title}</p>
-                    <p className='project-subtitle'>{subtitle}</p>
-                    <p className='project-description'>{description}</p>
+            </div>
+        )
+    } else {
+        return (
+            <Link className='project-link' to={link}>
+                <div className='columns '>
+                        <div className='column is-narrow project-image has-content-vertically-aligned'>
+                            <img style={{ width: '100px', height: '100px', borderRadius: '25px'}} src={image} />
+                        </div>
+                        <div className='column'>
+                            <p className='project-title'>{title}</p>
+                            <p className='project-subtitle'>{subtitle}</p>
+                            <p className='project-description'>{description}</p>
+                        </div>
                 </div>
-        </div>
-    </Link>
-);
+            </Link>
+        )
+    }    
+}
 
 
 

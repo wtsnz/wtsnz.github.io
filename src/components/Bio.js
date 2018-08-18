@@ -28,8 +28,8 @@ class Bio extends React.Component {
         />
         <p>
           Written by <strong>Will Townsend</strong> who lives and works in Vancouver, BC building useful things.{' '}
-          <a href="https://twitter.com/wtsnz">
-            You should follow him on Twitter
+          <a href="https://mastodon.technology/@will">
+            You should follow him on Mastodon
           </a>
         </p>
       </div>

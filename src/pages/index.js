@@ -14,6 +14,9 @@ import iconOBS from '../assets/obs-camera-cource-app-icon.svg'
 import iconTidesNZ from '../assets/icon_tides_nz.png'
 import iconSales from '../assets/icon_sales.png'
 import iconRoadCodeNZ from '../assets/icon-road-code-nz.png'
+import iconNZH from '../assets/icon-nzh.png'
+import iconSwiftParticles from '../assets/icon-swift-particles.png'
+
 
 class BlogIndex extends React.Component {
   render() {
@@ -42,7 +45,7 @@ class BlogIndex extends React.Component {
             <div className='content'>
               <p>I’m a <strong>iOS software engineer</strong> from New Zealand. I create <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I adore <strong>clean code</strong>, <strong>beautiful design</strong> and a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
 
-              <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile for whatever I feel like retweeting on a given day.</p>
+              <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile (and now <strong><a href="https://mastodon.technology/@will">@will@mastodon.technology</a></strong>) for whatever I feel like retweeting on a given day.</p>
               <h1>Writing</h1>
 
               <p>I like to sporadically write the occasional thing on my blog. Here’s my latest posts.</p>
@@ -64,6 +67,7 @@ class BlogIndex extends React.Component {
 
             </div>
 
+              <div>
             <Project
               title="iPhone Camera Plugin for OBS Studio"
               subtitle="2018 - Current"
@@ -87,6 +91,7 @@ class BlogIndex extends React.Component {
               description="Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!"
               link="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8"
             />
+              </div>
 
 
 
@@ -95,6 +100,7 @@ class BlogIndex extends React.Component {
               <p>Previous projects that aren't available in the AppStore.</p>
             </div>
 
+              <div>
             <Project
               title="Sales"
               subtitle="2014 - 2016"
@@ -103,20 +109,21 @@ class BlogIndex extends React.Component {
             />
 
             <Project
-              title="iPhone Camera Plugin for OBS Studio"
-              subtitle="2018 - Current"
-              image={iconOBS}
-              description="I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB."
-              link="https://obs.camera/"
+              title="Alternate NZ Herald Client"
+              subtitle="2014"
+              image={iconNZH}
+              description="I decided to reverse engineer the NZ Herald API and attempt to make a simple news client that replicates Medium's fantastic app (especially the scrolling)."
+              link="https://github.com/wtsnz/NZHerald"
             />
 
             <Project
-              title="iPhone Camera Plugin for OBS Studio"
-              subtitle="2018 - Current"
-              image={iconOBS}
-              description="I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB."
-              link="https://obs.camera/"
+              title="Swift Particles"
+              subtitle="2015"
+              image={iconSwiftParticles}
+              description="I came across Sketch.js and a Particle demo. I quite liked it so spent an hour or so to implement (port js really..) something similar in Swift. It brought back memories of writing games in action script."
+              link="https://github.com/wtsnz/Swift-Particles"
             />
+            </div>
 
           </div>
         </section>

@@ -9,7 +9,8 @@ import Header from '../components/Header'
 
 import '../pages/all.scss'
 
-require("prismjs/themes/prism.css");
+require('../css/prism-duotone-space.css');
+require('../css/prism-fix-bulma.css');
 
 class BlogPostTemplate extends React.Component {
   render() {
