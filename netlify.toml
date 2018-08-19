@@ -7,7 +7,7 @@
 
 [build]
   publish = "public"
-  command = "npm run deploy"
+  command = "npm run build"
 
 
 
