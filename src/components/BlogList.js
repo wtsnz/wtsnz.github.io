@@ -7,7 +7,7 @@ const BlogList = ({ postTitle, postSlug, postDate }) => (
                 <div className='column'>
                     <p>{postTitle}</p>
                 </div>
-                <div className='column is-narrow'>
+                <div className='column is-narrow is-hidden-mobile'>
                     <small>{postDate}</small>
                 </div>
         </div>
