@@ -22,6 +22,7 @@
     "gatsby-plugin-sharp": "^2.0.0-beta.9",
     "gatsby-plugin-typography": "next",
     "gatsby-remark-copy-linked-files": "next",
+    "gatsby-remark-embed-youtube": "0.0.7",
     "gatsby-remark-images": "^2.0.1-beta.11",
     "gatsby-remark-prismjs": "^3.0.0-beta.7",
     "gatsby-remark-responsive-iframe": "next",

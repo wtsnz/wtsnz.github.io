@@ -67,6 +67,7 @@ module.exports = {
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          "gatsby-remark-embed-youtube",
         ],
       },
     },
@@ -75,7 +76,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `U`+`A-`+`474`+`88115`+`-2`,
       },
     },
     `gatsby-plugin-feed`,
