@@ -35,7 +35,7 @@ class BlogIndex extends React.Component {
 
             <div className='content'>
 
-              <p>Here's a few words I've attempted to organize into an interestingly original order, enjoy.</p>
+              <p>Here are the words I've attempted to arrange into an original, and interesting order. Enjoy 😄</p>
 
               {posts.map(({ node }) => {
                 const title = get(node, 'frontmatter.title') || node.fields.slug

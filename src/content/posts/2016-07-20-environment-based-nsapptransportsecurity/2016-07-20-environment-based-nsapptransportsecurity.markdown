@@ -28,24 +28,24 @@ First we must delete any existing NSAppTransportSecurity entries from the plist.
 
 Then we create the NSAppTransportSecurity dictionary again
 
-{% highlight sh %}
+```sh
 # Add the NSAppTransportSecurity dictionary again
 /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity dict" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSExceptionDomains dict" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-{% endhighlight %}
+```
 
 Then we can add the entries that must be included for all the build configurations. This app uses Carnival.io which requires an entry for s3.amazonaws.com as it doesn't support Forward Secrecy.
 
-{% highlight sh %}
+```sh
 # Add s3.amazonaws.com NSExceptionRequiresForwardSecrecy and set it to false
 # This is a requirement of the Carnival.io SDK
 /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSExceptionDomains:s3.amazonaws.com dict" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSExceptionDomains:s3.amazonaws.com:NSExceptionRequiresForwardSecrecy bool false" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-{% endhighlight %}
+```
 
 Finally we can add the entries based on the build configuration using an if statement
 
-{% highlight sh %}
+```sh
 # For the Dev & QA servers we need to allow insecure loads as the third party api doesn't have ssl on dev/staging
 if [ $CONFIGURATION = "Dev" ] || [ $CONFIGURATION = "QA" ] || [ $CONFIGURATION = "QA-Release" ]; then
   # Add *api.client.com to allow insecure HTTP loads
@@ -53,15 +53,13 @@ if [ $CONFIGURATION = "Dev" ] || [ $CONFIGURATION = "QA" ] || [ $CONFIGURATION =
   /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSExceptionDomains:api.client.com:NSTemporaryExceptionAllowsInsecureHTTPLoads bool true" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
   /usr/libexec/PlistBuddy -c "Add :NSAppTransportSecurity:NSExceptionDomains:api.client.com:NSIncludesSubdomains bool true" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
 fi
-{% endhighlight %}
+```
 
 
 <hr >
 
 ## TLDR;
 
-And for completeness, here's a gist of the entire thing.
-
-<script src="https://gist.github.com/wtsnz/938f8c9f304207d7fa01a3fd42a7c96c.js"></script>
+And for completeness, [here's a gist of the entire thing](https://gist.github.com/wtsnz/938f8c9f304207d7fa01a3fd42a7c96c).
 
 I hope this might help you out one day ✌️
