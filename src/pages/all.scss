@@ -11,7 +11,7 @@
 // $pink-invert: #fff;
 // Add a serif family
 // $family-serif: 'Overpass', sans-serif;
-$family-serif: 'Opensans', sans-serif;
+$family-serif: 'Avenir', 'Opensans', sans-serif;
 // font-family: 'Hammersmith One', sans-serif;
 
 // font-family: 'Overpass', sans-serif;
@@ -33,8 +33,8 @@ $body-size: 1.1rem;
 $body-line-height: 1.6rem;
 
 $weight-light:	300;
-$weight-normal:	400;
-$weight-medium: 	50;
+$weight-normal:	450;
+$weight-medium: 	500;
 $weight-semibold: 	600;
 $weight-bold: 	700;
 
@@ -166,7 +166,7 @@ $content-heading-color: $brand-color;
 }
 
 .project-title {
-
+  font-size: 1.1rem;
 }
 
 .project-subtitle {

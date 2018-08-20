@@ -41,7 +41,7 @@ class Header extends Component {
                 <div className="navbar-end">
                   <Link exact to={'/'} className='navbar-item' activeClassName="is-active" >Home</Link>
                   <Link exact to={'/blog'} className='navbar-item' activeClassName="is-active" >Blog</Link>
-                  {/* <Link exact to={'/about'} className='navbar-item' activeClassName="is-active" >About</Link> */}
+                  <Link exact to={'/about'} className='navbar-item' activeClassName="is-active" >About</Link>
                 </div>
               </div>
             </div>

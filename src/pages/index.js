@@ -47,7 +47,7 @@ class BlogIndex extends React.Component {
 
               <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile (and now <strong><a href="https://mastodon.technology/@will">@will@mastodon.technology</a></strong>) for whatever I feel like retweeting on a given day.</p>
               
-              <br />
+              <hr />
               
               <h1>Writing</h1>
 
@@ -62,7 +62,7 @@ class BlogIndex extends React.Component {
 
               })}
 
-              <br />
+              <hr />
 
               <h1>Personal Projects</h1>
 
@@ -97,7 +97,7 @@ class BlogIndex extends React.Component {
               />
             </div>
 
-            <br />
+            <hr />
 
             <div className='content'>
               <h1>Experiments</h1>
@@ -105,6 +105,14 @@ class BlogIndex extends React.Component {
             </div>
 
             <div>
+            <Project
+                title="Overflight"
+                subtitle="2016 - Current"
+                image={iconSales}
+                description="A collaboration with myself and Waleeg. We often come up with ideas together and create them under this banner."
+                link="https://overflight.io"
+              />
+
               <Project
                 title="Sales"
                 subtitle="2014 - 2016"
