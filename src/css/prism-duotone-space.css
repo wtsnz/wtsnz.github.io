@@ -14,8 +14,9 @@ pre[class*="language-"] {
     -webkit-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    background: #fafbf9;
-    color: #4299d7
+    background: rgb(250, 250, 250);
+    color: #4299d7;
+    border-radius: 10px;
 }
 
 pre[class*="language-"]::-moz-selection,
@@ -23,7 +24,7 @@ pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection {
     text-shadow: none;
-    background: #fafbf9
+    background: #cfdeff
 }
 
 pre[class*="language-"]::selection,
@@ -31,7 +32,7 @@ pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
     text-shadow: none;
-    background: #fafbf9
+    background: #cfdeff
 }
 
 pre[class*="language-"] {
@@ -150,11 +151,11 @@ pre>code.highlight {
     color: #d1d6cd
 }
 
-.line-highlight {
+/* .line-highlight {
     background: rgba(77, 130, 23, 0.2);
     background: -webkit-gradient(linear, left top, right top, color-stop(70%, rgba(77, 130, 23, 0.2)), to(rgba(77, 130, 23, 0)));
     background: linear-gradient(to right, rgba(77, 130, 23, 0.2) 70%, rgba(77, 130, 23, 0))
-}
+} */
 
 /*# sourceMappingURL=prism-base2tone-meadow-light.css.map */
 
