@@ -105,13 +105,6 @@ class BlogIndex extends React.Component {
             </div>
 
             <div>
-            <Project
-                title="Overflight"
-                subtitle="2016 - Current"
-                image={iconSales}
-                description="A collaboration with myself and Waleeg. We often come up with ideas together and create them under this banner."
-                link="https://overflight.io"
-              />
 
               <Project
                 title="Sales"
