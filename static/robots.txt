@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://will.townsend.io/sitemap.xml
