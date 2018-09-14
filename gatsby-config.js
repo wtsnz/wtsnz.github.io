@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Will Townsend',
+    title: 'Will Townsend | iOS Developer',
     author: 'Will Townsend',
     description: 'Just some thoughts',
     siteUrl: 'https://will.townsend.io/',
@@ -79,7 +79,9 @@ module.exports = {
         trackingId: `U`+`A-`+`474`+`88115`+`-2`,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
