@@ -9,8 +9,6 @@
   publish = "public"
   command = "npm run deploy"
 
-
-
 # # Deploy Preview context: All Deploy Previews
 # # will inherit these settings.
 # [context.deploy-preview.environment]
@@ -29,3 +27,8 @@
 
 # [context."features/branch"]
 #   command = "gulp"
+
+# Redirect the old jekyll generated rss feed to the new location
+[[redirects]]
+  from = "/feed.xml"
+  to = "/rss.xml"
