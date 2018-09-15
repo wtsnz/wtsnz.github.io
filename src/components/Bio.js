@@ -27,10 +27,8 @@ class Bio extends React.Component {
           }}
         />
         <p>
-          Written by <strong>Will Townsend</strong> who lives and works in Vancouver, BC building useful things.{' '}
-          <a href="https://mastodon.technology/@will">
-            You should follow him on Mastodon
-          </a>
+          Hey 👋 I'm <strong>Will Townsend</strong>, I hope you enjoyed this post. If you have any questions you can contact me on {' '}
+          <a href="https://mastodon.technology/@will">Mastodon</a> and maybe <a href="https://twitter.com/wtsnz">Twitter</a>, cheers!
         </p>
       </div>
     )

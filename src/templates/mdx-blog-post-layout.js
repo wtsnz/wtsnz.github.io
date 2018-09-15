@@ -36,8 +36,8 @@ class MdxBlogPostTemplate extends React.Component {
         <section className='section has-no-top-padding'>
           <div className='container'>
             <div className='content'>
-              <h1>{post.frontmatter.title}</h1>
-              <p className="post-date">{post.frontmatter.date}</p>
+              <h1 className="title">{post.frontmatter.title}</h1>
+              <p className="subtitle post-date">{post.frontmatter.date}</p>
 
               <MDXRenderer {...props} scope={{ React, MDXTag, ...__mdxScope }}>
                 {data.mdx.code.body}
