@@ -2,12 +2,46 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-
+import _ from 'lodash'
 import Header from '../components/Header'
 
 import BlogList from '../components/BlogList'
 
 import './all.scss'
+
+
+const PostRow = (props) => {
+  const title = get(props, 'post.frontmatter.title') || props.post.fields.slug
+  const slug = props.post.fields.slug
+  return (
+      <BlogList key={slug} postTitle={title} postSlug={slug} postDate={props.post.frontmatter.date} />
+  )
+}
+
+const Posts = (props) => {
+  return (
+    props.posts.map(node => <PostRow post={node.node} /> )
+  )
+}
+
+const PostsGroupedByYear = (props) => {
+  const posts = props.posts
+  const groupedPosts = _.groupBy(posts, post => {
+    return post.node.frontmatter.date.slice(-4)
+  });
+
+  return (
+    Object.keys(groupedPosts).sort((a, b) => (b - a)).map(function (key) {
+      const yearPosts = groupedPosts[key]
+      const sortedPosts = _.sortBy(yearPosts, function(o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
+      return (
+        <div className='is-blog-year'>
+          <Posts posts={sortedPosts} />
+        </div>
+      )
+    })
+  )
+}
 
 class BlogIndex extends React.Component {
   render() {
@@ -17,7 +51,6 @@ class BlogIndex extends React.Component {
       'props.data.site.siteMetadata.description'
     )
     const posts = get(this, 'props.data.allMdx.edges')
-
     return (
 
       <div>
@@ -37,24 +70,13 @@ class BlogIndex extends React.Component {
 
               <p>Here are the words I've attempted to arrange into an original, and interesting order. Enjoy 😄</p>
 
-              {posts.map(({ node }) => {
-                const title = get(node, 'frontmatter.title') || node.fields.slug
-                const slug = node.fields.slug
-                return (
-                  <BlogList key={slug} postTitle={title} postSlug={slug} postDate={node.frontmatter.date} />
-                )
-
-              })}
+              <PostsGroupedByYear posts={posts} />
+              {/* <Posts posts={posts} /> */}
 
             </div>
           </div>
         </section>
       </div>
-
-
-
-
-
     )
   }
 }
@@ -70,18 +92,18 @@ export const pageQuery = graphql`
         }
       }
     allMdx(sort: {fields: [frontmatter___date], order: DESC }) {
-          edges {
-        node {
-          excerpt
-          fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "DD MMMM, YYYY")
-        title
+        edges {
+          node {
+            excerpt
+            fields {
+              slug
+            }
+            frontmatter {
+              date(formatString: "DD MMMM, YYYY")
+              title
+            }
+          }
       }
     }
   }
-}
-}
 `

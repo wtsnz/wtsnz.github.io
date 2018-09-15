@@ -148,7 +148,7 @@ export const pageQuery = graphql`
      site {
         siteMetadata {
           title
-        description
+          description
         }
       }
     allMdx(sort: {fields: [frontmatter___date], order: DESC }, limit: 10) {
