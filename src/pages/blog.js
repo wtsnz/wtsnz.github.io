@@ -11,12 +11,12 @@ import './all.scss'
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const title = get(this, 'props.data.site.siteMetadata.title') + " | Blog"
     const siteDescription = get(
       this,
       'props.data.site.siteMetadata.description'
     )
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const posts = get(this, 'props.data.allMdx.edges')
 
     return (
 
@@ -25,7 +25,7 @@ class BlogIndex extends React.Component {
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
-          title={siteTitle}
+          title={title}
         />
 
         <Header />
@@ -69,7 +69,7 @@ export const pageQuery = graphql`
         description
         }
       }
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: {fields: [frontmatter___date], order: DESC }) {
           edges {
         node {
           excerpt

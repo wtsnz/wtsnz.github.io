@@ -4,18 +4,33 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const moment = require('moment')
 
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    const mdxPost = path.resolve('./src/templates/mdx-blog-post-layout.js')
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+            allMdx(
+              sort: { fields: [frontmatter___date], order: DESC }
+              limit: 1000
+            ) {
               edges {
                 node {
+                  parent {
+                    ... on File {
+                      name
+                      absolutePath
+                      relativePath
+                    }
+                  }
+                  code {
+                    scope
+                  }
                   fields {
                     slug
                     fileSourceName
@@ -28,6 +43,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+
           }
         `
       ).then(result => {
@@ -36,23 +52,50 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges;
+        // // Create blog posts pages.
+        // const posts = result.data.allMarkdownRemark.edges;
+        // _.each(posts, (post, index) => {
+        //   const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+        //   const next = index === 0 ? null : posts[index - 1].node;
+        //   // If the source is a post (from the posts directory)
+        //   if (post.node.fields.fileSourceName == 'posts') {
+        //     const slug = post.node.fields.slug
+        //     createPage({
+        //       path: slug,
+        //       component: blogPost,
+        //       context: {
+        //         slug: slug,
+        //         previous,
+        //         next,
+        //       },
+        //     })
+        //   } else {
+        //     console.error("No template for markdown source: " + post.node.fields.fileSourceName)
+        //   }
+        // })
 
-        _.each(posts, (post, index) => {
-          const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
+        // Create blog posts pages.
+        const mdxposts = result.data.allMdx.edges
+
+        _.each(mdxposts, (post, index) => {
+          const previous =
+            index === mdxposts.length - 1 ? null : mdxposts[index + 1].node
+          const next = index === 0 ? null : mdxposts[index - 1].node
+
+          console.log(post.node.code.scope)
 
           // If the source is a post (from the posts directory)
           if (post.node.fields.fileSourceName == 'posts') {
 
-            const slug = post.node.fields.slug
-
             createPage({
-              path: slug,
-              component: blogPost,
+              path: post.node.fields.slug,
+              component: componentWithMDXScope(
+                mdxPost,
+                post.node.code.scope,
+                __dirname
+              ),
               context: {
-                slug: slug,
+                slug: post.node.fields.slug,
                 previous,
                 next,
               },
@@ -61,8 +104,10 @@ exports.createPages = ({ graphql, actions }) => {
           } else {
             console.error("No template for markdown source: " + post.node.fields.fileSourceName)
           }
-          
+
         })
+
+
       })
     )
   })
@@ -74,7 +119,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // const fileNode = getNode(node.parent)
   // console.log(`\n`, fileNode.relativePath)
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
 
     // console.log(node);
 
@@ -89,19 +134,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     if (parent.sourceInstanceName === "posts") {
 
-      let slug = createFilePath({ node, getNode})
+      let slug = createFilePath({ node, getNode })
 
       if (node.frontmatter.slug) {
         slug = node.frontmatter.slug
       }
-  
+
       else if (node.frontmatter.date) {
         let date = moment(node.frontmatter.date)
 
         // Split file path by slashes, and select the last one
         slug = slug.split('/')
-            .filter (string => string.length > 0)
-            .last()
+          .filter(string => string.length > 0)
+          .last()
 
         // Remove slashes
         let nameArr = slug.replace(/\//g, "").split("-");
@@ -109,11 +154,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         // the file name is something like `2013-13-28-post-title.md`
         nameArr.splice(0, 3).join("-");
         let title = nameArr.join("-")
-                           .replace(".md", "") // Remove .md if there
-                           .replace(/-+/g, '-'); // collapse dashes;
+          .replace(".md", "") // Remove .md if there
+          .replace(/-+/g, '-'); // collapse dashes;
         slug = date.format("YYYY") + '/' + title
       }
-  
+
       createNodeField({
         node,
         name: `slug`,
@@ -121,7 +166,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })
 
     } else {
-      const slug = createFilePath({ node, getNode})
+      console.log("PAGE")
+      const slug = createFilePath({ node, getNode })
       createNodeField({
         node,
         name: `slug`,
@@ -129,10 +175,44 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       })
     }
   }
+
+
+  // if (node.internal.type === `Mdx`) {
+  //   const parent = getNode(node.parent);
+  //   let value = parent.relativePath.replace(parent.ext, "");
+
+  //   if (value === "index") {
+  //     value = "";
+  //   }
+
+  //   createNodeField({
+  //     node,
+  //     name: `fileSourceName`,
+  //     value: parent.sourceInstanceName,
+  //   })
+
+  //   // createNodeField({
+  //   //   name: `slug`,
+  //   //   node,
+  //   //   value: `/${value}`
+  //   // });
+
+  //   createNodeField({
+  //     name: "id",
+  //     node,
+  //     value: node.id
+  //   });
+
+  //   createNodeField({
+  //     name: "title",
+  //     node,
+  //     value: node.frontmatter.title || startCase(parent.name)
+  //   });
+  // }
 }
 
-if (!Array.prototype.last){
-  Array.prototype.last = function(){
-      return this[this.length - 1];
+if (!Array.prototype.last) {
+  Array.prototype.last = function () {
+    return this[this.length - 1];
   };
 };

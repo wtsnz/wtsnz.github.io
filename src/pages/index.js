@@ -17,7 +17,6 @@ import iconRoadCodeNZ from '../assets/icon-road-code-nz.png'
 import iconNZH from '../assets/icon-nzh.png'
 import iconSwiftParticles from '../assets/icon-swift-particles.png'
 
-
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -25,7 +24,7 @@ class BlogIndex extends React.Component {
       this,
       'props.data.site.siteMetadata.description'
     )
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const posts = get(this, 'props.data.allMdx.edges')
 
     return (
 
@@ -152,7 +151,7 @@ export const pageQuery = graphql`
         description
         }
       }
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC }, limit: 10) {
+    allMdx(sort: {fields: [frontmatter___date], order: DESC }, limit: 10) {
           edges {
         node {
           excerpt

@@ -1,15 +1,61 @@
+---
+title: "About"
+---
+
 import Header from '../components/Header'
-import YouTubePlayer from '../components/YouTubePlayer'
+import Helmet from 'react-helmet'
+import get from 'lodash/get'
+
+export default class PageLayout extends React.Component {
+  render() {
+    const { children } = this.props;
+    const title = get(this, 'props.data.site.siteMetadata.title') + " | " + get(this, 'props.pageContext.frontmatter.title')
+    const siteDescription = get(this, 'props.data.site.siteMetadata.description')
+    return (
+      <div>
+        <Helmet
+          htmlAttributes={{ lang: 'en' }}
+          meta={[{ name: 'description', content: siteDescription }]}
+          title={title}
+        />
+        <Header />
+        <section className='section has-no-top-padding'>
+          <div className='container'>
+            <div className='content'>
+              <div>{children}</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+}
+
+export const pageQuery = graphql`
+  query {
+     site {
+        siteMetadata {
+          title
+          description
+        }
+      }
+  }
+`
 
 # About
 
-I’m a passionate, driven, self taught iOS developer, with a focus on shipping great software, writing clean code and creating great user experiences using Swift (previously Objective-C).
+I’m a passionate, driven, self taught iOS developer, with a focus on shipping great software, writing clean code and
+creating great user experiences using Swift (previously Objective-C).
 
-I wore several hats at PaperKite between March 2013 - July 2017. I spent the majority of time developing iOS applications for a wide variety of clients and use cases.
+I wore several hats at PaperKite between March 2013 - July 2017. I spent the majority of time developing iOS
+applications for a wide variety of clients and use cases.
 
-I was lucky enough to be interviewed for the Swift Coders podcast last year. You can [listen to the podcast](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) for an in-depth history of how I ended up here!
+I was lucky enough to be interviewed for the Swift Coders podcast last year. You can [listen to the
+podcast](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) for an in-depth history of how
+I ended up here!
 
-I have experience in unusual iOS architectures using MVVM, RxSwift, VIPER and the [Coordinator Pattern](/2016/an-ios-coordinator-pattern).
+I have experience in unusual iOS architectures using MVVM, RxSwift, VIPER and the [Coordinator
+Pattern](/2016/an-ios-coordinator-pattern).
 
 ---
 
@@ -21,16 +67,22 @@ Rather than make new years resolution that I stop doing after February, I set my
 
 #### 2018 - The Month Project, An audio track every month
 
-I've been tinkering with the guitar and music product for a few years now, but haven't actually finished anything. This year will change that.
+I've been tinkering with the guitar and music product for a few years now, but haven't actually finished anything. This
+year will change that.
 
 I'm going to release, finished or not, a piece of audio/track evey month.
 
-You can follow progress on [the YouTube playlist here](https://www.youtube.com/playlist?list=PLuSt_4dhCk5Qv0gihdL1KjB3C8Qqh4RYP)
+You can follow progress on [the YouTube playlist
+here](https://www.youtube.com/playlist?list=PLuSt_4dhCk5Qv0gihdL1KjB3C8Qqh4RYP)
 
 
 
 #### 2014 - 2017 - Instagram, a photo every day
 
-This was the first project, and it started accidentally. I started posting one picture per day, and then I realised it was near September and I'd been doing it since the first of Jan. It so was incredible to look back on and see what you'd been up to that I decided to keep going.
+This was the first project, and it started accidentally. I started posting one picture per day, and then I realised it
+was near September and I'd been doing it since the first of Jan. It so was incredible to look back on and see what
+you'd been up to that I decided to keep going.
 
-In 2017 I made the concious descision to take a photo every day. I knew that this would be a big year for me as I had a lot of travel plans. I went all over Europe, the USA and visited Canada during the second half of the year after leaving my job! This is crazy to look back on, in a great way.
+In 2017 I made the concious descision to take a photo every day. I knew that this would be a big year for me as I had a
+lot of travel plans. I went all over Europe, the USA and visited Canada during the second half of the year after
+leaving my job! This is crazy to look back on, in a great way.
