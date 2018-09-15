@@ -36,6 +36,4 @@ I've also added Pods, and made use of a selection of open source libraries. I wo
 
 ## Future
 
-I can't wait to see how every responds to the update. I hope you all enjoy it. So check it out!
-
-[<img src="/img/tides-nz-3-appstore.svg" style="padding-left:auto; padding-right:auto;">](https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8)
+I can't wait to see how every responds to the update. I hope you all enjoy it. So [check it out!](https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8)

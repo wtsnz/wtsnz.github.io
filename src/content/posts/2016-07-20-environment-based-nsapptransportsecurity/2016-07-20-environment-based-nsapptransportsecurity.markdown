@@ -15,7 +15,7 @@ The configuration of NSAppTransportSecurity is inside your apps' Info.plist file
 
 To modify the Info.plist file in a shell script, OSX comes with a tool called PlistBuddy which, once you understand some of how it works makes this 'easy'.
 
-<hr >
+<hr />
 
 ## The build script
 
@@ -56,7 +56,7 @@ fi
 ```
 
 
-<hr >
+<hr />
 
 ## TLDR;
 
