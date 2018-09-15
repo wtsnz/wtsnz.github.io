@@ -23,7 +23,7 @@ class Header extends Component {
             <div className="container">
               <div className="navbar-brand">
                 <div className="navbar-item">
-                  <Link exact to={'/'} className="brand">
+                  <Link exact="true" to={'/'} className="brand">
                     <div className="brand-content">
                       <div className="brand-title is-size-6-mobile">Will Townsend</div>
                     </div>
@@ -39,9 +39,9 @@ class Header extends Component {
               </div>
               <div className={ this.state.isActive ? 'navbar-menu is-active' : 'navbar-menu'}>
                 <div className="navbar-end">
-                  <Link exact to={'/'} className='navbar-item' activeClassName="is-active" >Home</Link>
-                  <Link exact to={'/blog'} className='navbar-item' activeClassName="is-active" >Blog</Link>
-                  <Link exact to={'/about'} className='navbar-item' activeClassName="is-active" >About</Link>
+                  <Link exact="true" to={'/'} className='navbar-item' activeClassName="is-active" >Home</Link>
+                  <Link exact="true" to={'/blog'} className='navbar-item' activeClassName="is-active" >Blog</Link>
+                  <Link exact="true" to={'/about'} className='navbar-item' activeClassName="is-active" >About</Link>
                 </div>
               </div>
             </div>

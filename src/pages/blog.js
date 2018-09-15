@@ -9,18 +9,17 @@ import BlogList from '../components/BlogList'
 
 import './all.scss'
 
-
-const PostRow = (props) => {
-  const title = get(props, 'post.frontmatter.title') || props.post.fields.slug
-  const slug = props.post.fields.slug
-  return (
-      <BlogList key={slug} postTitle={title} postSlug={slug} postDate={props.post.frontmatter.date} />
-  )
-}
-
 const Posts = (props) => {
+  const posts = props.posts
   return (
-    props.posts.map(node => <PostRow post={node.node} /> )
+    posts.map(node => {
+      const post = node.node
+      const title = get(post, 'frontmatter.title') || post.fields.slug
+      const slug = post.fields.slug
+      return (
+          <BlogList key={slug} postTitle={title} postSlug={slug} postDate={post.frontmatter.date} />
+      )
+    })
   )
 }
 
@@ -31,11 +30,11 @@ const PostsGroupedByYear = (props) => {
   });
 
   return (
-    Object.keys(groupedPosts).sort((a, b) => (b - a)).map(function (key) {
+    Object.keys(groupedPosts).sort((a, b) => (b - a)).map(function (key, index) {
       const yearPosts = groupedPosts[key]
       const sortedPosts = _.sortBy(yearPosts, function(o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
       return (
-        <div className='is-blog-year'>
+        <div key={index} className='is-blog-year'>
           <Posts posts={sortedPosts} />
         </div>
       )
@@ -52,27 +51,19 @@ class BlogIndex extends React.Component {
     )
     const posts = get(this, 'props.data.allMdx.edges')
     return (
-
       <div>
-
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={title}
         />
-
         <Header />
-
         <section className='section has-no-top-padding'>
           <div className='container'>
-
             <div className='content'>
-
               <p>Here are the words I've attempted to arrange into an original, and interesting order. Enjoy 😄</p>
-
               <PostsGroupedByYear posts={posts} />
               {/* <Posts posts={posts} /> */}
-
             </div>
           </div>
         </section>
