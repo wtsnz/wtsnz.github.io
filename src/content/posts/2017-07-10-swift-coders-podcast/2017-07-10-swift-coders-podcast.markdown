@@ -13,7 +13,7 @@ We talked about how I got into the industry, how I come up with ideas for my app
 
 Garric is a great host so I quickly felt a bit more comfortable, and ended up feeling pretty good about it. After it was over!
 
-It's now had over 3.7k downloads which blows my mind. 
+It's now had over ~~3.7k~~ 5k downloads which blows my mind. 🤯
 
 You can listen to my episode here
 [https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) (if you don't listen to this episode, you should bookmark the podcast regardless - it should be on every Swift developers playlist 😀)
