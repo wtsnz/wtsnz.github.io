@@ -5,6 +5,8 @@ date: 2017-02-17 20:00:00
 categories: swift development notification app store push pushover
 ---
 
+import Gist from 'components/Gist'
+
 ![fabric](./notification.png)
 
 I recently release a [side project](https://itunes.apple.com/nz/app/road-code-nz-theory-test-practice/id1163987935) I worked on with a friend of mine. As I'm sure you know, when you release something into the world it's really hard to go by your day without checking the analytics!
@@ -23,7 +25,7 @@ As I gave myself a couple of hours, I didn't want to create an iOS app to receiv
 
 Here's the script:
 
-<script src="https://gist.github.com/wtsnz/9394638ebc7fde8ea3a63678efaa58ae.js"></script>
+<Gist id='9394638ebc7fde8ea3a63678efaa58ae' />
 
 The premise is simple, run it on a computer that is always on and every 5 minutes the script will poll the Fabric API for the new users stats, and if it's different to the last known value, send a Pushover notification to alert us that we've a new user!
 

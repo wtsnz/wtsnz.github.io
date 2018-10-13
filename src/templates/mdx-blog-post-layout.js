@@ -78,9 +78,15 @@ class MdxBlogPostTemplate extends React.Component {
               <h1 className="title">{post.frontmatter.title}</h1>
               <p className="subtitle post-date">{post.frontmatter.date}</p>
 
-              <MDXRenderer {...props} scope={{ React, MDXTag, ...__mdxScope }}>
-                {data.mdx.code.body}
-              </MDXRenderer>
+              <div>
+                <MDXRenderer scope={this.props.__mdxScope}>
+                  {post.code.body}
+                </MDXRenderer>
+              </div>
+
+              {/* <MDXRenderer {...props} scope={{ React, MDXTag, ...__mdxScope }}>
+                {post.code.body}
+              </MDXRenderer> */}
             </div>
           </div>
         </section>

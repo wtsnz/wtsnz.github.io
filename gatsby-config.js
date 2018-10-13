@@ -5,7 +5,7 @@ module.exports = {
     title: 'Will Townsend | iOS Developer',
     author: 'Will Townsend',
     description: 'Just some thoughts',
-    siteUrl: 'https://will.townsend.io/',
+    siteUrl: 'https://will.townsend.io',
   },
   pathPrefix: '/',
   plugins: [
@@ -29,7 +29,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 1035,
+              maxWidth: 1500,
               sizeByPixelDensity: true
             }
           },
@@ -139,7 +139,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/favicon.png`,
+        icon: `src/assets/favicon.svg`,
       },
     },
     `gatsby-plugin-offline`,

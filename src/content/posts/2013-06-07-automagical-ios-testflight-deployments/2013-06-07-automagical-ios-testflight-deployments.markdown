@@ -5,11 +5,13 @@ date:   2013-06-07 14:54:03
 categories: ios
 ---
 
+import Gist from 'components/Gist'
+
 A little thing I have done for work is to automatically build the latest code of our iOS projects and push the IPA to TestFlight. After spending a couple of hours trying to get Jenkins to do this, I was getting nowhere and gave up.
 
 I spent about 20 minutes writing a bash script that did everything I needed, launched at 5:30pm via cronjob. The basic gist of it is below.
 
-<script src="https://gist.github.com/wtsnz/5726768.js"></script> 
+<Gist id='5726768' />
 
 This is okay for now.. But when I decide to do this for multiple iOS projects I think I will create a little node.js app that will manage projects and be similar to Jenkins. Watch this space.
 
