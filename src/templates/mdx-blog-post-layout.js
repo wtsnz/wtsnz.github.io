@@ -10,10 +10,50 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import { MDXTag, MDXProvider } from '@mdx-js/tag'
 
 import '../pages/all.scss'
-require('../css/prism-duotone-space.css');
-require('../css/prism-fix-bulma.css');
+require('../css/prism-duotone-space.css')
+require('../css/prism-fix-bulma.css')
 
 class MdxBlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      instagram: false,
+    }
+  }
+
+  componentDidMount() {
+    // Check for Instagram script
+    if (
+      window.instgrm ||
+      document.getElementById('react-instagram-embed-script')
+    ) {
+      if (this.state.instagram == false) {
+        window.instgrm.Embeds.process()
+      }
+    } else {
+      // Create script element with Instagram embed JS lib
+      const s = document.createElement('script')
+      s.async = s.defer = true
+      s.src = `//www.instagram.com/embed.js`
+      s.id = 'react-instagram-embed-script'
+      const body = document.body
+      if (body) {
+        body.appendChild(s)
+      }
+
+      // Run Instagram function to show embeds
+      if (window.instgrm && this.state.instagram == false) {
+        window.instgrm.Embeds.process()
+      }
+
+      // Set IG state to true so the process doesn't run again
+      this.setState({
+        instagram: true,
+      })
+    }
+  }
+
   render() {
     const { children, __mdxScope, data, ...props } = this.props
 
@@ -24,7 +64,6 @@ class MdxBlogPostTemplate extends React.Component {
 
     return (
       <div>
-
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
@@ -33,22 +72,21 @@ class MdxBlogPostTemplate extends React.Component {
 
         <Header />
 
-        <section className='section has-no-top-padding'>
-          <div className='container'>
-            <div className='content'>
+        <section className="section has-no-top-padding">
+          <div className="container">
+            <div className="content">
               <h1 className="title">{post.frontmatter.title}</h1>
               <p className="subtitle post-date">{post.frontmatter.date}</p>
 
               <MDXRenderer {...props} scope={{ React, MDXTag, ...__mdxScope }}>
                 {data.mdx.code.body}
               </MDXRenderer>
-
-              </div>
+            </div>
           </div>
         </section>
-        <section className='section'>
-          <div className='container'>
-            <div className='content'>
+        <section className="section">
+          <div className="container">
+            <div className="content">
               <Bio />
 
               <ul
@@ -72,22 +110,19 @@ class MdxBlogPostTemplate extends React.Component {
                   <li>
                     <Link to={next.fields.slug} rel="next">
                       {next.frontmatter.title} →
-      </Link>
+                    </Link>
                   </li>
                 )}
               </ul>
-
             </div>
           </div>
         </section>
       </div>
-
     )
   }
 }
 
 export default MdxBlogPostTemplate
-
 
 export const pageQuery = graphql`
   query($slug: String!) {
