@@ -27,9 +27,7 @@ class Template extends React.Component {
       )
     } else {
       header = (
-        <h3
-
-        >
+        <h3>
           <Link
             style={{
               boxShadow: 'none',

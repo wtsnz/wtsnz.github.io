@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+
 import get from 'lodash/get'
+import sortBy from 'lodash/sortBy'
+
 import Helmet from 'react-helmet'
 
 import Header from '../components/Header'
@@ -24,7 +27,16 @@ class BlogIndex extends React.Component {
       this,
       'props.data.site.siteMetadata.description'
     )
-    const posts = get(this, 'props.data.allMdx.edges')
+
+    const markdownPosts = get(this, 'props.data.allMarkdownRemark.edges')
+    const mdxPosts = get(this, 'props.data.allMdx.edges')
+
+    let posts = markdownPosts
+    .concat(mdxPosts)
+  
+    console.log(markdownPosts)
+
+    posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
 
     return (
 
@@ -42,12 +54,12 @@ class BlogIndex extends React.Component {
           <div className='container'>
 
             <div className='content'>
-              <p>I’m a <strong>software engineer</strong> from New Zealand, and I spend my days at <a href="https://metalab.co/">MetaLab</a> creating <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I adore <strong>clean code</strong>, <strong>beautiful design</strong> and a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
+              <p>I’m a <strong>software engineer</strong> from New Zealand. I spend my days at <a href="https://metalab.co/">MetaLab</a> creating <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I adore <strong>clean code</strong>, <strong>beautiful design</strong> and a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
 
               <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile (and now <strong><a href="https://mastodon.technology/@will">@will@mastodon.technology</a></strong>) for whatever I feel like retweeting on a given day.</p>
-              
+
               <hr />
-              
+
               <h1>Writing</h1>
 
               <p>I like to sporadically write the occasional thing on my blog. Here’s my latest posts.</p>
@@ -145,25 +157,42 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-     site {
-        siteMetadata {
-          title
-          description
-        }
+    site {
+      siteMetadata {
+        title
+        description
       }
-    allMdx(sort: {fields: [frontmatter___date], order: DESC }, limit: 10) {
-          edges {
+    }
+    allMdx(sort: {fields: [frontmatter___date], order: DESC}, limit: 10) {
+      edges {
         node {
           excerpt
           fields {
-          slug
+            slug
+            sortDate
+          }
+          frontmatter {
+            date(formatString: "DD MMMM YYYY")
+            title
+          }
         }
-        frontmatter {
-          date(formatString: "DD MMMM YYYY")
-          title
+      }
+    }
+    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, limit: 10) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+            sortDate
+          }
+          frontmatter {
+            date(formatString: "DD MMMM YYYY")
+            title
+          }
+        }
       }
     }
   }
-}
-}
+  
 `

@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+
 import get from 'lodash/get'
+import sortBy from 'lodash/sortBy'
+import groupBy from 'lodash/groupBy'
+
 import Helmet from 'react-helmet'
-import _ from 'lodash'
+// import _ from 'lodash'
+
 import Header from '../components/Header'
 
 import BlogList from '../components/BlogList'
@@ -25,14 +30,14 @@ const Posts = (props) => {
 
 const PostsGroupedByYear = (props) => {
   const posts = props.posts
-  const groupedPosts = _.groupBy(posts, post => {
+  const groupedPosts = groupBy(posts, post => {
     return post.node.frontmatter.date.slice(-4)
   });
 
   return (
     Object.keys(groupedPosts).sort((a, b) => (b - a)).map(function (key, index) {
       const yearPosts = groupedPosts[key]
-      const sortedPosts = _.sortBy(yearPosts, function(o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
+      const sortedPosts = sortBy(yearPosts, function(o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
       return (
         <div key={index} className='is-blog-year'>
           <Posts posts={sortedPosts} />
@@ -49,7 +54,14 @@ class BlogIndex extends React.Component {
       this,
       'props.data.site.siteMetadata.description'
     )
-    const posts = get(this, 'props.data.allMdx.edges')
+
+    const markdownPosts = get(this, 'props.data.allMarkdownRemark.edges')
+    const mdxPosts = get(this, 'props.data.allMdx.edges')
+
+    let posts = markdownPosts.concat(mdxPosts)
+  
+    posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
+
     return (
       <div>
         <Helmet
@@ -75,26 +87,42 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
-     site {
-        siteMetadata {
-          title
-        description
+query {
+  site {
+    siteMetadata {
+      title
+      description
+    }
+  }
+  allMdx(sort: {fields: [frontmatter___date], order: DESC}) {
+    edges {
+      node {
+        excerpt
+        fields {
+          slug
+          sortDate
         }
-      }
-    allMdx(sort: {fields: [frontmatter___date], order: DESC }) {
-        edges {
-          node {
-            excerpt
-            fields {
-              slug
-            }
-            frontmatter {
-              date(formatString: "DD MMMM, YYYY")
-              title
-            }
-          }
+        frontmatter {
+          date(formatString: "DD MMMM YYYY")
+          title
+        }
       }
     }
   }
+  allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+    edges {
+      node {
+        excerpt
+        fields {
+          slug
+          sortDate
+        }
+        frontmatter {
+          date(formatString: "DD MMMM YYYY")
+          title
+        }
+      }
+    }
+  }
+}
 `
