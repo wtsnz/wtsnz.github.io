@@ -225,18 +225,12 @@ $content-heading-color: $brand-color;
 
 }
 
-.blog-post-header {
-
-  padding-bottom: 1rem;
-
-  .blog-post-header-date {
-
+// Gatsby blog images
+.gatsby-resp-image-wrapper {
+  @media screen and (min-width: $desktop) {
+    margin-left: -20% !important;
+    width: 140%;
   }
-
-  .blog-post-header-title {
-
-  }
-
 }
 
 .content {
