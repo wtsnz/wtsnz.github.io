@@ -7,8 +7,8 @@
     "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^0.16.5",
-    "@mdx-js/tag": "^0.16.5",
+    "@mdx-js/mdx": "^0.16.6",
+    "@mdx-js/tag": "^0.16.6",
     "bulma": "^0.7.2",
     "core-js": "^2.6.3",
     "gatsby": "^2.0.111",

@@ -142,11 +142,6 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  // const fileNode = getNode(node.parent)
-  // console.log(`\n`, fileNode.relativePath)
-
-  console.log(node.internal.type)
-
   if (node.internal.type === `MarkdownRemark`) {
 
         // Get the parent file node
@@ -191,8 +186,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         })
 
       }
-
-
 
       createNodeField({
         node,
