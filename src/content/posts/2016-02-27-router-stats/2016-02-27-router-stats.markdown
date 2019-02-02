@@ -10,7 +10,7 @@ The line in this flat isn't as good so I've had to tweak the SNR ratios on my mo
 
 For a while now I've wanted to play around with the [Influxdata](https://influxdata.com/) stack, and now I have a good excuse!
 
-<img src="./grafana.png"></img>
+![graphana](./grafana.png)
 
 *(I know the stats look boring there, but when everything is working as it should this what I want to see!)*
 

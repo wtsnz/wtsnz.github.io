@@ -33,7 +33,9 @@ Being an app that seems to have a high retention, with people who keep opening t
 
 Of course it's all good me saying this, but I have no idea, hence the experiment. It may turn out to be a massive failure, and make no money - at the end of the day, the purpose of this experiment it to get Tides US into more hands and see how iAd performs on what I think will be relatively small userbase.
 
-<img style="max-width: 200px; margin-left:auto; margin-right:auto; display: block; padding-top: 40px; padding-bottom: 40px;" src="./us-icon@2x.png"></img>
+![us-icon](./us-icon@2x.png)
+
+<!-- <img style="max-width: 200px; margin-left:auto; margin-right:auto; display: block; padding-top: 40px; padding-bottom: 40px;" src="./us-icon@2x.png" /> -->
 
 *I'm still not 100% happy with the new icon, but hopefully the target market like it.*
 
