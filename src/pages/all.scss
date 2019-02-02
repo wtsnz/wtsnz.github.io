@@ -199,11 +199,17 @@ $content-heading-color: $brand-color;
   padding-right: 0.75rem;
 
   .work-place-name {
-    display: block;
+    // display: block;
     font-size: 1.2rem;
     margin-bottom: 0.1rem; 
     color: #FF7527;
     font-weight: bold;
+    border-bottom: 3px solid #ffffff00;
+  }
+
+  .work-place-name:hover {
+    // text-decoration: underline;
+    border-bottom: 3px solid #FF7527;
   }
 
   .work-place-date {
@@ -217,6 +223,53 @@ $content-heading-color: $brand-color;
     font-weight: bold;
   }
 
+}
+
+.blog-post-header {
+
+  padding-bottom: 1rem;
+
+  .blog-post-header-date {
+
+  }
+
+  .blog-post-header-title {
+
+  }
+
+}
+
+.content {
+  h1 {
+    line-height: 3rem;
+  }
+}
+
+.content {
+  blockquote {
+    background-color: #ffffff;
+    border-left: 3px solid $link;
+    // margin: 0;
+    // padding: 1rem 1.25rem;
+    // font-size: rem;
+    // color: #0151ba;
+    font-size: 1rem;
+    font-weight: 450;
+    line-height: 1.6rem;
+  }
+}
+
+
+.has-bottom-border {
+  // border-bottom: 1px;
+  // border-color: #428bca
+  border-bottom: 2px solid $blue;
+  // border-bottom: 2px ;
+  // border-bottom: medium  blue;
+}
+
+.has-large-bottom-padding {
+  padding-bottom: 4rem;
 }
 
 .project-image > img {

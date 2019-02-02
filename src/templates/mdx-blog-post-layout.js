@@ -72,12 +72,13 @@ class MdxBlogPostTemplate extends React.Component {
 
         <Header />
 
-        <section className="section has-no-top-padding">
+        <section className="section">
           <div className="container">
             <div className="content">
-              <h1 className="title">{post.frontmatter.title}</h1>
-              <p className="subtitle post-date">{post.frontmatter.date}</p>
-
+              <div className='blog-post-header has-large-bottom-padding'>
+                <p className=' has-text-grey blog-post-header-date has-text-centered is-marginless' >{post.frontmatter.date}</p>
+                <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
+              </div>
               <div>
                 <MDXRenderer scope={this.props.__mdxScope}>
                   {post.code.body}

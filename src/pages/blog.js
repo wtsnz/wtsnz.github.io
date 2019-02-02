@@ -73,7 +73,7 @@ class BlogIndex extends React.Component {
         <section className='section has-no-top-padding'>
           <div className='container'>
             <div className='content'>
-              <p>Here are the words I've attempted to arrange into an original, and interesting order. Enjoy 😄</p>
+              <p>Here are the words that I've attempted to arrange into an original, and interesting order.</p>
               <PostsGroupedByYear posts={posts} />
               {/* <Posts posts={posts} /> */}
             </div>
