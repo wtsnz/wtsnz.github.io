@@ -25,7 +25,7 @@ class Header extends Component {
                 <div className="navbar-item">
                   <Link exact="true" to={'/'} className="brand">
                     <div className="brand-content">
-                      <div className="brand-title is-size-6-mobile">Will Townsend</div>
+                      <div className="brand-title is-size-4 is-size-6-mobile">Will Townsend</div>
                     </div>
                   </Link>
                 </div>
