@@ -29,8 +29,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 1500,
-              sizeByPixelDensity: true
+              maxWidth: 1500
             }
           },
           {
@@ -80,8 +79,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1500,
-              sizeByPixelDensity: true
+              maxWidth: 1500
             },
           },
           {
