@@ -80,7 +80,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 1500,
+              sizeByPixelDensity: true
             },
           },
           {
@@ -129,9 +130,6 @@ module.exports = {
         trackingId: `U` + `A-` + `474` + `88115` + `-2`,
       },
     },
-    // {
-      // resolve: `gatsby-plugin-feed`,
-    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
