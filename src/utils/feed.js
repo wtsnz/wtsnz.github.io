@@ -19,21 +19,36 @@
  * ```
  *
  */
+
+var _ = require('lodash');
+let sortBy = _.sortBy;
+
 module.exports = {
     /**
      * no need to specify the other options, since they will be merged with this
      */
     feeds: [
       {
-        serialize: ({ query: { site, allMdx } }) => {
-          return allMdx.edges.map(edge => {
+        serialize: ({ query: { site, allMdx, allMarkdownRemark } }) => {
+
+          // Join both of the markdown and MDX posts together
+
+          const markdownPosts = allMdx.edges;
+          const mdxPosts = allMarkdownRemark.edges;
+      
+          let posts = markdownPosts.concat(mdxPosts)
+        
+          posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
+
+          return posts.map(post => {
             return {
-              ...edge.node.frontmatter,
-              description: edge.node.excerpt,
-              url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-              guid: site.siteMetadata.siteUrl + edge.node.fields.slug
+              ...post.node.frontmatter,
+              description: post.excerpt,
+              url: site.siteMetadata.siteUrl + '/' + post.node.fields.slug,
+              guid: site.siteMetadata.siteUrl + '/' + post.node.fields.slug
             };
           });
+          
         },
         query: `
         {
@@ -43,6 +58,26 @@ module.exports = {
               order: DESC,
               fields: [frontmatter___date]
             }
+          ) {
+            edges {
+              node {
+                frontmatter {
+                  title
+                  date
+                }
+                fields {
+                  slug
+                }
+                excerpt
+              }
+            }
+          }
+          allMarkdownRemark(
+            sort: { 
+              fields: [frontmatter___date], 
+              order: DESC 
+            }
+            limit: 1000
           ) {
             edges {
               node {
