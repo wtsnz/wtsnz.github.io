@@ -233,6 +233,17 @@ $content-heading-color: $brand-color;
   }
 }
 
+.blog-post-image {
+
+  max-width: none !important;
+  width: 100%;
+
+  @media screen and (min-width: $desktop) {
+    margin-left: -20% !important;
+    width: 140% !important;
+  }
+}
+
 .content {
   h1 {
     line-height: 3rem;
