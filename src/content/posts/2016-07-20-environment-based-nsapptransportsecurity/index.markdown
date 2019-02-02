@@ -1,11 +1,10 @@
 ---
 layout: post
 title: "Environment based NSAppTransportSecurity "
+description: "asdad"
 date: 2016-07-20 00:00:00
 categories: ios dev
 ---
-
-import Gist from 'components/Gist'
 
 The latest client project I've been working on required us to figure out a way to have different NSAppTransportSecurity configurations based on the app's environment.
 
@@ -63,7 +62,5 @@ fi
 ## TLDR;
 
 And for completeness, [here's a gist of the entire thing](https://gist.github.com/wtsnz/938f8c9f304207d7fa01a3fd42a7c96c).
-
-<Gist id='938f8c9f304207d7fa01a3fd42a7c96c' />
 
 I hope this might help you out one day ✌️
