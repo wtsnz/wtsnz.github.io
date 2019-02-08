@@ -18,10 +18,12 @@ $family-serif: 'Avenir', 'Opensans', sans-serif;
 
 $brand-color: #FF7527;
 
-$navbar-height: 6rem;
-
 $gap: 200px;
-$tablet: 500px;
+$tablet: 600px;
+// $desktop: 1360px;
+
+$navbar-breakpoint: $tablet;
+$navbar-height: 6rem;
 
 $widescreen-enabled: false;
 $fullhd-enabled: false;
@@ -118,6 +120,27 @@ $content-heading-color: $brand-color;
   font-weight: 500;
   transition-duration: 86ms;
 }
+
+// Fix the title padding when less than desktop width
+.navbar-item, .navbar-link {
+  @media screen and (max-width: $desktop) {
+    padding: 0.5rem 1.5rem;
+  }
+}
+.navbar > .container .navbar-brand, .container > .navbar .navbar-brand {
+  @media screen and (max-width: $desktop) {
+    margin-left: 0rem; 
+  }  
+}
+
+// Fix the nav-bar menu when in less than desktop width
+.navbar > .container .navbar-menu, .container > .navbar .navbar-menu {
+  @media screen and (max-width: $desktop) {
+    margin-right: 1.5rem;
+  }
+}
+
+
 
 .app-header .navbar-end {
   -ms-flex-align: center;
