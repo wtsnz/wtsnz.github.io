@@ -1,9 +1,13 @@
-# gatsby-starter-blog
-Gatsby starter for creating a blog
+# will.townsend.io
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
+Hey :wave:, 
 
-`gatsby new gatsby-blog https://github.com/gatsbyjs/gatsby-starter-blog`
+This is the repository for my [blog](will.townsend.io)
 
 ## Running in development
-`gatsby develop`
+
+    npm run develop
+
+## Create a new post
+
+    npm run newPost -- title=""
