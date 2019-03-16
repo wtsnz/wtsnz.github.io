@@ -39,9 +39,6 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-embed-gist`
-          },
-          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
@@ -69,7 +66,6 @@ module.exports = {
           { resolve: `gatsby-remark-copy-linked-files` },
           { resolve: `gatsby-remark-smartypants` },
           { resolve: `gatsby-remark-embed-youtube` },
-          { resolve: "gatsby-remark-autolink-headers" },
         ]
       }
     },
