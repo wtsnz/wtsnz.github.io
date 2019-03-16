@@ -39,6 +39,9 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-embed-gist`
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
