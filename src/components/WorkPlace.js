@@ -16,9 +16,9 @@ const WorkPlaceDiv = ({ link, date, name, image, role, children }) => {
                         </Link>
                         <p className='work-place-date'>{date}</p>
                         <p className='work-place-role'>{role}</p>
-                        <p className='work-place-description'>
+                        <div className='work-place-description'>
                             {children}
-                        </p>
+                        </div>
                     </div>
             </div>
     )
