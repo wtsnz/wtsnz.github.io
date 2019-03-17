@@ -1,3 +1,6 @@
-<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M400 200C400 310.457 310.457 400 200 400C89.5431 400 0 310.457 0 200C0 89.5431 89.5431 0 200 0C310.457 0 400 89.5431 400 200ZM173.438 242.984L192.578 141.812H221.777L190.234 284H160.742L137.598 188.883L114.453 284H84.9609L53.418 141.812H82.6172L101.855 242.789L125.293 141.812H150.098L173.438 242.984ZM346.094 165.543H302.539V284H273.242V165.543H230.273V141.812H346.094V165.543Z" fill="#FF7527"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Icons/Favicon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#FF812C" cx="50" cy="50" r="32"></circle>
+    </g>
 </svg>
