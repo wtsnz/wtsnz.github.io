@@ -115,11 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
 
             createPage({
               path: post.node.fields.slug,
-              component: componentWithMDXScope(
-                mdxPost,
-                post.node.code.scope,
-                __dirname
-              ),
+              component: mdxPost,
               context: {
                 slug: post.node.fields.slug,
                 previous,
