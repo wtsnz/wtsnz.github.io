@@ -1,0 +1,61 @@
+---
+title: "Will Townsend - 404"
+---
+
+import Header from '../components/Header'
+import Helmet from 'react-helmet'
+import get from 'lodash/get'
+import { graphql } from 'gatsby'
+
+import WorkPlace from 'components/WorkPlace'
+import SpotifyPlayer from 'components/SpotifyPlayer'
+
+import logoMetaLab from './metalab.png'
+import logoPaperKite from './paperkite.png'
+
+import Container from 'components/layout/Container'
+import Section from 'components/layout/Section'
+
+import './all.scss'
+
+export default class PageLayout extends React.Component {
+  render() {
+    const { children } = this.props;
+    const title = get(this, 'props.data.site.siteMetadata.title') + " | " + get(this, 'props.pageContext.frontmatter.title')
+    const siteDescription = get(this, 'props.data.site.siteMetadata.description')
+    return (
+      <div>
+        <Helmet
+          htmlAttributes={{ lang: 'en' }}
+          meta={[{ name: 'description', content: siteDescription }]}
+          title={title}
+        />
+        <Header />
+        {children}
+      </div>
+    )
+  }
+}
+
+export const pageQuery = graphql`
+  query {
+     site {
+        siteMetadata {
+          title
+          description
+        }
+      }
+  }
+`
+
+<Section>
+<Container isContent={true}>
+
+# 404
+
+Whoops. We can't find that..
+
+Were you looking for something to do with [Camera for OBS Studio](https://obs.camera/)?
+
+</Container>
+</Section>
