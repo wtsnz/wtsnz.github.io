@@ -64,8 +64,6 @@ $content-heading-color: $brand-color;
 // $link-hover-background: $brand-color;
 // $link-hover-border: $grey-darker;
 
-
-
 // 4. Setup your Custom Colors
 // $linkedin: #0077b5;
 // $linkedin-invert: findColorInvert($linkedin);
@@ -87,7 +85,103 @@ $content-heading-color: $brand-color;
 // @import "./utils.scss";
 
 // 6. Import the rest of Bulma
-@import "~bulma/bulma.sass";
+// @import "~bulma/bulma.sass";
+
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/elements/_all.sass";
+@import "~bulma/sass/grid/_all.sass";
+@import "~bulma/sass/layout/_all.sass";
+@import "~bulma/sass/components/_all.sass";
+
+@import "~bulma/sass/base/generic.sass";
+@import "~bulma/sass/base/helpers.sass";
+
+// Let's not use the built in bulma minireset, as there is an issue with iframes and setting their height to auto.
+// Blocks
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+// List
+ul { list-style: none; }
+
+// Form
+button,
+input,
+select,
+textarea
+  { margin: 0; }
+
+// Box sizing
+html
+{ box-sizing: border-box; }
+
+// *
+//   &,
+//   &::before,
+//   &::after
+//   {  box-sizing: inherit; }
+
+// Media
+img,
+embed,
+// iframe,
+object,
+video { 
+  height: auto;
+  max-width: 100%;
+}
+
+audio { 
+  max-width: 100%;
+}
+// Iframe
+iframe {
+  border: 0;
+}
+// Table
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th { 
+  padding: 0;
+  text-align: left;
+}
+
 
 // ::-moz-selection { /* Code for Firefox */
 //   color: white;
@@ -107,6 +201,10 @@ $content-heading-color: $brand-color;
   font-size: 2.2rem;
   color: $brand-color;
   font-weight: 600;
+}
+
+iframe .instagram-media {
+    all: unset;
 }
 
 .app-header .navbar-menu .navbar-item {
