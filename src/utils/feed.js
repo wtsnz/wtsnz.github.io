@@ -38,7 +38,7 @@ module.exports = {
       
           let posts = markdownPosts.concat(mdxPosts)
         
-          posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
+          posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] )
 
           return posts.map(post => {
             return {
