@@ -1,11 +1,5 @@
 import React from 'react'
-
-// Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
-
 import profilePic from './profile-pic.jpg'
-import { rhythm } from '../utils/typography'
 
 class Bio extends React.Component {
   render() {
@@ -13,17 +7,17 @@ class Bio extends React.Component {
       <div
         style={{
           display: 'flex',
-          marginBottom: rhythm(2.5),
+          marginBottom: '20pt'
         }}
       >
         <img
           src={profilePic}
           alt={`Will Townsend`}
           style={{
-            marginRight: rhythm(1 / 2),
-            marginBottom: 0,
-            width: rhythm(2),
-            height: rhythm(2),
+            marginBottom: '0',
+            width: '50pt',
+            height: '50pt',
+            marginRight: '20pt'
           }}
         />
         <p>
