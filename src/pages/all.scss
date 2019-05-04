@@ -88,13 +88,6 @@ $content-heading-color: $brand-color;
 // @import "~bulma/bulma.sass";
 
 @import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/elements/_all.sass";
-@import "~bulma/sass/grid/_all.sass";
-@import "~bulma/sass/layout/_all.sass";
-@import "~bulma/sass/components/_all.sass";
-
-@import "~bulma/sass/base/generic.sass";
-@import "~bulma/sass/base/helpers.sass";
 
 // Let's not use the built in bulma minireset, as there is an issue with iframes and setting their height to auto.
 // Blocks
@@ -181,6 +174,14 @@ th {
   padding: 0;
   text-align: left;
 }
+
+@import "~bulma/sass/base/generic.sass";
+@import "~bulma/sass/base/helpers.sass";
+
+@import "~bulma/sass/elements/_all.sass";
+@import "~bulma/sass/grid/_all.sass";
+@import "~bulma/sass/layout/_all.sass";
+@import "~bulma/sass/components/_all.sass";
 
 
 // ::-moz-selection { /* Code for Firefox */
