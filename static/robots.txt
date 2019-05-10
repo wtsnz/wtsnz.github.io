@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://will.townsend.io/sitemap.xml
