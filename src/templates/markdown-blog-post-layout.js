@@ -26,14 +26,9 @@ class BlogPostTemplate extends React.Component {
 
     componentDidMount() {
         // Check for Instagram script
-        if (
-            window.instgrm ||
-            document.getElementById('react-instagram-embed-script')
-        ) {
-            if (this.state.instagram == false) {
-                window.instgrm.Embeds.process()
-            }
-        } else {
+    // if (window.instgrm && document.getElementById('react-instagram-embed-script') && this.state.instagram == false) {
+    //   window.instgrm.Embeds.process()
+    // } else {
             // Create script element with Instagram embed JS lib
             const s = document.createElement('script')
             s.async = s.defer = true
@@ -53,7 +48,7 @@ class BlogPostTemplate extends React.Component {
             this.setState({
                 instagram: true,
             })
-        }
+        // }
     }
 
     render() {
