@@ -6,7 +6,7 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXTag, MDXProvider } from '@mdx-js/tag'
 
 import '../pages/all.scss'
@@ -24,13 +24,8 @@ class MdxBlogPostTemplate extends React.Component {
 
   componentDidMount() {
     // Check for Instagram script
-    if (
-      window.instgrm ||
-      document.getElementById('react-instagram-embed-script')
-    ) {
-      if (this.state.instagram == false) {
-        window.instgrm.Embeds.process()
-      }
+    if (window.instgrm && document.getElementById('react-instagram-embed-script') && this.state.instagram == false) {
+      window.instgrm.Embeds.process()
     } else {
       // Create script element with Instagram embed JS lib
       const s = document.createElement('script')
@@ -81,7 +76,7 @@ class MdxBlogPostTemplate extends React.Component {
               </div>
               <div>
                 <MDXRenderer scope={this.props.__mdxScope}>
-                  {post.code.body}
+                  {post.body}
                 </MDXRenderer>
               </div>
             </div>
@@ -138,9 +133,7 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
-      code {
-        body
-      }
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

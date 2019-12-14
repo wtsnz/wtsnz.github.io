@@ -94,7 +94,8 @@ module.exports = {
           }
         }
       `,
-        output: `feed.xml`
+        output: `rss.xml`,
+        title: "Will Townsend RSS",
       }
     ]
   };

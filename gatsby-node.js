@@ -4,8 +4,6 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const moment = require('moment')
 
-const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -29,10 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
                       relativePath
                     }
                   }
-                  code {
-                    scope
-                    body
-                  }
+                  body
                   fields {
                     slug
                     fileSourceName
