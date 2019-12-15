@@ -1,7 +1,7 @@
 ---
 title: '🔲 SwiftUI: Button Styles'
 description: "Let's explore the differences between the two SwiftUI Button Style Protocols, ButtonStyle and PrimitiveButtonStyle."
-date: '2019-12-14T10:22:57.444Z'
+date: '2019-12-15T14:45:57.444Z'
 layout: post
 draft: false
 path: '/posts/recreating-the-swiftui-button/'
