@@ -5,7 +5,7 @@ title: "About"
 import Header from '../components/Header'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 import WorkPlace from 'components/WorkPlace'
 import SpotifyPlayer from 'components/SpotifyPlayer'
@@ -15,6 +15,8 @@ import logoPaperKite from './paperkite.png'
 
 import Container from 'components/layout/Container'
 import Section from 'components/layout/Section'
+
+import { Books } from 'components/Books'
 
 import './all.scss'
 
@@ -53,12 +55,12 @@ export const pageQuery = graphql`
 
 # About
 
-Here's some more random stuff:
+A few highlights
 
 - 🌎 I was born in England, grew up in New Zealand and now I live in Canada 
 - 🚢 I enjoy shipping great software, learning how to write clean code, and
 creating great user experiences using Swift (previously Objective-C).
-- ✈️ I took a year off to _'travel the world'_ and chill out halfway through 2017 - 2018.
+- ✈️ Towards the end of 2017 I quit my then-job to _'travel the world'_ and chill out.
 - 🎙 I was interviewed for the Swift Coders podcast a while back. You can [listen to the
 podcast](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) for an in-depth history of how
 I ended up here!
@@ -118,7 +120,21 @@ In terms of iOS projects, I worked on creating around 30 Objective-C & Swift bas
 
 </Container>
 </Section>
+<Section>
+  <Container isContent={true}>
 
+---
+
+## Books
+
+Occasionally I like to read. Here's some of the more recent books that I've read.
+
+  <Books count={4} size="small" />
+
+  <Link to={'/books'}>See my full library →</Link>
+
+  </Container>
+</Section>
 <Section>
 <Container isContent={true}>
 
