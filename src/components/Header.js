@@ -42,7 +42,6 @@ class Header extends Component {
                   <Link exact="true" to={'/'} className='navbar-item' activeClassName="is-active" >Home</Link>
                   <Link exact="true" to={'/blog'} className='navbar-item' activeClassName="is-active" >Blog</Link>
                   <Link exact="true" to={'/about'} className='navbar-item' activeClassName="is-active" >About</Link>
-                  <Link exact="true" to={'/books'} className='navbar-item' activeClassName="is-active" >Books</Link>
                 </div>
               </div>
             </div>
