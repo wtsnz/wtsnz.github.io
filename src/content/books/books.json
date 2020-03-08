@@ -1,0 +1,28 @@
+{
+    "books": [
+        {
+            "title": "Happy",
+            "coverImageName": "happy",
+            "author": "Derren Brown",
+            "year": 2019
+        },
+        {
+            "title": "The Making of a Manager",
+            "coverImageName": "makingofamanager",
+            "author": "Julie Zhuo",
+            "year": 2019
+        },
+        {
+            "title": "The Rosie Project",
+            "coverImageName": "rosieproject",
+            "author": "Graeme Simsion",
+            "year": 2020
+        },
+        {
+            "title": "Sapiens",
+            "coverImageName": "sapiens",
+            "author": "Yuval Noah Harari",
+            "year": 2019
+        }
+    ]
+}
