@@ -20,6 +20,8 @@ import iconRoadCodeNZ from '../assets/icon-road-code-nz.png'
 import iconNZH from '../assets/icon-nzh.png'
 import iconSwiftParticles from '../assets/icon-swift-particles.png'
 
+import TextLoop from "react-text-loop";
+
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -32,8 +34,8 @@ class BlogIndex extends React.Component {
     const mdxPosts = get(this, 'props.data.allMdx.edges')
 
     let posts = markdownPosts.concat(mdxPosts)
-  
-    posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
+
+    posts = sortBy(posts, [function (o) { return o.node.fields.sortDate; }]).reverse()
 
     return (
 
@@ -51,10 +53,18 @@ class BlogIndex extends React.Component {
           <div className='container'>
 
             <div className='content'>
-              <p>I’m a <strong>software engineer</strong> from New Zealand 🇳🇿 but I now live in Canada 🇨🇦 where I spend my days creating things for my company <a href="https://loftlabs.co/">Loft Labs Interactive</a>.
+              <p>
+              I’m<span> </span>
+               <TextLoop>
+                  <strong>a software engineer</strong>
+                  <strong>a human being</strong>
+                  <strong>an indie developer</strong>
+                </TextLoop>
+
+                <span> </span>from New Zealand 🇳🇿 living in Vancouver 🇨🇦 spending my days creating for my company <a href="https://loftlabs.co/">Loft Labs Interactive</a>.
               </p>
               <p>
-              I've created <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I love to <strong>learn</strong>. I love to figure out how to write <strong>clean, maintainable code</strong>. I love to work with <strong>beautiful designs</strong>. And I love a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
+                I've created <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I love to <strong>learn</strong>. I love to figure out how to write <strong>clean, maintainable code</strong>. I love to work with <strong>beautiful designs</strong>. And I love a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
 
               <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile for whatever I feel like retweeting on a given day.</p>
 
