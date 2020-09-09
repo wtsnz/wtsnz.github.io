@@ -51,7 +51,10 @@ class BlogIndex extends React.Component {
           <div className='container'>
 
             <div className='content'>
-              <p>I’m a <strong>software engineer</strong> from New Zealand 🇳🇿. I now live in Canada 🇨🇦 where I spend my days at <a href="https://metalab.co/">MetaLab</a> creating <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I love to <strong>learn</strong>, figure out how to write <strong>clean, maintainable code</strong>, <strong>beautiful design</strong> and a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
+              <p>I’m a <strong>software engineer</strong> from New Zealand 🇳🇿 but I now live in Canada 🇨🇦 where I spend my days creating things for my company <a href="https://loftlabs.co/">Loft Labs Interactive</a>.
+              </p>
+              <p>
+              I've created <a href="https://github.com/wtsnz">software</a> for the Apple devices that live on your wrist, your pocket and under your tv using <strong>Swift</strong> <s>and Objective-C</s>. I love to <strong>learn</strong>. I love to figure out how to write <strong>clean, maintainable code</strong>. I love to work with <strong>beautiful designs</strong>. And I love a perfectly brewed <strong>cup of tea</strong> ☕️.</p>
 
               <p>You can checkout my <strong><a href="https://github.com/wtsnz">github</a></strong> profile for things I’m working on, my <strong><a href="https://www.instagram.com/wtsnz/">instagram</a></strong> profile for photos that I take, and my <strong><a href="https://twitter.com/wtsnz">twitter</a></strong> profile for whatever I feel like retweeting on a given day.</p>
 
