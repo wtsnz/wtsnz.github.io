@@ -7,3 +7,17 @@
 html {
     font-size: 14pt;
 }
+
+.prose a {
+    color: theme('colors.orange.500');
+    text-decoration-color: theme('colors.orange.500');
+    text-decoration-thickness: .125em;
+    text-underline-offset: 6px;
+    text-decoration-style: dotted;
+}
+
+.prose a:hover {
+    color: theme('colors.orange.500');
+    text-decoration-color: theme('colors.orange.500');;
+    text-decoration-style: solid;
+}
