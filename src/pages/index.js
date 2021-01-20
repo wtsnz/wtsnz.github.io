@@ -56,7 +56,7 @@ class BlogIndex extends React.Component {
         <Header />
 
         <section class="bg-white dark:bg-gray-800">
-          <div class="container mx-auto px-4 py-8 lg:max-w-3xl max-w-2xl">
+          <div class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
             <div class="lg:flex items-center">
               <div class="lg:w-1/2">
                 <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Hello 👋, I'm Will</h2>
