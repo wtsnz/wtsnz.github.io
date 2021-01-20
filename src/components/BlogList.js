@@ -2,23 +2,14 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 const BlogList = ({ postTitle, postSlug, postDate }) => (
-    <Link className='blog-link' to={postSlug}>
-        <div className='columns'>
-                <div className='column'>
-                    <p>{postTitle}</p>
-                </div>
-                <div className='column is-narrow is-hidden-mobile'>
-                    <small>{postDate}</small>
-                </div>
+    <Link className='flex px-4 -mx-4 py-2 rounded-md font-medium hover:text-orange-400 hover:bg-orange-50' to={"/" + postSlug}>
+        <div class="flex-1">
+            {postTitle}
+        </div>
+        <div>
+            <small>{postDate}</small>
         </div>
     </Link>
 );
-
-
-
-// Pane.propTypes = {
-//     label: React.PropTypes.string.isRequired,
-//     children: React.PropTypes.element.isRequired
-// };
 
 export default BlogList

@@ -9,7 +9,8 @@ import Helmet from 'react-helmet'
 // import _ from 'lodash'
 
 import Header from '../components/Header'
-
+import Footer from '../components/Footer'
+import Container from '../components/layout/Container'
 import BlogList from '../components/BlogList'
 
 import './all.scss'
@@ -22,7 +23,7 @@ const Posts = (props) => {
       const title = get(post, 'frontmatter.title') || post.fields.slug
       const slug = post.fields.slug
       return (
-          <BlogList key={slug} postTitle={title} postSlug={slug} postDate={post.frontmatter.date} />
+        <BlogList key={slug} postTitle={title} postSlug={slug} postDate={post.frontmatter.date} />
       )
     })
   )
@@ -37,9 +38,9 @@ const PostsGroupedByYear = (props) => {
   return (
     Object.keys(groupedPosts).sort((a, b) => (b - a)).map(function (key, index) {
       const yearPosts = groupedPosts[key]
-      const sortedPosts = sortBy(yearPosts, function(o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
+      const sortedPosts = sortBy(yearPosts, function (o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
       return (
-        <div key={index} className='is-blog-year'>
+        <div key={index} className='pb-8'>
           <Posts posts={sortedPosts} />
         </div>
       )
@@ -59,8 +60,8 @@ class BlogIndex extends React.Component {
     const mdxPosts = get(this, 'props.data.allMdx.edges')
 
     let posts = markdownPosts.concat(mdxPosts)
-  
-    posts = sortBy(posts, [function(o) { return o.node.fields.sortDate; }] ).reverse()
+
+    posts = sortBy(posts, [function (o) { return o.node.fields.sortDate; }]).reverse()
 
     return (
       <div>
@@ -71,14 +72,14 @@ class BlogIndex extends React.Component {
         />
         <Header />
         <section className='section has-no-top-padding'>
-          <div className='container'>
-            <div className='content'>
-              <p>Here are the words that I've attempted to arrange into an original, and interesting order.</p>
+          <Container>
+            <p>Here are the collection of words that I've tried to arrange into an original, interesting order that somewhat relate to the title for you to consume.</p>
+            <div className="py-10">
               <PostsGroupedByYear posts={posts} />
-              {/* <Posts posts={posts} /> */}
             </div>
-          </div>
+          </Container>
         </section>
+        <Footer />
       </div>
     )
   }

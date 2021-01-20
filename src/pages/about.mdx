@@ -9,14 +9,13 @@ import { graphql } from 'gatsby'
 
 import WorkPlace from 'components/WorkPlace'
 import SpotifyPlayer from 'components/SpotifyPlayer'
+import Footer from 'components/footer'
 
 import logoMetaLab from './metalab.png'
 import logoPaperKite from './paperkite.png'
 import logoLoftLabs from './loftlabs.png'
 import Container from 'components/layout/Container'
 import Section from 'components/layout/Section'
-
-import './all.scss'
 
 export default class PageLayout extends React.Component {
   render() {
@@ -48,17 +47,18 @@ export const pageQuery = graphql`
   }
 `
 
+
 <Section>
 <Container isContent={true}>
 
 # About
 
-Here's some more random stuff:
+Here's a couple of things that you might not know about me:
 
 - 🌎 I was born in England, grew up in New Zealand and now I live in Canada 
 - 🚢 I enjoy shipping great software, learning how to write clean code, and
 creating great user experiences using Swift (previously Objective-C).
-- ✈️ I took a year off to _'travel the world'_ and chill out halfway through 2017 - 2018.
+- ✈️ I took a year off to _'travel the world'_ and recover from burnout out halfway through 2017 - 2018.
 - 🎙 I was interviewed for the Swift Coders podcast a while back. You can [listen to the
 podcast](https://swiftcoders.podbean.com/e/53-will-townsend-ios-team-lead-at-paperkite/) for an in-depth history of how
 I ended up here!
@@ -66,6 +66,7 @@ I ended up here!
 Pattern](/2016/an-ios-coordinator-pattern).
 - ✋ I've [high-fived Paul Mccartney](https://www.youtube.com/watch?v=cUsj6-PlDk8) ✋
 - 👨‍💻 Started my indie software journey in 2020
+- 🎸 I'm learning to play chords on the guitar
 
 </Container>
 </Section>
@@ -134,24 +135,4 @@ In terms of iOS projects, I worked on creating around 30 Objective-C & Swift bas
 </Container>
 </Section>
 
-<Section>
-<Container isContent={true}>
-
----
-
-## Will's Yearly Challenge™ 
-
-I dislike new years resolutions. People always say they're going to change for the better, then do what they said for a few weeks, and then always seem to fall back into their old _bad_ habbits. 
-
-But hey, habbits die hard, I tell myself that whenever I look down at my very own finger nails - or whats left of them - so who am I to blame anyone else 🤷‍♂️.
-
-What I can do however, is, rather than make a new years resolution that I stop doing after February, I set myself yearly challenges. These can vary from effort, ideally something small and something that I can do consistently.
-
-| Year      |  |
-| ----------- | ----------- |
-| 2019 | Weekly Journal |
-| 2018      | The Month Project, an Audio track every month       |
-| 2014 - 2017   | Instagram, a photo every day.         |
-
-</Container>
-</Section>
+<Footer />

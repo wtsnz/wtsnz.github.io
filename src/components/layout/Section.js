@@ -2,7 +2,7 @@ import React from 'react'
 
 const Section = ({ children }) => {
     return (
-        <section className='section has-no-top-padding'>
+        <section className='py-8'>
             {children}
         </section>
     )

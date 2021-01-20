@@ -1,6 +1,7 @@
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import Bio from '../components/Bio'
 import { Link } from 'gatsby'
 import React from 'react'
@@ -8,10 +9,6 @@ import { graphql } from 'gatsby'
 
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXTag, MDXProvider } from '@mdx-js/tag'
-
-import '../pages/all.scss'
-require('../css/prism-duotone-space.css')
-require('../css/prism-fix-bulma.css')
 
 class MdxBlogPostTemplate extends React.Component {
   constructor(props) {
@@ -69,7 +66,7 @@ class MdxBlogPostTemplate extends React.Component {
 
         <section className="section">
           <div className="container">
-            <div className="content">
+            <div className="prose max-w-none">
               <div className='blog-post-header has-large-bottom-padding'>
                 <p className=' has-text-grey blog-post-header-date has-text-centered is-marginless' >{post.frontmatter.date}</p>
                 <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
@@ -85,7 +82,7 @@ class MdxBlogPostTemplate extends React.Component {
         <section className="section">
           <div className="container">
             <div className="content">
-              <Bio />
+              
 
               <ul
                 style={{
@@ -115,6 +112,8 @@ class MdxBlogPostTemplate extends React.Component {
             </div>
           </div>
         </section>
+        <Bio />
+        <Footer />
       </div>
     )
   }
