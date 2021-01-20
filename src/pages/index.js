@@ -59,7 +59,7 @@ class BlogIndex extends React.Component {
           <div class="container mx-auto px-4 py-8 lg:max-w-3xl max-w-2xl">
             <div class="lg:flex items-center">
               <div class="lg:w-1/2">
-                <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Hello 👋</h2>
+                <h2 class="text-gray-800 dark:text-gray-100 text-3xl font-bold">Hello 👋, I'm Will</h2>
                 <p class="mt-4">
                   I’m<span> </span>
                     <strong>a human being</strong>
@@ -110,7 +110,7 @@ class BlogIndex extends React.Component {
                   love to figure out how to write{' '}
                   <strong>clean, maintainable code</strong>. I love to work with{' '}
                   <strong>beautiful designs</strong>. And I love a perfectly
-                  brewed <strong>cup of tea</strong> ☕️.
+                  brewed <strong>cup of tea!</strong> ☕️
                 </p>
 
                 <p>
