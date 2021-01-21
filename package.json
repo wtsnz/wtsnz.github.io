@@ -13,6 +13,7 @@
     "@mdx-js/tag": "^0.20.3",
     "@tailwindcss/typography": "^0.3.1",
     "core-js": "^2.6.12",
+    "fs-extra": "^9.1.0",
     "gatsby": "^2.31.1",
     "gatsby-plugin-feed": "^2.12.0",
     "gatsby-plugin-google-analytics": "^2.10.0",
@@ -49,7 +50,6 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.22.0",
-    "gh-pages": "^1.2.0",
     "prettier": "^1.19.1",
     "tailwindcss": "^2.0.2"
   },
