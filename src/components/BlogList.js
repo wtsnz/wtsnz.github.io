@@ -6,7 +6,7 @@ const BlogList = ({ postTitle, postSlug, postDate }) => (
         <div class="flex-1">
             {postTitle}
         </div>
-        <div>
+        <div className="text-gray-600">
             <small>{postDate}</small>
         </div>
     </Link>
