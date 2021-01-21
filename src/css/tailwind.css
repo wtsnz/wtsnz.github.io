@@ -8,6 +8,10 @@ html {
     font-size: 14pt;
 }
 
+.prose {
+    line-height: 1.6rem;
+}
+
 .prose a {
     color: theme('colors.orange.500');
     text-decoration-color: theme('colors.orange.500');
