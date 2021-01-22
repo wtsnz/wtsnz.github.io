@@ -8,8 +8,9 @@ import { graphql } from 'gatsby'
 import Bio from '../components/Bio'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-import '../pages/all.scss'
+import Container from '../components/layout/Container'
 
 require('../css/prism-duotone-space.css');
 require('../css/prism-fix-bulma.css');
@@ -26,28 +27,28 @@ class BlogPostTemplate extends React.Component {
 
     componentDidMount() {
         // Check for Instagram script
-    // if (window.instgrm && document.getElementById('react-instagram-embed-script') && this.state.instagram == false) {
-    //   window.instgrm.Embeds.process()
-    // } else {
-            // Create script element with Instagram embed JS lib
-            const s = document.createElement('script')
-            s.async = s.defer = true
-            s.src = `//www.instagram.com/embed.js`
-            s.id = 'react-instagram-embed-script'
-            const body = document.body
-            if (body) {
-                body.appendChild(s)
-            }
+        // if (window.instgrm && document.getElementById('react-instagram-embed-script') && this.state.instagram == false) {
+        //   window.instgrm.Embeds.process()
+        // } else {
+        // Create script element with Instagram embed JS lib
+        const s = document.createElement('script')
+        s.async = s.defer = true
+        s.src = `//www.instagram.com/embed.js`
+        s.id = 'react-instagram-embed-script'
+        const body = document.body
+        if (body) {
+            body.appendChild(s)
+        }
 
-            // Run Instagram function to show embeds
-            if (window.instgrm && this.state.instagram == false) {
-                window.instgrm.Embeds.process()
-            }
+        // Run Instagram function to show embeds
+        if (window.instgrm && this.state.instagram == false) {
+            window.instgrm.Embeds.process()
+        }
 
-            // Set IG state to true so the process doesn't run again
-            this.setState({
-                instagram: true,
-            })
+        // Set IG state to true so the process doesn't run again
+        this.setState({
+            instagram: true,
+        })
         // }
     }
 
@@ -68,51 +69,20 @@ class BlogPostTemplate extends React.Component {
 
                 <Header />
 
-                <section className='section'>
-                    <div className='container'>
-                        <div className='content'>
+                <section>
+                    <div className='mx-auto max-w-4xl px-4 pt-12'>
+                        <div className='prose max-w-none max-w-2xl'>
                             <div className='blog-post-header has-large-bottom-padding'>
-                                <p className=' has-text-grey blog-post-header-date has-text-centered is-marginless' >{post.frontmatter.date}</p>
+                                <div className='text-gray-700 mb-2 text-sm text-tertiary tracking-normal' >{post.frontmatter.date}</div>
                                 <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
                             </div>
                             <div dangerouslySetInnerHTML={{ __html: post.html }} />
                         </div>
                     </div>
+
                 </section>
-                <section className='section'>
-                    <div className='container'>
-                        <div className='content'>
-                            <Bio />
 
-                            <ul
-                                style={{
-                                    display: 'flex',
-                                    flexWrap: 'wrap',
-                                    justifyContent: 'space-between',
-                                    listStyle: 'none',
-                                    padding: 0,
-                                }}
-                            >
-                                {previous && (
-                                    <li>
-                                        <Link to={previous.fields.slug} rel="prev">
-                                            ← {previous.frontmatter.title}
-                                        </Link>
-                                    </li>
-                                )}
-
-                                {next && (
-                                    <li>
-                                        <Link to={next.fields.slug} rel="next">
-                                            {next.frontmatter.title} →
-      </Link>
-                                    </li>
-                                )}
-                            </ul>
-
-                        </div>
-                    </div>
-                </section>
+                <Footer />
             </div>
 
         )

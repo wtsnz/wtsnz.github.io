@@ -1,6 +1,7 @@
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import Bio from '../components/Bio'
 import { Link } from 'gatsby'
 import React from 'react'
@@ -8,10 +9,6 @@ import { graphql } from 'gatsby'
 
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXTag, MDXProvider } from '@mdx-js/tag'
-
-import '../pages/all.scss'
-require('../css/prism-duotone-space.css')
-require('../css/prism-fix-bulma.css')
 
 class MdxBlogPostTemplate extends React.Component {
   constructor(props) {
@@ -67,54 +64,22 @@ class MdxBlogPostTemplate extends React.Component {
 
         <Header />
 
-        <section className="section">
-          <div className="container">
-            <div className="content">
+        <section>
+          <div className='mx-auto max-w-4xl px-4 pt-12'>
+            <div className='prose max-w-none max-w-2xl'>
               <div className='blog-post-header has-large-bottom-padding'>
-                <p className=' has-text-grey blog-post-header-date has-text-centered is-marginless' >{post.frontmatter.date}</p>
+                <div className='text-gray-700 mb-2 text-sm text-tertiary tracking-normal' >{post.frontmatter.date}</div>
                 <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
               </div>
-              <div>
-                <MDXRenderer scope={this.props.__mdxScope}>
+              <MDXRenderer scope={this.props.__mdxScope}>
                   {post.body}
                 </MDXRenderer>
-              </div>
             </div>
           </div>
-        </section>
-        <section className="section">
-          <div className="container">
-            <div className="content">
-              <Bio />
 
-              <ul
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: 'space-between',
-                  listStyle: 'none',
-                  padding: 0,
-                }}
-              >
-                {previous && (
-                  <li>
-                    <Link to={previous.fields.slug} rel="prev">
-                      ← {previous.frontmatter.title}
-                    </Link>
-                  </li>
-                )}
-
-                {next && (
-                  <li>
-                    <Link to={next.fields.slug} rel="next">
-                      {next.frontmatter.title} →
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </div>
-          </div>
         </section>
+
+        <Footer />
       </div>
     )
   }
