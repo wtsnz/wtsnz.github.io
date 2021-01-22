@@ -61,7 +61,7 @@ class BlogIndex extends React.Component {
               <div className="lg:w-1/2">
                 <h2 className="text-gray-800 dark:text-gray-100 text-3xl font-bold">Hello 👋, I'm Will</h2>
                 <p className="mt-4">
-                  I a human being who lives in Vancouver 🇨🇦, writes software and enjoys music.
+                  I'm a human being who writes software, enjoys music, and lives in Vancouver BC 🇨🇦.
                 </p>
                 <div>
                   <div className="flex items-center -mx-2 mt-6">
