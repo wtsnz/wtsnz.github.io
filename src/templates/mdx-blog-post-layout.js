@@ -68,9 +68,7 @@ class MdxBlogPostTemplate extends React.Component {
           <div className='mx-auto max-w-4xl px-4 pt-12'>
             <div className='prose max-w-none max-w-2xl'>
               <div className='blog-post-header has-large-bottom-padding'>
-                {/* <p className=' has-text-grey blog-post-header-date has-text-centered is-marginless' >{post.frontmatter.date}</p> */}
-                <div className='mb-2 text-sm text-tertiary tracking-normal' >{post.frontmatter.date}</div>
-
+                <div className='text-gray-700 mb-2 text-sm text-tertiary tracking-normal' >{post.frontmatter.date}</div>
                 <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
               </div>
               <MDXRenderer scope={this.props.__mdxScope}>
