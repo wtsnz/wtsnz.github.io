@@ -150,7 +150,7 @@ module.exports = {
         icon: `src/assets/favicon.svg`,
       },
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-remove-serviceworker`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-sitemap`
