@@ -2,7 +2,7 @@
 
 Hey :wave:, 
 
-This is the repository for my [blog](will.townsend.io)
+This is the repository for my [blog](//will.townsend.io)
 
 ## Running in development
 
