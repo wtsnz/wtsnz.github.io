@@ -6,14 +6,11 @@ import sortBy from 'lodash/sortBy'
 import groupBy from 'lodash/groupBy'
 
 import Helmet from 'react-helmet'
-// import _ from 'lodash'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Container from '../components/layout/Container'
 import BlogList from '../components/BlogList'
-
-import './all.scss'
 
 const Posts = (props) => {
   const posts = props.posts
@@ -40,7 +37,7 @@ const PostsGroupedByYear = (props) => {
       const yearPosts = groupedPosts[key]
       const sortedPosts = sortBy(yearPosts, function (o) { var dt = new Date(o.node.frontmatter.date); return -dt; })
       return (
-        <div key={index} className='pb-8'>
+        <div key={index} className='pb-6'>
           <Posts posts={sortedPosts} />
         </div>
       )

@@ -1,8 +1,13 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    './src/pages/**/*.{html,js,mdx,jsx,mdx}',
+    './src/templates/**/*.{html,js,mdx}',
+    './src/components/**/*.{html,js,mdx}',
+    './src/pages/**/*.{html,js,mdx}',
+    './src/content/**/*.{html,js,mdx,md}'
+  ],
   theme: {
     fontFamily: {
       sans: ['Avenir', 'sans-serif'],

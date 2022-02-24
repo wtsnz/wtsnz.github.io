@@ -8,7 +8,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import { MDXTag, MDXProvider } from '@mdx-js/tag'
 
 class MdxBlogPostTemplate extends React.Component {
   constructor(props) {
@@ -66,7 +65,7 @@ class MdxBlogPostTemplate extends React.Component {
 
         <section>
           <div className='mx-auto max-w-4xl px-4 pt-12'>
-            <div className='prose max-w-none max-w-2xl'>
+            <div className='prose max-w-prose'>
               <div className='blog-post-header has-large-bottom-padding'>
                 <div className='text-gray-700 mb-2 text-sm text-tertiary tracking-normal' >{post.frontmatter.date}</div>
                 <h1 className='blog-post-title has-text-centered is-marginless'>{post.frontmatter.title}</h1>
