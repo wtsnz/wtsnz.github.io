@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "Sales Released"
+date:   2014-1-13 10:34:23
+categories: sales ios app released
+---
+
+[Sales](http://getsalesapp.com) has just been approved for release, feels good!
+
+[Sales](http://getsalesapp.com) is a really simple app I created in a few days that makes it easy for you to check your latest sales and reviews using your [AppFigures](https://appfigures.com) account.
+
+## How sales came about
+
+About a year ago I came accross [AppFigures](https://appfigures.com). I was blown away with how much it improved upon the standard iTunes Connect graphs of downloads and immediately signed up. 
+
+Soon after I realised that they they have an API, so I searched on the AppStore for an [AppFigures](https://appfigures.com) client and couldn't find one I liked. Back then I think there was only one, and for some reason I didn't enjoy it. 
+
+So like every developer I said "I can do better!" and started to write my own client.
+
+I spent about three days throwing some code together and nothing ever came of it. It was a shambles really and something I was never proud of, so it stayed in my folder of unfinished projects.
+
+Bring the time forward to the Christmas break of 2013. A couple of weeks earlier I had a discussion with some friends that got us talking about [AppFigures](https://appfigures.com).
+
+Again my unfinished app popped into my head.
+
+So I opened it up, and spent another three days (and a night or two) updating the project, and turning it into something presentable. I discovered a recently open sourced charting library that I just knew would be perfect ([JBChartView](https://github.com/Jawbone/JBChartView)) so I scrapped the existing one, and after a few modifications implemented that. 
+
+So over the space of a year with six days of work, I present to you [Sales](http://getsalesapp.com)!
+
+## Design
+
+I am a big fan of clean design. I usually pick one colour, blue in this case, and use it with white and black. I think it's really effective although it can be hard to make everything clear - the design challenge!
+
+Because [Sales](http://getsalesapp.com) is an [AppFigures](https://appfigures.com) client I decided to try implement similar colours in order to have some reference to [AppFigures](https://appfigures.com). Although I didn't pick an orange colour (bar the login screen) this is where the blue came from.
+
+I found the icon hard to come up with. I was playing around with a few ideas before I settled on the current 'S' icon. I had designs that featured sails, a kind of play on pronounciation and it fit with the blue colour scheme.
+
+I'm happy with the way the design turned out, though when downloads an updates are able to be graphed (is coming in a later version) I may have a play with different colours to easily distinguish between them.
+
+## Functionality
+
+[Sales](http://getsalesapp.com) is meant to be a niche app that does one thing very well. 
+
+[Sales](http://getsalesapp.com) is designed to be the app that you can go to to find out how your app portfolio has been performing sales wise, keep up to date with the latest feedback and see how your apps rank on the store. (App ranks have yet to be implemented)
+
+## Word.
+
+If you're still reading, thanks. 
+
+Go check out [Sales](http://getsalesapp.com), I hope you enjoy it and tell me what you think would make it better! [@vfxguynz](https://twitter.com/vfxguynz)
+

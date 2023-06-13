@@ -1,113 +1,171 @@
-import Image from 'next/image'
+import Image from "next/image";
+import Link from "next/link";
+import { getPostSlugs } from "@/utils/utils";
+import formatDate from "@/utils/formatDate";
 
-export default function Home() {
+const MAX_DISPLAY = 5;
+
+export default async function Home({ params }) {
+  const posts = await getPostSlugs();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      {/* <PageSEO
+        title={siteMetadata.title}
+        description={siteMetadata.description}
+      /> */}
+
+      <section className="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div className="container py-8">
+          <div className="items-center lg:flex">
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+                Hello 👋, I'm Will
+              </h2>
+              <p className="mt-4">
+                I'm a human being who writes software, enjoys music, and lives
+                in Vancouver BC 🇨🇦.
+              </p>
+              <div>
+                <div className="-mx-2 mt-6 flex items-center">
+                  <a
+                    className="mx-2"
+                    href="https://twitter.com/wtsnz"
+                    aria-label="Twitter"
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 hidden lg:mt-0 lg:block lg:w-1/2">
+              <div className="flex items-center justify-center lg:justify-end">
+                <div className="max-w-lg">
+                  <img
+                    className="h-64 w-full rounded-md object-cover object-center"
+                    src="https://pbs.twimg.com/profile_images/1312960802786222080/um2ZkT9f_400x400.jpg"
+                    alt=""
+                  ></img>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5 prose dark:prose-invert">
+          <p>
+            I've created software for the Apple devices that live on your wrist,
+            your pocket and under your tv using Swift and Objective-C. I love to
+            learn. I love to figure out how to write clean, maintainable code. I
+            love to work with beautiful designs. And I love a perfectly brewed
+            cup of tea! ☕️
+          </p>
+          <p>
+            You can checkout my github profile for things I’m working on, and my
+            twitter profile for whatever I feel like retweeting on a given day,
+            or learn more about me.
+          </p>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <h1 className="text-xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-xl md:leading-14">
+            Blog
+          </h1>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            I like to sporadically write the occasional thing on my blog. Here’s
+            my latest posts.
+          </p>
+        </div>
+
+        {posts.slice(0, MAX_DISPLAY).map((post) => {
+          return (
+            <Link
+              href={`/${post.slug}`}
+              className="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md dark:hover:bg-gray-800"
+            >
+              <div className="flex-1">{post.frontmatter.title}</div>
+              <div className="text-gray-600">
+                <small>
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </small>
+              </div>
+            </Link>
+          );
+        })}
+      </section>
+
+      <section className="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5 prose dark:prose-invert">
+          <h1>Personal Projects</h1>
+
+          <p>
+            There's always a lot more to consider than code when it comes to
+            digital products. The projects below have been a great way for me to
+            experience, and be in charge of the full lifecycle of product
+            development.
+          </p>
+          <p>
+            The project I'm most proud of was the app that started my App Store
+            Career, Tides NZ. It has enjoyed being the #1 Navigation app in New
+            Zealand since it’s release in May 2011. As far as I can tell its
+            since saturated the NZ market of people looking for Tide
+            Predictions, received 500+ ratings with an average rating of 4.8,
+            and gave me a little bit of pocket money.
+          </p>
+        </div>
+
+        <ProjectRow
+          title="iPhone Camera Plugin for OBS Studio"
+          subtitle="2018 - Current"
+          description="I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB."
+          url="https://obs.camera/"
+        />
+
+        <ProjectRow
+          title="Telecast Webcam for Macos"
+          subtitle="2020 - Current"
+          description="Use your iPhone camera as a webcam. An extension to the Camera Plugin for OBS Studio. Windows coming soon."
+          url="https://telecast.camera/"
+        />
+
+        <ProjectRow
+          title="Road Code NZ"
+          subtitle="2017 - Current"
+          description="Learn the New Zealand road code with this app. Me and my co-creator Waleeg decided to make this app so we could learn the motorcycle road code."
+          url="https://itunes.apple.com/nz/app/road-code-license-nz/id1163987935?mt=8"
+        />
+
+        <ProjectRow
+          title="Tides NZ"
+          subtitle="2011 - Current"
+          description="Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, to which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!"
+          url="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8"
+        />
+      </section>
+    </>
+  );
+}
+
+const ProjectRow = ({ title, subtitle, description, url }) => {
+  return (
+    <a href={url} className="py-2">
+      <div className="flex px-4 -mx-4 space-x-4 py-4 md:rounded-lg hover:text-gray-900 hover:bg-orange-50 group">
+        <img
+          width="80"
+          height="80"
+          src="/static/icon_telecast-3a475eba07120d58f7a6f46a9413e2e7.png"
+          className="rounded-2xl w-16 h-16"
+        />
+        <div className="flex-1">
+          <div className="text-lg font-semibold group-hover:text-orange-500">
+            {title}
+          </div>
+          <div className="font-mono text-sm text-gray-500">{subtitle}</div>
+          <div className="">{description}</div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+    </a>
+  );
+};
