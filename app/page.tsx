@@ -5,7 +5,7 @@ import formatDate from "@/utils/formatDate";
 
 const MAX_DISPLAY = 5;
 
-export default async function Home({ params }) {
+export default async function Home() {
   const posts = await getPostSlugs();
 
   return (
@@ -20,10 +20,10 @@ export default async function Home({ params }) {
           <div className="items-center lg:flex">
             <div className="lg:w-1/2">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
-                Hello 👋, I'm Will
+                Hello 👋, I&apos;m Will
               </h2>
               <p className="mt-4">
-                I'm a human being who writes software, enjoys music, and lives
+                I&apos;m a human being who writes software, enjoys music, and lives
                 in Vancouver BC 🇨🇦.
               </p>
               <div>
@@ -54,16 +54,16 @@ export default async function Home({ params }) {
       <section className="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5 prose dark:prose-invert">
           <p>
-            I've created software for the Apple devices that live on your wrist,
+            I&apos;ve created software for the Apple devices that live on your wrist,
             your pocket and under your tv using Swift and Objective-C. I love to
             learn. I love to figure out how to write clean, maintainable code. I
             love to work with beautiful designs. And I love a perfectly brewed
             cup of tea! ☕️
           </p>
           <p>
-            You can checkout my github profile for things I’m working on, and my
-            twitter profile for whatever I feel like retweeting on a given day,
-            or learn more about me.
+            You can checkout my github profile for things I&apos;m working on,
+            and my twitter profile for whatever I feel like retweeting on a
+            given day, or learn more about me.
           </p>
         </div>
       </section>
@@ -74,21 +74,21 @@ export default async function Home({ params }) {
             Blog
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            I like to sporadically write the occasional thing on my blog. Here’s
-            my latest posts.
+            I like to sporadically write the occasional thing on my blog. Here&apos;s my latest posts.
           </p>
         </div>
 
         {posts.slice(0, MAX_DISPLAY).map((post) => {
           return (
             <Link
+              key={post.slug}
               href={`/${post.slug}`}
               className="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md dark:hover:bg-gray-800"
             >
               <div className="flex-1">{post.frontmatter.title}</div>
               <div className="text-gray-600">
                 <small>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <time dateTime={post.date ?? ""}>{formatDate(post.date)}</time>
                 </small>
               </div>
             </Link>
@@ -101,15 +101,15 @@ export default async function Home({ params }) {
           <h1>Personal Projects</h1>
 
           <p>
-            There's always a lot more to consider than code when it comes to
+            There&apos;s always a lot more to consider than code when it comes to
             digital products. The projects below have been a great way for me to
             experience, and be in charge of the full lifecycle of product
             development.
           </p>
           <p>
-            The project I'm most proud of was the app that started my App Store
+            The project I&apos;m most proud of was the app that started my App Store
             Career, Tides NZ. It has enjoyed being the #1 Navigation app in New
-            Zealand since it’s release in May 2011. As far as I can tell its
+            Zealand since it&apos;s release in May 2011. As far as I can tell its
             since saturated the NZ market of people looking for Tide
             Predictions, received 500+ ratings with an average rating of 4.8,
             and gave me a little bit of pocket money.
@@ -148,7 +148,7 @@ export default async function Home({ params }) {
   );
 }
 
-const ProjectRow = ({ title, subtitle, description, url }) => {
+const ProjectRow = ({ title, subtitle, description, url }: {title: string, subtitle: string, description: string, url: string})  => {
   return (
     <a href={url} className="py-2">
       <div className="flex px-4 -mx-4 space-x-4 py-4 md:rounded-lg hover:text-gray-900 hover:bg-orange-50 group">

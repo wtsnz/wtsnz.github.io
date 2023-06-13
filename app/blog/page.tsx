@@ -18,7 +18,9 @@ export default async function Page({
             Blog
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Here are the collection of words that I've tried to arrange into an original, interesting order that somewhat relate to the title of the post, for you to consume.
+            Here are the collection of words that I{"'"}ve tried to arrange into an
+            original, interesting order that somewhat relate to the title of the
+            post, for you to consume.
           </p>
         </div>
 
@@ -26,13 +28,14 @@ export default async function Page({
           // const { slug, date, title, summary, tags } = frontMatter;
           return (
             <Link
+              key={post.slug}
               href={`/${post.slug}`}
               className="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md dark:hover:bg-gray-800"
             >
               <div className="flex-1">{post.frontmatter.title}</div>
               <div className="text-gray-600">
                 <small>
-                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  <time dateTime={post.date ?? ""}>{formatDate(post.date)}</time>
                 </small>
               </div>
             </Link>
