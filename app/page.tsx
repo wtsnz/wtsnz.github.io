@@ -121,6 +121,7 @@ export default async function Home() {
           subtitle="2018 - Current"
           description="I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB."
           url="https://obs.camera/"
+          icon="/images/icon_obs_camera.svg"
         />
 
         <ProjectRow
@@ -128,6 +129,7 @@ export default async function Home() {
           subtitle="2020 - Current"
           description="Use your iPhone camera as a webcam. An extension to the Camera Plugin for OBS Studio. Windows coming soon."
           url="https://telecast.camera/"
+          icon="/images/icon_telecast.png"
         />
 
         <ProjectRow
@@ -135,6 +137,7 @@ export default async function Home() {
           subtitle="2017 - Current"
           description="Learn the New Zealand road code with this app. Me and my co-creator Waleeg decided to make this app so we could learn the motorcycle road code."
           url="https://itunes.apple.com/nz/app/road-code-license-nz/id1163987935?mt=8"
+          icon="/images/icon_road_code.png"
         />
 
         <ProjectRow
@@ -142,20 +145,21 @@ export default async function Home() {
           subtitle="2011 - Current"
           description="Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, to which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!"
           url="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8"
+          icon="/images/icon_tides_nz.png"
         />
       </section>
     </>
   );
 }
 
-const ProjectRow = ({ title, subtitle, description, url }: {title: string, subtitle: string, description: string, url: string})  => {
+const ProjectRow = ({ title, subtitle, description, url, icon }: {title: string, subtitle: string, description: string, url: string, icon: string})  => {
   return (
     <a href={url} className="py-2">
       <div className="flex px-4 -mx-4 space-x-4 py-4 md:rounded-lg hover:text-gray-900 hover:bg-orange-50 group">
         <img
           width="80"
           height="80"
-          src="/static/icon_telecast-3a475eba07120d58f7a6f46a9413e2e7.png"
+          src={icon}
           className="rounded-2xl w-16 h-16"
         />
         <div className="flex-1">
