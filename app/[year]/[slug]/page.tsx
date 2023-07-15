@@ -24,7 +24,7 @@ export default async function Page({ params }: { params: { slug: string, year: s
   <div className='container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl prose dark:prose-invert'>
     <h1>{post.frontmatter.title}</h1>
     <div>
-    <ContentComponent />
+      <ContentComponent />
     </div>
   </div>
   </>
