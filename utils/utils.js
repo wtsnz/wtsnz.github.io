@@ -46,20 +46,12 @@ export async function getPostSlugs() {
 export async function getArticleFromSlug(slug) {
 
     const articlesPath = path.join(process.cwd(), 'content/posts');
-
-    console.log(slug)
-    
     const filePath = sync(`${articlesPath}/**/${slug.year}*${slug.slug}.{mdx,md,markdown}`)[0]
-    console.log(filePath)
-
-
-    // const articleDir = path.join(articlesPath, `${slug}.mdx`)
-
     const source = await fs.readFile(filePath)
     const { content, data } = matter(source)
   
     const hhh = await getCompiledMDX(content)
-    // console.log(data);
+    console.log(data);
 
     return {
       content: hhh.code,
@@ -76,12 +68,19 @@ export async function getArticleFromSlug(slug) {
     }
   }
 
+  const rehypePrettyCode = require('rehype-pretty-code');
   import {bundleMDX} from 'mdx-bundler'
   
   const getCompiledMDX = async (source) => {
     // Add your remark and rehype plugins here
-    const remarkPlugins = [];
-    const rehypePlugins = [];
+    const remarkPlugins = [
+      // remarkPrism
+      // rehypePrettyCode
+    ];
+
+    const rehypePlugins = [
+      // rehypePrettyCode
+    ];
   
     try {
       return await bundleMDX({
