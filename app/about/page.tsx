@@ -43,9 +43,9 @@ export default async function Page({
         <div className="space-y-2 pt-6 pb-8 md:space-y-5 prose dark:prose-invert">
           <h2>Work</h2>
 
-          <p>I’ve tinkered with computers for as long as I remember and, naturally, that's led me down a path that's gotten me into the tech industry. Over the last decade I've worked at a bunch of great companies and worked on a large variety of projects, products and technologies. I've found a niche developing on Apple platforms in the industry that I thorougly enjoy, and met some great people along the way.</p>
+          <p>I’ve tinkered with computers for as long as I remember and, naturally, that&apos;s led me down a path that&apos;s gotten me into the tech industry. Over the last decade I&apos;ve worked at a bunch of great companies and worked on a large variety of projects, products and technologies. I&apos;ve found a niche developing on Apple platforms in the industry that I thorougly enjoy, and met some great people along the way.</p>
 
-          <p>Here's a list of the companies I've worked with:</p>
+          <p>Here&apos;s a list of the companies I&apos;ve worked with:</p>
         </div>
 
         <WorkRow
