@@ -1,4 +1,0 @@
-# Redirect the old jekyll generated rss feed to the new location
-[[redirects]]
-  from = "/feed.xml"
-  to = "/rss.xml"
