@@ -14,11 +14,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	<head>
 		<BaseHead title={title + " | Will Townsend"} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
 			.hero-image {
 				width: 100%;
 			}
@@ -28,14 +23,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				border-radius: 12px;
 				box-shadow: var(--box-shadow);
 			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
+			/* .title {
 				margin-bottom: 1em;
 				padding: 1em 0;
 				text-align: center;
@@ -43,7 +31,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
-			}
+			} */
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
@@ -61,8 +49,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<div class="hero-image">
 					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 				</div>
-				<div class="prose">
-					<div class="title">
+				<div class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+					<div class="text-center pb-8">
 						<div class="date">
 							<FormattedDate date={pubDate} />
 							{
@@ -73,10 +61,11 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+						<h1 class="text-4xl font-semibold leading-relaxed text-gray-900">{title}</h1>
 					</div>
-					<slot />
+					<div class="prose">
+						<slot />
+					</div>
 				</div>
 			</article>
 		</main>
