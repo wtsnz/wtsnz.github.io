@@ -40,7 +40,7 @@ const perform = () => {
       // Copy images to the nextjs public directory
       imageFiles.forEach((imageFile) => {
         const srcPath = path.join(postDir, imageFile);
-        const destDir = path.join(process.cwd(), "public", slug, "../");
+        const destDir = path.join(process.cwd(), "public", slug);
         const destPath = path.join(destDir, imageFile);
 
         // Create the destination directory if it doesn't exist
