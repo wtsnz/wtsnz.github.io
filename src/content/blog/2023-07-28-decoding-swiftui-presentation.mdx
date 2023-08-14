@@ -1,0 +1,360 @@
+---
+title:  "Decoding SwiftUI: A Deep Dive into Presentation Modifiers"
+pubDate:   2023-07-28 20:49:00
+categories: node
+draft: true
+---
+
+## Introduction
+
+In this blog post, we'll explore one of SwiftUI's core functionalities: presentation modifiers. These are crucial for managing the display of auxiliary content, such as alerts, action sheets, or custom modal views. Although SwiftUI offers an easy-to-use API on the surface, what happens under the hood is often a mystery, and understanding these internals can often be a boon in tackling complex UI tasks.
+
+Specifically, we'll dive into the .sheet modifier. We'll decode its private headers, dissect its components, and illustrate how these parts interact within the SwiftUI system to present content. Finally, we'll put our newfound understanding to the test by building a custom implementation of a presentation modifier.
+
+Whether you're an experienced iOS developer or new to SwiftUI, this deep dive can provide valuable insights into how SwiftUI operates and how you can leverage this knowledge in your app development journey.
+
+So let's begin this adventure of understanding SwiftUI on a whole new level!
+
+
+## Diving into the SwiftUI private (but public) headers
+
+As in many programming languages, Swift has headers that contain implementation details of types and functions. These details are typically concealed, maintaining a clean public interface and hiding the underlying complexity. However, in SwiftUI—a framework that boasts a beautifully simple API—these private headers become especially interesting. They offer us a rare glimpse into the mechanics powering SwiftUI's seamless user experience.
+
+These private headers, in essence, contain a wealth of information about SwiftUI's implementation. They are akin to a blueprint or a map, providing valuable insights into the structure and function of SwiftUI's constructs.
+
+To truly understand SwiftUI's .sheet presentation modifier, we first need to look under the hood at these private headers. Don't worry if they seem cryptic at first glance - we're going to decipher them step by step. [Here's a link](https://gist.github.com/ole/7a08561a4258bd2f82a92bc21a7b2355) to the full swiftui-relection-dump that we're looking at.
+
+Here are the unmangled headers we're interested in to decipher how the sheet modifiers work:
+
+```swift
+SwiftUI.(ItemSheetPresentationModifier in $933d58)
+--------------------------------------------------
+_namespace: SwiftUI.Namespace
+(struct SwiftUI.Namespace)
+
+_item: SwiftUI.Binding<Swift.Optional<A>>
+(bound_generic_struct SwiftUI.Binding
+  (bound_generic_enum Swift.Optional
+    (generic_type_parameter depth=0 index=0)))
+
+onDismiss: Swift.Optional<() -> ()>
+(bound_generic_enum Swift.Optional
+  (function
+    (parameters)
+    (result
+      (tuple)))
+
+sheetContent: (A) -> B
+(function
+  (parameters
+    (generic_type_parameter depth=0 index=0)
+  (result
+    (generic_type_parameter depth=0 index=1))
+
+overFullscreen: Swift.Bool
+(struct Swift.Bool)
+
+
+SwiftUI.(SheetPresentationModifier in $933ce0)
+----------------------------------------------
+_namespace: SwiftUI.Namespace
+(struct SwiftUI.Namespace)
+
+_isPresented: SwiftUI.Binding<Swift.Bool>
+(bound_generic_struct SwiftUI.Binding
+  (struct Swift.Bool))
+
+onDismiss: Swift.Optional<() -> ()>
+(bound_generic_enum Swift.Optional
+  (function
+    (parameters)
+    (result
+      (tuple)))
+
+sheetContent: () -> A
+(function
+  (parameters)
+  (result
+    (generic_type_parameter depth=0 index=0))
+
+overFullscreen: Swift.Bool
+(struct Swift.Bool)
+
+
+SwiftUI.SheetPreference
+-----------------------
+content: SwiftUI.AnyView
+(struct SwiftUI.AnyView)
+
+onDismiss: Swift.Optional<(Swift.Bool) -> ()>
+(bound_generic_enum Swift.Optional
+  (function
+    (parameters
+      (struct Swift.Bool)
+    (result
+      <!-- (tuple))) -->
+
+viewID: SwiftUI.Namespace.ID
+(struct SwiftUI.Namespace.ID
+  (struct SwiftUI.Namespace))
+
+itemID: Swift.Optional<Swift.AnyHashable>
+(bound_generic_enum Swift.Optional
+  (struct Swift.AnyHashable))
+
+overFullscreen: Swift.Bool
+(struct Swift.Bool)
+
+transaction: SwiftUI.Transaction
+(struct SwiftUI.Transaction)
+
+
+SwiftUI.SheetPreference.Key
+---------------------------
+
+
+SwiftUI.SheetPreference.Key.Value
+---------------------------------
+empty: SwiftUI.Transaction
+(struct SwiftUI.Transaction)
+
+sheet: SwiftUI.SheetPreference
+(struct SwiftUI.SheetPreference)
+
+
+SwiftUI.(SheetContent in $933e74)
+---------------------------------
+_mode: SwiftUI.Environment<SwiftUI.Binding<SwiftUI.PresentationMode>>
+(bound_generic_struct SwiftUI.Environment
+  (bound_generic_struct SwiftUI.Binding
+    (struct SwiftUI.PresentationMode)))
+
+content: A
+(generic_type_parameter depth=0 index=0)
+```
+
+Okay that's a lot of garblygook, but I promise that we can make it easier to digest.
+
+We can see that the first two objects appear to line up with SwiftUI's public `.sheet` modifiers:
+
+- ItemSheetPresentationModifier looks related to [sheet(item:ondismiss:content:)](https://developer.apple.com/documentation/swiftui/view/sheet(item:ondismiss:content:))
+- SheetPresentationModifier looks related to [sheet(ispresented:ondismiss:content:)](https://developer.apple.com/documentation/swiftui/view/sheet(ispresented:ondismiss:content:))
+
+All the other structs must be key to understanding how it works under the hood, and it looks like **the presentation modifiers are driven by Preferences!**
+
+So we have a ViewModifier that sets a Preference that contains the content and appearance properties of the sheet to display. As prefernces travel "up" the SwiftUI view hierachy, this sheet preference is read, and displayed, further up in the view tree, above the location where it was set - typically in our leaf views when they use the `.sheet` modifier.
+
+I'd wager a bet that SwiftUI's `WindowGroup` and `NavigationView` are these views that read these preferences and then wrap up familiar UIKit APIs like `UISheetPresentationController`, `UINavigationController` and every other view controller that is related to navigation and needs to be displayed above existing content.
+
+## Writing our own CustomSheetPresentation Modifier
+
+A good way to learn how these things might be implemented is to write it yourself. Lets write an implementation based on what we have deciphered from the public headers.
+
+If we rewrite out the ItemSheetPresentationModifier from the demangled header above and delete all the extra type information we get something like the following:
+
+```swift
+struct CustomItemSheetPresentationModifier {
+    var _namespace: SwiftUI.Namespace
+    var _item: SwiftUI.Binding<Swift.Optional<A>>
+    var onDismiss: Swift.Optional<() -> ()>
+    var sheetContent: (A) -> B
+    var overFullscreen: Swift.Bool
+}
+```
+
+This is starting to look like Swift code. Let's take it one step further and reverse the property wrappers (properties starting with an underscore indicate that they're backing a property wrapper) and the generics of the type.
+
+```swift 
+struct CustomItemSheetPresentationModifier<Item: Identifiable, SheetContent: View> {
+    @Namespace var namespace
+    @Binding var item: Item?
+    var onDismiss: (() -> ())?
+    var sheetContent: (Item) -> SheetContent
+    var overFullscreen: Bool
+}
+```
+
+Now as it ends with `Modifier` I'm going to assume that it's also a `ViewModifier`. This would mean that the private implementation has a body function that does something like this
+
+```swift
+struct CustomItemSheetPresentationModifier<Item: Identifiable, SheetContent: View>: ViewModifier {
+
+    @Namespace var namespace
+    @Binding var item: Item?
+    var onDismiss: (() -> ())?
+    var sheetContent: (Item) -> SheetContent
+    var overFullscreen: Bool
+
+    func body(content: Content) -> some View {
+        content
+          // Set a preference to travel "up" the view hierachy and be rendered elsewhere ??
+    }
+}
+```
+
+Now we have to figure out what SwiftUI does in the view modifier. Using the trusty headers again we can see something called `SwiftUI.SheetPreference`.
+
+Doing the same excercise as above we can decipher the contents:
+
+```swift
+struct CustomSheetPreference {
+    var content: AnyView
+    var onDismiss: ((Bool) -> ())?
+    var viewID: Namespace.ID
+    var itemID: AnyHashable?
+    var overFullscreen: Bool
+    var transaction: Transaction
+}
+```
+
+and the Preference Key and Value
+
+```swift
+struct CustomSheetPreferenceKey: PreferenceKey {
+    typealias Value = [CustomSheetPreferenceKeyValue]
+
+    static var defaultValue: [CustomSheetPreferenceKeyValue] = []
+
+    static func reduce(value: inout [CustomSheetPreferenceKeyValue], nextValue: () -> [CustomSheetPreferenceKeyValue]) {
+        value.append(contentsOf: nextValue())
+    }
+}
+
+struct CustomSheetPreferenceKeyValue {
+    var empty: Transaction
+    var sheet: CustomSheetPreference
+}
+```
+
+Being honest, I'm not 100% sure what the `Transaction` properties are used for just yet. I'm assuming it allows the caller to customise the presentation/dimissal animation.. but I'm not quite sure.
+
+With our CustomSheetPreferences setup, we can now open back up our modifier and set the preference 
+
+```swift
+struct CustomItemSheetPresentationModifier<Item: Identifiable, SheetContent: View>: ViewModifier {
+
+    @Namespace var namespace
+    @Binding var item: Item?
+    var onDismiss: (() -> ())?
+    var sheetContent: (Item) -> SheetContent
+    var overFullscreen: Bool
+
+    func body(content: Content) -> some View {
+        content
+            .preference(
+                key: CustomSheetPreferenceKey.self,
+                value: [
+                    .init(
+                        empty: .init(),
+                        sheet: .init(
+                            content: AnyView(
+                                Group {
+                                    if let item = item {
+                                        sheetContent(item)
+                                    } else {
+                                        EmptyView()
+                                    }
+                                }
+                            ),
+                            onDismiss: { dismissed in
+                                item = nil
+                            },
+                            viewID: namespace,
+                            overFullscreen: overFullscreen,
+                            transaction: .init()
+                        )
+                    )
+                ]
+            )
+    }
+}
+```
+
+Then we can use it!
+
+```swift
+struct CustomSheet: View {
+
+    struct Model: Identifiable {
+        var id: UUID = UUID()
+        var title: String
+    }
+
+    @State var state: Model? = nil
+
+    var body: some View {
+        VStack {
+            Text("Hello, World!")
+            Button("test") {
+                state = .init(title: "test")
+            }
+        }
+        .modifier(CustomItemSheetPresentationModifier(
+            item: $state,
+            sheetContent: { model in
+                Text(model.title)
+            },
+            overFullscreen: true
+        ))
+
+    }
+}
+
+struct CustomSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomSheet()
+    }
+}
+```
+
+Tapping the button doesn't do anything though. Why not?
+
+Its because we have nothing reading our custom preference, and then displaying any content. Unfortunately I've not been able to glean any information about how _exactly_ SwiftUI does this under the hood. This time, this stuff is private, for real. The only people who know exactly how this is implemented work at Apple.
+
+That shouldn't stop us though. We have a rough idea, and a blank canvas - let see how we could make a View that listens to the  `CustomSheetPreferenceKey` and manages a sheet.
+
+
+
+---
+
+**III. Decoding the Headers**
+
+Elaborate on each component in the unmangled headers:
+
+1. `ItemSheetPresentationModifier` & `SheetPresentationModifier`
+2. `_namespace`, `_item`, `_isPresented`
+3. `onDismiss`, `sheetContent`, `overFullscreen`
+4. `SheetPreference`, `SheetContent`
+   
+---
+
+**IV. Understanding the Flow**
+
+Discuss how these elements interact with each other:
+
+1. Applying `.sheet` modifier: setting preference with content view and appearance traits.
+2. Ancestor view reading preference and controlling presentation.
+
+---
+
+**V. Demystifying the Role of AnyView**
+
+Discuss the need for type erasure in SwiftUI's preference system, and how `AnyView` serves this purpose.
+
+---
+
+**VI. Building a Custom Implementation**
+
+1. Explain the importance and purpose of building a custom implementation.
+2. Walk the reader through creating a custom presentation modifier, mirroring the behaviors of `.sheet`.
+3. Show code samples and explain each step.
+
+---
+
+**VII. Conclusion**
+
+Wrap up with insights gained, potential applications of this knowledge, and a quick summary.
+
+---
+
+As we flesh out each section, we can deep dive into the relevant topics, explain the importance and relation of each component, and provide insights on how they come together to make SwiftUI's `.sheet` work. The custom implementation can act as a practical exercise, reinforcing the understanding of SwiftUI's inner workings.

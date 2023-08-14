@@ -1,0 +1,221 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WorkRow from "../components/WorkRow.astro";
+import ProjectRow from "../components/ProjectRow.astro";
+import { loadAndFormatCollection } from '../../utils/util.js';
+
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await loadAndFormatCollection('blog')).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+)
+.reverse()
+.slice(0, 7)
+;
+
+
+// const posts = (await getCollection("blog")).sort(
+//   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+// );
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+      <section class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div class="container py-8">
+          <div class="items-center lg:flex">
+            <div class="lg:w-1/2">
+              <h2 class="text-3xl font-bold text-gray-800">
+                Hello 👋, I&apos;m Will
+              </h2>
+              <p class="mt-4">
+                I&apos;m a human being who writes software, enjoys music, and
+                lives in Vancouver BC 🇨🇦.
+              </p>
+              <div>
+                <div class="-mx-2 mt-6 flex items-center">
+                  <a
+                    class="mx-2"
+                    href="https://twitter.com/wtsnz"
+                    aria-label="Twitter"></a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 hidden lg:mt-0 lg:block lg:w-1/2">
+              <div class="flex items-center justify-center lg:justify-end">
+                <div class="max-w-lg">
+                  <img
+                    class="h-64 w-full rounded-md object-cover object-center"
+                    src="https://pbs.twimg.com/profile_images/1312960802786222080/um2ZkT9f_400x400.jpg"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+      <div class="space-y-2 pt-6 pb-8 md:space-y-5 prose">
+        <p>
+          I&apos;ve created software for the Apple devices that live on your
+          wrist, your pocket and under your tv using Swift and Objective-C. I
+          love to learn. I love to figure out how to write clean, maintainable
+          code. I love to work with beautiful designs. And I love a perfectly
+          brewed cup of tea! ☕️
+        </p>
+        <p>
+          You can checkout my github profile for things I&apos;m working on, and
+          my twitter profile for whatever I feel like retweeting on a given day,
+          or learn more about me.
+        </p>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+      <div class="space-y-2 pt-6 pb-8 md:space-y-5">
+        <h1
+          class="text-xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-xl md:leading-14"
+        >
+          Blog
+        </h1>
+        <p class="text-lg leading-7 text-gray-900">
+          I like to sporadically write the occasional thing on my blog.
+          Here&apos;s my latest posts.
+        </p>
+      </div>
+      {
+        posts.map((post) => (
+          <a
+            href={`/${post.slug}`}
+            class="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md"
+          >
+            <div class="flex-1">{post.data.title}</div>
+            <div class="text-gray-600">
+              <small>
+                <FormattedDate date={post.data.pubDate} />
+              </small>
+            </div>
+          </a>
+        ))
+      }
+    </section>
+
+	<section class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+        <div class="space-y-2 pt-6 pb-8 md:space-y-5 prose">
+          <h1>Personal Projects</h1>
+
+          <p>
+            There&apos;s always a lot more to consider than code when it comes to
+            digital products. The projects below have been a great way for me to
+            experience, and be in charge of the full lifecycle of product
+            development.
+          </p>
+          <p>
+            The project I&apos;m most proud of was the app that started my App Store
+            Career, Tides NZ. It has enjoyed being the #1 Navigation app in New
+            Zealand since it&apos;s release in May 2011. As far as I can tell its
+            since saturated the NZ market of people looking for Tide
+            Predictions, received 500+ ratings with an average rating of 4.8,
+            and gave me a little bit of pocket money.
+          </p>
+        </div>
+
+        <ProjectRow
+          title="iPhone Camera Plugin for OBS Studio"
+          subtitle="2018 - Current"
+          description="I played around with the OBS Studio plugin API in C++ to write a plugin that allows you to stream high quality video from your iPhone's camera over USB."
+          url="https://obs.camera/"
+          icon="/images/icon_obs_camera.svg"
+        />
+
+        <ProjectRow
+          title="Telecast Webcam for Macos"
+          subtitle="2020 - Current"
+          description="Use your iPhone camera as a webcam. An extension to the Camera Plugin for OBS Studio. Windows coming soon."
+          url="https://telecast.camera/"
+          icon="/images/icon_telecast.png"
+        />
+
+        <ProjectRow
+          title="Road Code NZ"
+          subtitle="2017 - Current"
+          description="Learn the New Zealand road code with this app. Me and my co-creator Waleeg decided to make this app so we could learn the motorcycle road code."
+          url="https://itunes.apple.com/nz/app/road-code-license-nz/id1163987935?mt=8"
+          icon="/images/icon_road_code.png"
+        />
+
+        <ProjectRow
+          title="Tides NZ"
+          subtitle="2011 - Current"
+          description="Tides NZ was the first iOS app I created. I got the idea through a summer of skim-boarding, to which knowing what the tide was doing was essential for me and a few friends. Turns out that other people like to know what the tide is doing!"
+          url="https://itunes.apple.com/nz/app/tides-nz/id521561961?mt=8"
+          icon="/images/icon_tides_nz.png"
+        />
+      </section>
+
+    <section class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+      <div class="space-y-2 pt-6 pb-8 md:space-y-5 prose">
+        <h2>Work</h2>
+
+        <p>
+          I’ve tinkered with computers for as long as I remember and, naturally,
+          that&apos;s led me down a path that&apos;s gotten me into the tech
+          industry. Over the last decade I&apos;ve worked at a bunch of great
+          companies and worked on a large variety of projects, products and
+          technologies. I&apos;ve found a niche developing on Apple platforms in
+          the industry that I thorougly enjoy, and met some great people along
+          the way.
+        </p>
+
+        <p>Here&apos;s a list of the companies I&apos;ve worked with:</p>
+      </div>
+
+      <WorkRow
+        title="Clued, Inc"
+        subtitle="Founding Engineer / 2023 - Current"
+        description="A startup working on something new."
+        url="https://clued.xyz/"
+        icon="/images/work_clued.jpeg"
+      />
+
+      <WorkRow
+        title="Loft Labs Interactive Inc."
+        subtitle="Founder / 2020 - Current"
+        description="My own studio for apps and hardware projects."
+        url="https://loftlabs.co/"
+        icon="/images/work_loftlabs.png"
+      />
+
+      <WorkRow
+        title="MetaLab"
+        subtitle="iOS Developer / 2018 - 2020"
+        description="After moving to Vancouver, BC, I managed to land a job at an agency that I’ve admired from afar for a while. The people I worked with here were great. I worked on a bunch of projects during my time at MetaLab. It was a very hard decision to leave because of what we worked on, the people and the mindset."
+        url="https://www.metalab.com/"
+        icon="/images/work_metalab.png"
+      />
+
+      <WorkRow
+        title="PaperKite"
+        subtitle="iOS Technical Lead / 2012 - 2017"
+        description="I joined PaperKite as the first full-time engineering hire. I wore a bunch of hats over the 5 years; I helped build products for our clients, build out the technical team, and over the 5 years, grow from 3 employees to 24. I learned a lot, and I’ll never forget the experience. In terms of iOS projects, I worked on creating around 30 Objective-C & Swift based iOS applications for wide variety of clients and use cases."
+        url="https://paperkite.co.nz"
+        icon="/images/work_paperkite.png"
+      />
+    </section>
+
+    <Footer />
+  </body>
+</html>

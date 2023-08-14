@@ -1,0 +1,24 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+
+const links = [
+  { path: "/blog", label: "Blog" },
+  { path: "/about", label: "About" },
+];
+---
+
+<header class="container mx-auto px-4 py-8 lg:max-w-2xl max-w-2xl">
+  <nav class="flex justify-between items-center">
+    <a href="/"> Will Townsend</a>
+
+    <div class="flex items-center">
+      {
+        links.map(({ path, label }) => (
+          <HeaderLink href={path}>{label}</HeaderLink>
+        ))
+      }
+    </div>
+  </nav>
+</header>
+

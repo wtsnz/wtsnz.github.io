@@ -1,0 +1,30 @@
+---
+interface Props {
+    title: string,
+    subtitle: string
+    description: string
+    url: string
+    icon: string
+}
+
+const { title, subtitle, description, url, icon, ...props } = Astro.props;
+
+---
+
+<div class="py-2">
+    <div class="flex px-4 -mx-4 space-x-4 py-4 md:rounded-lg">
+      <img
+        width="80"
+        height="80"
+        src={icon}
+        class="rounded-2xl w-16 h-16"
+      />
+      <div class="flex-1">
+        <div class="text-lg font-semibold">
+          <a href={url}>{title}</a>
+        </div>
+        <div class="font-mono text-sm text-gray-500">{subtitle}</div>
+        <div class="">{description}</div>
+      </div>
+    </div>
+  </div>
