@@ -2,7 +2,7 @@
 title: "⛏ Bitcoin: Node Misconceptions"
 description: ""
 pubDate: "2021-04-23T04:56:53.309Z"
-draft: true
+draft: false
 path: "/posts/bitcoin-node-misconceptions/"
 category: ""
 tags: 

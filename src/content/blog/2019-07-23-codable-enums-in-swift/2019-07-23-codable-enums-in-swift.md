@@ -2,7 +2,7 @@
 title: "📦 Codable Enums in Swift"
 description: ""
 pubDate: "2019-07-23T16:20:47.797Z"
-draft: true
+draft: false
 path: "/posts/codable-enums-in-swift/"
 category: "swift"
 tags: swift,development,
