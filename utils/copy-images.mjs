@@ -16,17 +16,14 @@ const perform = () => {
   // const posts = fs.readdirSync(path.join(process.cwd(), "content", "posts"));
 
   const posts = fs
-    .readdirSync(path.join(process.cwd(), "content", "posts"), { withFileTypes: true })
+    .readdirSync(path.join(process.cwd(), "src", "content", "blog"), { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
 
   console.log(posts)
 
   posts.forEach((post) => {
-
-    
-
-    const postDir = path.join(process.cwd(), "content", "posts", post);
+    const postDir = path.join(process.cwd(), "src", "content", "blog", post);
     const postFiles = fs.readdirSync(postDir);
 
     // Check if the post directory contains images
