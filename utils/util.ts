@@ -1,8 +1,10 @@
 import { getCollection } from 'astro:content';
 
 export async function loadAndFormatCollection(name) {
-
-	const posts = await getCollection(name);
+    
+    const posts = await getCollection(name, ({ data }) => {
+        return data.draft == false;
+    });
 
     posts.forEach(post => {
         // const date = post.data.pubDate;
