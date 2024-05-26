@@ -1,0 +1,61 @@
+---
+title:  "JWT Tokens for Mobile Apps"
+pubDate:   2024-05-26 14:04:00
+categories: web api jwt
+draft: false
+---
+
+So, you're building a mobile app and you need to sort out authentication. What is authentication other than a little string, or token, that you receive from the backend in exchange for a username and password, that you then send back with every request to prove that you are who you say you are?
+
+Turns out, not much. But there are a few things to consider before rolling your own authentication system. 
+
+## JWT what?
+
+[JWT tokens](https://auth0.com/docs/secure/tokens/json-web-tokens) are a great way to handle authentication in mobile apps. They are easy to use, secure, and work well with mobile apps. While I've primarily worked with JWT tokens on the client side, implementing them on the server side has provided some interesting insights.
+
+I'm not going to go into too much detail on how JWT tokens work - [this](https://auth0.com/docs/secure/tokens/json-web-tokens) is a better overview than I'd be able to write - but JWT tokens are essentially a way to encode information in a token that can be verified by the server. The token is signed with a secret key, which allows the server to verify that the token is valid. This is useful because it allows you to avoid database lookups for every request. Instead, you can store the user's information in the JWT and verify the token with a secret key. This approach is much faster than looking up the user in the database for each request. This matters when your hot new Saas app is getting _1000s_ of requests per second!
+
+However, JWT tokens come with their own set of challenges, particularly around token revocation. Once a JWT token is signed, it is valid forever—unless the signing key is changed or an expiration is explicitly set. This could be an issue if the token is compromised, uh-oh, since it would remain valid until it expires. To address this, you can use two types of tokens upon login: the access token and the refresh token.
+
+Consider a typical mobile app scenario where a user logs in with their username and password. In a basic implementation, the server verifies the credentials and responds with a single JWT token (auth token). This token is then used for authenticating subsequent requests. However, if this token is compromised, an attacker could potentially have access until the token expires, or forever if there is no expiration set. (You could change the signing key, but that's a bit of a pain as every user would also get logged out).
+
+## Token Revocation
+
+So remembering our original goal with JWTs - to avoid database lookups for every request - we can see that the server does not keep track of the token. If this token does not expire, we can't revoke it. This is where it makes sense to use two types of tokens: the access token and the refresh token. The access token being a short-lived (e.g., 15 minutes) token that is used for authenticating API requests. And the refresh token being a long-lived (e.g., 30 days) and is used to obtain a new access token. If a user logs out or if a token is compromised, the refresh token can be invalidated, providing an additional layer of security.
+
+The difference between a session and a token now becomes apparent. A session _can_ be revoked by the server because the server keeps track of it and validates it when required. In contrast, a token _cannot_ be directly revoked by the server since the server does not keep track of it. The server only verifies the token using the secret key cryptographically.
+
+The user session is managed implicitly by the access token being short-lived, providing us the ability to revoke it by invalidating the refresh token. This approach allows us to enjoy the speed and efficiency of JWTs for most requests while maintaining the ability to revoke tokens when necessary.
+
+### Access Tokens vs. Refresh Tokens
+
+**Access Token**: This is a short-lived token used to access resources on the server. Typically, it is valid for around 15 minutes.
+
+**Refresh Token**: This is a long-lived token used to obtain a new access token. It is usually valid for about 30 days.
+Using a refresh token allows us to solve the revocation problem.
+
+If a user logs out of the app, we can revoke the refresh token, preventing the user from obtaining a new access token. The backend API can store the refresh token in a database and check its validity when a user requests a new access token. If the refresh token is invalid, the user will need to log in again. Effectively, "logging out" is a matter of deleting the refresh token from the database.
+
+## Implementing JWT in Your App
+
+Alright, let’s get down to the nitty-gritty. Here’s a quick rundown of how you might implement JWT in your mobile app:
+
+1. **User Login**: When the user logs in with their username and password, your server verifies the credentials. If they are valid, the server generates an access token and a refresh token. Both of these tokens are sent back to the client.
+
+2. **Using the Access Token**: The client stores the access token (usually in local storage or secure storage) and includes it in the Authorization header for subsequent API requests. This token proves that the client is authenticated.
+
+3. **Refreshing the Token**: When the access token expires, the client can use a valid refresh token to get both a new refresh token and a new access token. The client sends the refresh token to the server, and if the refresh token is valid, the server responds with the new tokens.
+
+4. **Token Revocation**: If the user logs out, the client deletes both tokens from storage. On the server side, the refresh token is invalidated, ensuring that the user cannot obtain a new access token using that refresh token.
+
+By separating authentication into access and refresh tokens, you get the best of both worlds: quick, stateless authentication for each request as well as the ability to revoke access when needed.
+
+
+## In summary
+
+- Offer two tokens upon login: access and refresh. 
+- The access token is short-lived and used for authenticating API requests.
+- The refresh token is long-lived and used to obtain both a new access token and refresh token.
+- The refresh token should be stored in the database to track these long-lived sessions to provide a way to invalidate the ability to refresh the access token.
+
+This ensures that your application remains secure while still benefiting from the performance advantages of JWTs - and above all, your users happy and secure. 
