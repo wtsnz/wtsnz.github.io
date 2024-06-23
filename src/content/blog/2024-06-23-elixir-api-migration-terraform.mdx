@@ -1,0 +1,85 @@
+---
+title:  "🐢 Migrate slowly to Elixir Phoenix with Terraform"
+pubDate:   2024-06-23 20:49:00
+categories: elixir
+draft: false
+---
+
+I've been wanting to compare a api implementation in two different ways. We have an existing API that is written in node and express that runs on AWS Lambda. I'd like to provide an alternate implementation that uses Elixir and Phoenix so I can compare the two approaches.
+
+This is a daunting task when you've got an established API that is working well. I don't want to just throw it away and start over. I'd like to migrate slowly and carefully. I'd like to start by creating a new API that is a proxy to the existing API. This will allow me to slowly migrate the existing API to the new one.
+
+[Terraform](https://github.com/poteto/terraform) is a library that allows you to do just this. I can setup an Elixir API that proxies requests to the existing API, and provide implementations for each method of the existing API as I go.
+
+### Getting GET Requests Working
+
+The Terraform library provides a good example in its documentation for how to setup a proxy for a GET request. Following that was pretty easy. I was able to get a simple proxy working for GET requests in a few minutes.
+
+Following the [docs](https://hexdocs.pm/terraform/Terraform.html) (and [example project](https://github.com/poteto/reverse_proxy)) I added a few new files:
+
+- `lib/terraform_example_web/terraformers/clued_api.ex`
+- `lib/terraform_example_web/clients/clued_public_api.ex` (This is a client for the existing HTTP API that I'm proxying)
+
+Then inside the `lib/terraform_example_web/terraformers/clued_api.ex` file I added the following code:
+
+```elixir
+get _ do
+  %{method: "GET", request_path: request_path, params: params, req_headers: req_headers} = conn
+
+  res = CluedPublicAPI.get!(request_path, req_headers, [params: Map.to_list(params)])#// proxy: {"127.0.0.1", 9090}])
+
+  Logger.debug """
+  Processing by #{__MODULE__}
+    Path: #{request_path}
+    Parameters: #{inspect params}
+    Headers: #{inspect req_headers}
+  """
+
+  send_response({:ok, conn, res})
+end
+```
+
+After starting the elixir server with `mix phx.server` I was able to hit the existing API by hitting the new Elixir API, with each request going through the Elixir server to the remote. This was a good start.
+
+### Getting POST requests working
+
+So with GET requests working as expected, I moved on to POST requests. This was a bit more complicated. I had to figure out how to get the body of the request and pass it along to the existing API. After a quick google I found I had to do two things:
+
+- Adjust the body reader in the `endpoint.ex` file
+- Read the body of the request in the `clued_api.ex` file
+
+```elixir
+# match all `posts`s
+post _ do
+  %{request_path: request_path, params: params, req_headers: req_headers} = conn
+
+  # Read the request body
+  {:ok, request_body, conn} = read_body(conn)
+
+  # Make the POST request to the proxied API
+  res = CluedPublicAPI.post!(request_path, request_body, req_headers, [params: Map.to_list(params)])#// proxy: {"127.0.0.1", 9090}])
+
+  Logger.debug """
+  Processing by #{__MODULE__}
+    Path: #{request_path}
+    Parameters: #{inspect params}
+    Headers: #{inspect req_headers}
+  """
+
+  send_response({:ok, conn, res})
+end
+```
+
+I had to add the ability to read the body multiple times. There's something about the way the body is read that makes it so you can only read it once. You can enable this by adding the following to your `endpoint.ex` file.
+
+```elixir
+plug Plug.Parsers,
+  parsers: [:urlencoded, :multipart, :json],
+  pass: ["*/*"],
+  body_reader: {:read_body, []}, # << Add this line
+  json_decoder: Jason
+```
+
+With these two adjustments, I could then send a POST request with all of the parameters and body being passed through to the original API.
+
+I duplicated the handler for PUT and DELETE and now the iOS App can hit the new Elixir API and the requests are being proxied to the existing API! Goal achieved.
