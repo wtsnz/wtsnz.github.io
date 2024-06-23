@@ -11,11 +11,11 @@ Luckily this appears to be a common enough problem that there's a library for it
 
 ---
 
-I've been wanting to compare a api implementation in two different ways. We have an existing API that is written in node and express that runs on AWS Lambda. I'd like to provide an alternate implemenation that uses Elixir and Phoenix so I can compare the two approaches.
+I've been wanting to compare a api implementation in two different ways. We have an existing API that is written in node and express that runs on AWS Lambda. I'd like to provide an alternate implementation that uses Elixir and Phoenix so I can compare the two approaches.
 
 This is a daunting task when you've got an established API that is working well. I don't want to just throw it away and start over. I'd like to migrate slowly and carefully. I'd like to start by creating a new API that is a proxy to the existing API. This will allow me to slowly migrate the existing API to the new one.
 
-[Terraform](https://github.com/poteto/terraform) is a library that allows you to do just this. I can setup an Elixir API that proxies requests to the existing API, and provide implemenations for each method of the existing API as I go.
+[Terraform](https://github.com/poteto/terraform) is a library that allows you to do just this. I can setup an Elixir API that proxies requests to the existing API, and provide implementations for each method of the existing API as I go.
 
 ### Getting GET Requests Working
 
