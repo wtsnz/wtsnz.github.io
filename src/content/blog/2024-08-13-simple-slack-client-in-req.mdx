@@ -1,0 +1,99 @@
+---
+title:  "Simple Slack Client in Req"
+pubDate:   2024-08-13 20:49:00
+categories: elixir
+draft: false
+---
+
+Too often when it comes to integrating a third party service, you look online for existing libraries that might save you some time. Sometimes it works out, but other times you end up with a library that is overkill for what you need. 
+
+These days most services have a REST API that you can interact with, and these libraries are often just wrappers around that API. If you're calling one or two methods, you might be better off just using the API directly.
+
+I'm building a backend service in Elixir and I need to send messages to a Slack channel. This is a perfect example of a case where I don't need a library. I can just use the `req` library to make a POST request to the Slack API. 
+
+In the spirit of Dashbit and their ["SDKs with Req" blog series](https://dashbit.co/blog/sdks-with-req-stripe), here's how I set up a simple Slack client in Elixir using the `req` library.
+
+We send two factor auth codes to users via sms in prod, and in dev, we send them to a slack channel. This is a simple way to test the two factor auth flow in dev without having to send a text message. This is useful when you start running out of real phone numbers to test with!
+
+## Adding Req to the project
+
+I'm using the Phoenix framework for this project, so I'll add the `req` library to the `mix.exs` file.
+
+```elixir
+# mix.exs
+
+{:req, "~> 0.5.0"},
+```
+
+Then run `mix deps.get` to install the library.
+
+## Creating the slack.exs file
+
+I'm going to create a new file in the `lib/services` folder called `slack.exs` that will contain the code to send a message to Slack.
+
+```elixir
+# lib/services/slack.exs
+
+defmodule MyCoolApplication.Slack do
+  def send_two_factor_auth_message(phone_number, code) do
+    Req.new(url: slack_webhook_url())
+    |> Req.post(
+      json: %{
+        text: "#{phone_number} : `#{code}`"
+      }
+    )
+  end
+
+  defp slack_webhook_url do
+    Application.fetch_env!(:mycoolapplication, :slack_webhook_url)
+  end
+end
+```
+
+I expose a pretty specific function that can be called anywhere in the MyCoolApplication code.
+
+## Setting up the config
+
+I'm going to add the `slack_webhook_url` to the `config/dev.exs` file.
+
+```elixir
+# config/dev.exs
+
+config :mycoolapplication, slack_webhook_url: "https://hooks.slack.com/services/..."
+```
+
+and then add the ability to set this at runtime in the `config/runtime.exs` file so that in prod we can define this as an environment variable.
+
+```elixir
+  # config/runtime.exs
+
+  slack_webhook_url = System.get_env("SLACK_WEBHOOK_URL") ||
+  raise """
+  environment variable SLACK_WEBHOOK_URL is missing.
+  """
+
+  config :mycoolapplication,
+    slack_webhook_url: slack_webhook_url
+
+```
+
+## Using the Slack client
+
+Now I can use the Slack client in my code.
+
+```elixir
+Slack.send_two_factor_auth_message("555-555-5555", "123456")
+```
+
+## Obtaining a Slack Webhook URL
+
+If you're new to Slack integrations, you can obtain a webhook URL by:
+
+- Going to your Slack workspace's App Directory
+- Creating a new app (or selecting an existing one)
+- Enabling "Incoming Webhooks" for the app
+- Creating a new webhook URL for a specific channel
+
+## That's it
+
+When it comes to Elixir, simple is good, and this certainly beats bringing in a library that you don't need for something this straightforward. This approach aligns well with Elixir's philosophy of building small, focused modules that do one thing well. 
