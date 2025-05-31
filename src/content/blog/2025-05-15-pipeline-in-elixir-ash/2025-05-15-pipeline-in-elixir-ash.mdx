@@ -1,0 +1,87 @@
+---
+title: "LLM Pipelines in Elixir Ash"
+pubDate: 2025-05-29 10:00:00
+categories: elixir
+draft: false
+slug: "2025/pipeline-in-elixir-ash"
+---
+
+I've been playing around with Elixir and Ash Framework for the last few months and absolutely love it. It's such a wonderful stack, and a breath of fresh air compared to working in Xcode (iOS) and a typescript backend monstrosity.
+
+As part of my explorations I've been working on a project that I've wanted to build for years. I am intrigued with node based UI's and love the idea that you can visualise the steps in a process, and how the data flows through them. Code is so often something incredibly abstract to friends and family, and I've always wanted to be able to elequently explain and show them what I've been working on!
+
+As an aside, I'm also curious about how VR might be able to make applications that you can "step into" and "play" with a little more than text on a screen. We're not quite there yet, but this is something I'd like to explore in the future - maybe if the next gen AR glasses are available. If you know me IRL you'll have no doubt heard me rant about this.
+
+Now, with large language models (LLMs) becoming increasingly powerful, the possibilities are even more fascinating. These models are like programmable black boxes that you can shape - define what they are, tell them what to do, and they simply *do it*! This lends itself perfectly to a modular, node-based UI.
+
+As is typical, I'm not alone in this line of thought. A few notable projects have already emerged in this space:
+
+- [Flowise](https://flowiseai.com/) - YCombinator backed startup.
+- [Langflow](https://www.langflow.org/) - Open source project, looks really neat.
+- [Langchain](https://langchain.com/) - One of the OG's, not great reviews from what I [gather](https://news.ycombinator.com/item?id=40739982).
+- And many more...
+
+I couldn't prevent that all too familiar question from popping into my head:
+
+> How hard could it be to build something like this? In Elixir?
+
+## A prototype
+
+That question consumed a few late nights. I ended up building a functional prototype—and while I won't dive deep into the code in this post, I'll share a quick overview of the underlying architecture.
+
+I setup a new project with [Ash](https://ash-hq.org/), Phoenix and [Oban](https://oban.pro/) to get started, and then came up with a few concepts for the domain model to start with:
+
+- Pipeline: A collection of nodes that are connected together.
+- Node: A single step in the pipeline.
+- Edge: A connection between two nodes.
+- Pipeline Run: A single run (or execution) of a pipeline.
+- Node Result: The output of a node inside a pipeline run.
+
+These are the core concepts that I used to build the prototype. And honestly they took it quite far. These building blocks allow you to do some pretty cool stuff. If you squint a hard enough, the process looks similar to [Temporal](https://temporal.io/) workflows.
+
+A Pipline is scheduled to run in a background job. The first job is responsible for finding all the nodes that can be run now, making sure that all data dependencies are met - nodes can be run concurrently if possible - and then enqueuing another job to run the node's logic. This is all powered using [Oban](https://oban.pro/) jobs.
+
+In my prototype I have a could of node types: A Text node, a HTTP Request node, and an [Open Router](https://openrouter.ai/) node for running LLM calls.
+
+## UI
+
+There is a webui that makes use of [SvelteFlow](https://svelteflow.dev/) to render the pipeline in the web interface. I'm using the [LiveSvelte](https://hexdocs.pm/live_svelte/LiveSvelte.html) elixir lib that hooks up the Svelte app to the Phoenix LiveView. This lets me communicate with the Svelte app from the LiveView and vice versa. 
+
+
+![Pipeline UI](/2025/pipeline-in-elixir-ash/pipeline.png)
+
+One fun callout was the templating language I used to allow variables in the node's configuration. I ended up using the Liquid templating language. This allowed me to use variables in the node's configuration, and also to use the output of a previous node as the input to another. You can see an example of this in the screenshot above.
+
+And for LLM chaining you can see below how I used the output of one node as the input to another.
+
+![LLM Chaining](/2025/pipeline-in-elixir-ash/pipeline-llm.png)
+
+It would be cool to add support for image nodes with the ability to drag an image into the canvas and use it as an input to the LLM node. The prototype allows you to specify the image as a URL for now. The above screenshot shows a pipeline that tells you who is in the film poster of the image. In this case it was [Dune](https://walter-r2.trakt.tv/images/movies/000/537/449/posters/thumb/2acc44f507.jpg).
+
+
+## Future directions
+
+From my notes, I wrote down a few things that would potentially be interesting to explore:
+
+- Add 'triggers' to the pipeline.
+  - Start pipelines on a webhook
+- Improve image handling in the UI. 
+  - Add a way to upload and display images in the pipelines.
+  - Use these for input and output of nodes.
+- Add specific integrations with other services instead of http requests.
+- Agents / Tools (LLM Function Calling)
+  - Add support for making "agents" that can be used in the pipelines.
+  - Recursive callings - use an existing pipeline as a tool.
+
+So many ideas, so little time.
+
+---
+
+## In conclusion
+
+Seeing all the other companies out there that raised a bunch of money building something similar this really makes you wonder...
+
+At the end of the day a prototype is not a product, and this was a fun problem to work on and scratched an itch I had. Answering the question "Could I do it?" is the payoff.
+
+Until the AI Agents get a little better and can work with me to do the parts I'm not interested in, a prototype this will likely remain. 
+
