@@ -1,0 +1,989 @@
+---
+title: "The Casimir Effect"
+description: "Two uncharged metal plates in a vacuum pull on each other. Why that happens is a story about what empty space actually is."
+pubDate: 2026-04-16 10:00:00
+categories: physics
+draft: false
+listed: true
+---
+
+Two uncharged metal plates. Parallel, in a vacuum chamber, a few micrometres apart.
+
+<figure style="margin: 2rem 0;">
+  <svg viewBox="0 0 680 360" role="img" aria-labelledby="casmir-paradox-title" style="display: block; width: 100%; height: auto;">
+    <title id="casmir-paradox-title">Two uncharged parallel metal plates in vacuum, with no visible field or matter between them, yet arrows point inward to show the unexplained attraction.</title>
+    <defs>
+      <pattern id="casmir-paradox-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="8" height="8" fill="#f6f7f9" />
+        <line x1="0" y1="0" x2="0" y2="8" stroke="#9aa4b2" stroke-width="2" />
+      </pattern>
+      <marker id="casmir-paradox-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#c2410c" />
+      </marker>
+    </defs>
+
+    <rect x="250" y="34" width="18" height="291" fill="url(#casmir-paradox-hatch)" stroke="#334155" stroke-width="2" />
+    <rect x="412" y="34" width="18" height="291" fill="url(#casmir-paradox-hatch)" stroke="#334155" stroke-width="2" />
+
+    <line x1="174" y1="180" x2="238" y2="180" stroke="#c2410c" stroke-width="5" stroke-linecap="round" marker-end="url(#casmir-paradox-arrow)" />
+    <line x1="506" y1="180" x2="442" y2="180" stroke="#c2410c" stroke-width="5" stroke-linecap="round" marker-end="url(#casmir-paradox-arrow)" />
+
+    <text x="340" y="176" fill="#c2410c" font-size="16" font-weight="700" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif">attraction?</text>
+  </svg>
+</figure>
+
+They pull on each other.
+
+Not strongly. The force is small enough that you need a torsion balance to see it. But it's there, and it's measurable, and it's reproducible, and there's nothing in the gap doing the pulling. No charge. No air. No detectable field. The plates are inert metal, and the space between them is about as empty as space ever gets.
+
+This is the **Casimir effect**, predicted by Hendrik Casimir in 1948 and pinned down experimentally by Steve Lamoreaux in 1997. It isn't exotic physics. It shows up inside the chips in your phone, in the behaviour of thin films, and in the failure modes of microscopic moving parts. Nobody serious doubts that it happens.
+
+Whether anyone has a comfortable feeling about *why* it happens is a separate question. The mechanism is understood. The mechanism is also strange, and the only way through it is to figure out what "vacuum" actually means.
+
+## The vacuum isn't empty
+
+Ask anyone what's inside a vacuum. They'll say nothing. That's what the word means. Quantum field theory says otherwise, and has said so for nearly a century, and what it says is there has been measured in enough independent ways that the question is settled.
+
+What QFT puts in place of nothing is fields. The electromagnetic field exists everywhere; it has a value at every point in space, all the time, light or no light. Most of the time you walk through it without noticing. In a perfectly empty universe, you might guess the field's value should be zero everywhere. No light, no waves, nothing happening. The uncertainty principle has rules about this.
+
+Position and momentum can't both be pinned down with perfect precision. You've probably heard that part. The same rule applies to a field: it can't hold exactly zero value with exactly zero rate of change. So it doesn't. It wiggles. Everywhere. Always. There is no off switch. The wiggle has a name in physics: *virtual photons*. They are flickers of electromagnetic field at every wavelength, blinking in and out of existence faster than any instrument can resolve a single one of them.
+
+Their fingerprints sit all over modern physics. They shift hydrogen's energy levels by a measurable amount, the [Lamb shift](https://en.wikipedia.org/wiki/Lamb_shift). They bend the electron's magnetic moment a hair off its naive prediction. Without them, an excited atom would never [emit a photon](https://en.wikipedia.org/wiki/Spontaneous_emission); it would sit in its excited state forever. And they're the reason two metal plates in a vacuum pull on each other, which is why we're here.
+
+Here is the picture. Empty space is filled with every electromagnetic wave at once, each at the lowest energy the uncertainty principle will allow it, which is not zero. You don't see any of this happening. The waves go in every direction, at every wavelength, and on any scale bigger than an atom they wash out into a uniform nothing.
+
+<figure id="casmir-vacuum-widget" style="margin: 2rem 0;">
+  <canvas id="casmir-vacuum-canvas" width="520" height="260" style="width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto; background: #f1f3f5; border-radius: 2px;"></canvas>
+  <figcaption style="margin-top: 0.85rem; color: #475569; font-size: 0.95rem; line-height: 1.5; text-align: center;">
+    Below: ten waves, each at its own wavelength, each cycling through its phase at its own rate. Above: their sum — what the field at this slice of space actually looks like. The sum never settles, because the ingredients are always drifting in and out of alignment.
+  </figcaption>
+</figure>
+
+<script>{`
+(() => {
+  const widget = document.getElementById("casmir-vacuum-widget");
+  if (!widget) return;
+
+  const canvas = widget.querySelector("#casmir-vacuum-canvas");
+  const ctx = canvas.getContext("2d");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  const componentBaseline = 185;
+  const componentMaxAmplitude = 32;
+  const sumBaseline = 85;
+  const sumAmplitudeScale = 12;
+
+  const modeCount = 10;
+  const rand = (seed) => {
+    let s = seed;
+    return () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+  };
+  const r = rand(20240416);
+  const modes = [];
+  for (let i = 0; i < modeCount; i++) {
+    const wavelengthPx = 60 + r() * 340;
+    const k = (2 * Math.PI) / wavelengthPx;
+    const amplitude = 0.55 + r() * 0.45;
+    const omega = 0.6 + r() * 1.4;
+    const phaseOffset = r() * Math.PI * 2;
+    modes.push({ k, amplitude, omega, phaseOffset });
+  }
+
+  let lastTime = performance.now();
+  let time = 0;
+
+  const paintFrame = (t) => {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#f1f3f5";
+    ctx.fillRect(0, 0, width, height);
+
+    const step = 2;
+    const sumValues = new Array(Math.ceil(width / step) + 1);
+
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "rgba(15, 118, 110, 0.32)";
+    ctx.lineWidth = 1.4;
+
+    for (let m = 0; m < modeCount; m++) {
+      const mode = modes[m];
+      ctx.beginPath();
+      let sampleIndex = 0;
+      for (let x = 0; x <= width; x += step) {
+        const value = mode.amplitude * Math.sin(mode.k * x + mode.omega * t + mode.phaseOffset);
+        const y = componentBaseline - value * componentMaxAmplitude;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        if (m === 0) sumValues[sampleIndex] = value;
+        else sumValues[sampleIndex] += value;
+        sampleIndex++;
+      }
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.4)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, componentBaseline);
+    ctx.lineTo(width, componentBaseline);
+    ctx.moveTo(0, sumBaseline);
+    ctx.lineTo(width, sumBaseline);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#0f766e";
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    let sampleIndex = 0;
+    for (let x = 0; x <= width; x += step) {
+      const value = sumValues[sampleIndex++];
+      const y = sumBaseline - value * sumAmplitudeScale;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    ctx.fillStyle = "#64748b";
+    ctx.font = "600 11px ui-sans-serif, system-ui, sans-serif";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "alphabetic";
+    ctx.fillText("sum", 12, sumBaseline - 24);
+    ctx.fillText("ten waves", 12, componentBaseline - componentMaxAmplitude - 4);
+  };
+
+  const frame = (now) => {
+    const dt = Math.min(0.1, (now - lastTime) / 1000);
+    lastTime = now;
+    time += dt;
+    paintFrame(time);
+    requestAnimationFrame(frame);
+  };
+
+  requestAnimationFrame(frame);
+})();
+`}</script>
+
+In empty space, every wavelength fits. There's nothing in the way.
+
+But if you put two metal plates in the way...
+
+## Only some waves fit
+
+Metal reflects light. Inside a good conductor, the electric field has to be zero. Free electrons rearrange themselves at the surface to cancel anything trying to penetrate, so a wave hitting metal can't go through. It bounces.
+
+Now put two pieces of metal facing each other, parallel, separated by a distance $d$. Anything electromagnetic that lives in the gap has to drop to zero on both surfaces, simultaneously, the entire time. This is the same boundary condition a guitar string lives under, and it has the same kind of solution. Only the standing-wave modes that fit cleanly between the boundaries are allowed:
+
+$$
+\lambda_n = \frac{2d}{n}, \qquad n = 1, 2, 3, \ldots
+$$
+
+The longest wavelength that fits is $\lambda_1 = 2d$. Anything longer has no home in the gap — not faint, not damped, just absent. The geometry doesn't host it.
+
+<figure id="casmir-core-widget" style="margin: 2rem 0;">
+  <svg id="casmir-core-svg" viewBox="0 0 920 420" role="img" aria-labelledby="casmir-core-title" style="display: block; width: 100%; height: auto;">
+    <title id="casmir-core-title">Interactive Casimir explainer showing continuous vacuum modes outside the plates, discrete standing modes between them, and the resulting inward pressure imbalance.</title>
+    <defs>
+      <pattern id="casmir-core-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="8" height="8" fill="#f6f7f9" />
+        <line x1="0" y1="0" x2="0" y2="8" stroke="#9aa4b2" stroke-width="2" />
+      </pattern>
+      <marker id="casmir-core-arrow-slate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 L10 5 L0 10 z" fill="#475569" />
+      </marker>
+      <marker id="casmir-core-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#c2410c" />
+      </marker>
+    </defs>
+
+    <g id="casmir-left-spectrum"></g>
+    <g id="casmir-right-spectrum"></g>
+
+    <rect id="casmir-left-plate" x="332" y="76" width="18" height="291" fill="url(#casmir-core-hatch)" stroke="#334155" stroke-width="2" />
+    <rect id="casmir-right-plate" x="570" y="76" width="18" height="291" fill="url(#casmir-core-hatch)" stroke="#334155" stroke-width="2" />
+    <text id="casmir-gap-label" x="460" y="58" fill="#334155" font-size="15" font-weight="700" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif">d = 1.00 μm</text>
+    <line id="casmir-gap-arrow" x1="350" y1="70" x2="570" y2="70" stroke="#475569" stroke-width="2" marker-start="url(#casmir-core-arrow-slate)" marker-end="url(#casmir-core-arrow-slate)" />
+
+    <g id="casmir-inside-spectrum"></g>
+
+    <line id="casmir-outside-push-left" x1="214" y1="173" x2="320" y2="173" stroke="#c2410c" stroke-width="4" stroke-linecap="round" opacity="0.9" marker-end="url(#casmir-core-arrow-orange)" />
+    <line id="casmir-outside-push-right" x1="706" y1="173" x2="600" y2="173" stroke="#c2410c" stroke-width="4" stroke-linecap="round" opacity="0.9" marker-end="url(#casmir-core-arrow-orange)" />
+    <line id="casmir-inside-push-left" x1="430" y1="173" x2="360" y2="173" stroke="#c2410c" stroke-width="4" stroke-linecap="round" opacity="0.9" marker-end="url(#casmir-core-arrow-orange)" />
+    <line id="casmir-inside-push-right" x1="490" y1="173" x2="560" y2="173" stroke="#c2410c" stroke-width="4" stroke-linecap="round" opacity="0.9" marker-end="url(#casmir-core-arrow-orange)" />
+
+    <text id="casmir-pressure-label" x="460" y="410" fill="#9a3412" font-size="14" font-weight="700" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif">arrows show the vacuum pushing on each side of each plate</text>
+  </svg>
+
+  <div style="margin-top: 1rem;">
+    <label for="casmir-gap-slider" style="display: flex; justify-content: space-between; gap: 1rem; color: #334155; font-size: 0.96rem; font-weight: 700;">
+      <span>plate separation <code>d</code></span>
+      <output id="casmir-gap-output">1.00 μm</output>
+    </label>
+    <input id="casmir-gap-slider" type="range" min="0" max="100" value="75" style="width: 100%; margin-top: 0.65rem; accent-color: #0f766e;" />
+    <div style="display: flex; justify-content: space-between; margin-top: 0.35rem; color: #64748b; font-size: 0.78rem;">
+      <span>1 nm</span>
+      <span>10 nm</span>
+      <span>100 nm</span>
+      <span>1 μm</span>
+      <span>10 μm</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+    <div style="padding: 0.85rem 1rem; background: #f8fafc; color: #334155;">
+      <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b;">longest allowed wavelength in the gap</div>
+      <div id="casmir-lambda-max" style="margin-top: 0.3rem; font-size: 1rem; font-weight: 700;">λ₁ = 2.00 μm</div>
+    </div>
+    <div style="padding: 0.85rem 1rem; background: #f8fafc; color: #334155;">
+      <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b;">force on 1 cm²</div>
+      <div id="casmir-force-readout" style="margin-top: 0.3rem; font-size: 1rem; font-weight: 700;">1.30 × 10⁻⁷ N</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 1.5rem;">
+    <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 0.5rem;">radiation pressure across the scene</div>
+    <svg id="casmir-pressure-grid" viewBox="0 0 920 200" role="img" aria-label="Grid visualisation of radiation pressure across the full width of the scene, dimmed inside the gap between the plates." style="display: block; width: 100%; height: auto; background: #f8fafc;">
+      <g id="casmir-pressure-grid-cells"></g>
+      <rect id="casmir-pressure-grid-left-plate" x="332" y="25" width="18" height="150" fill="url(#casmir-core-hatch)" stroke="#334155" stroke-width="1.5" />
+      <rect id="casmir-pressure-grid-right-plate" x="570" y="25" width="18" height="150" fill="url(#casmir-core-hatch)" stroke="#334155" stroke-width="1.5" />
+    </svg>
+  </div>
+
+  <figcaption style="margin-top: 0.75rem; color: #475569; font-size: 0.95rem; line-height: 1.5;">
+    Outside the gap, the vacuum keeps its full spectrum. Inside, only standing-wave modes that fit between the plates are allowed. Below, the same scene redrawn as a pressure map: the thinner spectrum inside the gap means less pressure.
+  </figcaption>
+</figure>
+
+<script>{`
+(() => {
+  const widget = document.getElementById("casmir-core-widget");
+  if (!widget) return;
+
+  const slider = widget.querySelector("#casmir-gap-slider");
+  const gapOutput = widget.querySelector("#casmir-gap-output");
+  const gapLabel = widget.querySelector("#casmir-gap-label");
+  const gapArrow = widget.querySelector("#casmir-gap-arrow");
+  const lambdaMax = widget.querySelector("#casmir-lambda-max");
+  const forceReadout = widget.querySelector("#casmir-force-readout");
+  const leftSpectrum = widget.querySelector("#casmir-left-spectrum");
+  const rightSpectrum = widget.querySelector("#casmir-right-spectrum");
+  const insideSpectrum = widget.querySelector("#casmir-inside-spectrum");
+  const leftPlate = widget.querySelector("#casmir-left-plate");
+  const rightPlate = widget.querySelector("#casmir-right-plate");
+  const outsidePushLeft = widget.querySelector("#casmir-outside-push-left");
+  const outsidePushRight = widget.querySelector("#casmir-outside-push-right");
+  const insidePushLeft = widget.querySelector("#casmir-inside-push-left");
+  const insidePushRight = widget.querySelector("#casmir-inside-push-right");
+
+  const gridCells = widget.querySelector("#casmir-pressure-grid-cells");
+  const gridLeftPlate = widget.querySelector("#casmir-pressure-grid-left-plate");
+  const gridRightPlate = widget.querySelector("#casmir-pressure-grid-right-plate");
+
+  const HBAR = 1.054571817e-34;
+  const C = 299792458;
+  const plateArea = 1e-4;
+  const centerX = 460;
+  const plateWidth = 18;
+  const plateTop = 76;
+  const plateHeight = 291;
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const insideSpecs = [
+    { n: 1, y: 178, amp: 22, color: "#475569", opacity: 0.84, width: 3.1, thresholdNm: 2 },
+    { n: 2, y: 206, amp: 18, color: "#64748b", opacity: 0.72, width: 2.8, thresholdNm: 6 },
+    { n: 3, y: 230, amp: 14, color: "#64748b", opacity: 0.62, width: 2.5, thresholdNm: 20 },
+    { n: 4, y: 252, amp: 10.5, color: "#94a3b8", opacity: 0.56, width: 2.2, thresholdNm: 60 },
+    { n: 5, y: 272, amp: 8, color: "#94a3b8", opacity: 0.48, width: 2.0, thresholdNm: 200 },
+    { n: 6, y: 290, amp: 6.8, color: "#cbd5e1", opacity: 0.4, width: 1.8, thresholdNm: 450 },
+    { n: 7, y: 306, amp: 5.8, color: "#cbd5e1", opacity: 0.34, width: 1.6, thresholdNm: 900 },
+    { n: 8, y: 320, amp: 5, color: "#e2e8f0", opacity: 0.28, width: 1.5, thresholdNm: 1800 }
+  ];
+
+  const formatDistance = (nm) => {
+    if (nm >= 1000) return (nm / 1000).toFixed(2) + " μm";
+    if (nm >= 100) return Math.round(nm) + " nm";
+    if (nm >= 10) return nm.toFixed(1).replace(/\.0$/, "") + " nm";
+    return nm.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1") + " nm";
+  };
+
+  const superscriptInt = (value) => String(value)
+    .replaceAll("-", "⁻")
+    .replaceAll("0", "⁰")
+    .replaceAll("1", "¹")
+    .replaceAll("2", "²")
+    .replaceAll("3", "³")
+    .replaceAll("4", "⁴")
+    .replaceAll("5", "⁵")
+    .replaceAll("6", "⁶")
+    .replaceAll("7", "⁷")
+    .replaceAll("8", "⁸")
+    .replaceAll("9", "⁹");
+
+  const formatScientific = (value, unit) => {
+    if (!Number.isFinite(value) || value === 0) return "0 " + unit;
+    const exponent = Math.floor(Math.log10(Math.abs(value)));
+    const mantissa = value / (10 ** exponent);
+    return mantissa.toFixed(2) + " × 10" + superscriptInt(exponent) + " " + unit;
+  };
+
+  const formatForce = (value) => {
+    const abs = Math.abs(value);
+    if (!Number.isFinite(value) || value === 0) return "0 N";
+    if (abs >= 0.01) {
+      const maxFractionDigits = abs >= 100 ? 0 : abs >= 10 ? 1 : abs >= 1 ? 2 : 3;
+      return value.toLocaleString(undefined, { maximumFractionDigits: maxFractionDigits }) + " N";
+    }
+    return formatScientific(value, "N");
+  };
+
+  const snapDistanceNm = (rawNm) => {
+    const clamped = Math.min(10000, Math.max(1, rawNm));
+    if (clamped < 20) return Math.round(clamped);
+    if (clamped < 100) return Math.round(clamped / 5) * 5;
+    if (clamped < 1000) return Math.round(clamped / 25) * 25;
+    return Math.round(clamped / 100) * 100;
+  };
+
+  const distanceNmToSliderValue = (nm) => (Math.log10(nm) / 4) * 100;
+
+  const pointsPath = (points) => points
+    .map(([x, y], index) => (index === 0 ? "M" : "L") + x.toFixed(1) + " " + y.toFixed(1))
+    .join(" ");
+
+  const standingModePath = (x0, x1, y0, amplitude, harmonic) => {
+    const points = [];
+    const steps = 80;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = x0 + (x1 - x0) * t;
+      const y = y0 - amplitude * Math.sin(harmonic * Math.PI * t);
+      points.push([x, y]);
+    }
+    return pointsPath(points);
+  };
+
+  const travelingModePath = (x0, x1, y0, amplitude, wavelength, phase) => {
+    const points = [];
+    const steps = Math.max(80, Math.ceil((x1 - x0) / 4));
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = x0 + (x1 - x0) * t;
+      const y = y0 - amplitude * Math.sin(((2 * Math.PI * (x - x0)) / wavelength) + phase);
+      points.push([x, y]);
+    }
+    return pointsPath(points);
+  };
+
+  const svgPath = (attrs) => {
+    const path = document.createElementNS(SVG_NS, "path");
+    Object.entries(attrs).forEach(([key, value]) => path.setAttribute(key, String(value)));
+    return path;
+  };
+
+  const renderOutsideSpectrum = (group, x0, x1, gapPx, side) => {
+    const specs = [
+      { wavelengthFactor: 5, y: 94, amp: 18, opacity: 0.94, phase: 0.05 },
+      { wavelengthFactor: 4, y: 118, amp: 17, opacity: 0.88, phase: 0.32 },
+      { wavelengthFactor: 3, y: 144, amp: 16, opacity: 0.82, phase: 0.62 },
+      { wavelengthFactor: 2.4, y: 170, amp: 14.5, opacity: 0.76, phase: 0.95 },
+      { wavelengthFactor: 2, y: 196, amp: 13, opacity: 0.7, phase: 1.3 },
+      { wavelengthFactor: 1.5, y: 224, amp: 11.5, opacity: 0.62, phase: 1.68 },
+      { wavelengthFactor: 1, y: 252, amp: 10, opacity: 0.54, phase: 2.05 },
+      { wavelengthFactor: 2 / 3, y: 280, amp: 8.6, opacity: 0.46, phase: 0.55 },
+      { wavelengthFactor: 1 / 2, y: 308, amp: 7.3, opacity: 0.4, phase: 1.1 },
+      { wavelengthFactor: 2 / 5, y: 334, amp: 6.2, opacity: 0.34, phase: 1.72 },
+      { wavelengthFactor: 1 / 3, y: 356, amp: 5.2, opacity: 0.28, phase: 2.35 }
+    ];
+
+    group.replaceChildren(...specs.map((spec, index) => svgPath({
+      d: travelingModePath(
+        x0,
+        x1,
+        spec.y,
+        spec.amp,
+        gapPx * spec.wavelengthFactor,
+        spec.phase + (side === "right" ? Math.PI / 3 : 0) + index * 0.1
+      ),
+      fill: "none",
+      stroke: "#0f766e",
+      "stroke-width": Math.max(1.15, 3.1 - index * 0.18),
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      opacity: spec.opacity
+    })));
+  };
+
+  const renderInsideSpectrum = (group, x0, x1, specs) => {
+    group.replaceChildren(...specs.map((spec) => svgPath({
+      d: standingModePath(x0, x1, spec.y, spec.amp, spec.n),
+      fill: "none",
+      stroke: spec.color,
+      "stroke-width": spec.width,
+      "stroke-linecap": "butt",
+      "stroke-linejoin": "round",
+      opacity: spec.opacity
+    })));
+  };
+
+  const setLine = (element, x1, y1, x2, y2) => {
+    element.setAttribute("x1", x1.toFixed(1));
+    element.setAttribute("y1", y1.toFixed(1));
+    element.setAttribute("x2", x2.toFixed(1));
+    element.setAttribute("y2", y2.toFixed(1));
+  };
+
+  const update = (snapSlider = false) => {
+    const rawT = Number(slider.value) / 100;
+    const rawNm = 10 ** (4 * rawT);
+    const dNm = snapDistanceNm(rawNm);
+    if (snapSlider) slider.value = distanceNmToSliderValue(dNm).toFixed(4);
+    const t = Number(slider.value) / 100;
+    const dMeters = dNm * 1e-9;
+    const gapPx = 72 + 248 * (t ** 0.85);
+    const leftInner = centerX - gapPx / 2;
+    const rightInner = centerX + gapPx / 2;
+    const leftPlateX = leftInner - plateWidth;
+    const rightPlateX = rightInner;
+
+    leftPlate.setAttribute("x", leftPlateX.toFixed(1));
+    rightPlate.setAttribute("x", rightPlateX.toFixed(1));
+    gapArrow.setAttribute("x1", leftInner.toFixed(1));
+    gapArrow.setAttribute("x2", rightInner.toFixed(1));
+
+    const distanceLabel = formatDistance(dNm);
+    const lambda1Label = formatDistance(2 * dNm);
+    const cutoffNm = 2 * dNm;
+    const visibleInsideSpecs = insideSpecs.filter((spec) => cutoffNm >= spec.thresholdNm);
+
+    gapOutput.textContent = distanceLabel;
+    gapLabel.textContent = "d = " + distanceLabel;
+    lambdaMax.textContent = "λ₁ = " + lambda1Label;
+
+    renderOutsideSpectrum(leftSpectrum, 56, leftPlateX - 10, gapPx, "left");
+    renderOutsideSpectrum(rightSpectrum, rightPlateX + plateWidth + 10, 864, gapPx, "right");
+    renderInsideSpectrum(insideSpectrum, leftInner, rightInner, visibleInsideSpecs);
+
+    const pressureMagnitude = (Math.PI ** 2 * HBAR * C) / (240 * (dMeters ** 4));
+    const forceMagnitude = pressureMagnitude * plateArea;
+    forceReadout.textContent = formatForce(forceMagnitude);
+
+    const arrowY = plateTop + (plateHeight / 2);
+    const arrowGap = 12;
+    const outsideArrowLen = 90;
+    const outsideArrowWidth = 6;
+
+    outsidePushLeft.setAttribute("stroke-width", outsideArrowWidth.toFixed(1));
+    outsidePushRight.setAttribute("stroke-width", outsideArrowWidth.toFixed(1));
+    setLine(outsidePushLeft, leftPlateX - outsideArrowLen - arrowGap, arrowY, leftPlateX - arrowGap, arrowY);
+    setLine(outsidePushRight, rightPlateX + plateWidth + outsideArrowLen + arrowGap, arrowY, rightPlateX + plateWidth + arrowGap, arrowY);
+
+    const insideRatio = insideSpecs.length > 0 ? visibleInsideSpecs.length / insideSpecs.length : 1;
+    const maxInsideArrowLen = Math.max(0, (gapPx / 2) - arrowGap - 8);
+    const insideArrowLen = maxInsideArrowLen * insideRatio;
+    const insideArrowWidth = Math.max(1.5, outsideArrowWidth * (0.4 + 0.6 * insideRatio));
+    const insideVisible = insideArrowLen > 6 && gapPx > 32;
+    const insideOpacity = insideVisible ? 0.25 + 0.65 * insideRatio : 0;
+
+    insidePushLeft.setAttribute("stroke-width", insideArrowWidth.toFixed(1));
+    insidePushRight.setAttribute("stroke-width", insideArrowWidth.toFixed(1));
+    insidePushLeft.setAttribute("opacity", insideOpacity.toFixed(3));
+    insidePushRight.setAttribute("opacity", insideOpacity.toFixed(3));
+    if (insideVisible) {
+      setLine(insidePushLeft, leftInner + arrowGap + insideArrowLen, arrowY, leftInner + arrowGap, arrowY);
+      setLine(insidePushRight, rightInner - arrowGap - insideArrowLen, arrowY, rightInner - arrowGap, arrowY);
+    }
+
+    paintGrid(leftPlateX, rightPlateX + plateWidth, visibleInsideSpecs.length, insideSpecs.length, leftPlateX, rightPlateX);
+  };
+
+  const GRID_X0 = 12;
+  const GRID_X1 = 908;
+  const GRID_Y0 = 10;
+  const GRID_Y1 = 190;
+  const GRID_COLS = 56;
+  const GRID_ROWS = 11;
+  const GRID_CELL_GAP = 1.5;
+  const PLATE_TOP_Y = 25;
+  const PLATE_BOTTOM_Y = 175;
+  const gridCellWidth = (GRID_X1 - GRID_X0 - GRID_CELL_GAP * (GRID_COLS - 1)) / GRID_COLS;
+  const gridCellHeight = (GRID_Y1 - GRID_Y0 - GRID_CELL_GAP * (GRID_ROWS - 1)) / GRID_ROWS;
+  const gridCellCenters = [];
+  const gridRowCenters = [];
+  const gridCellEls = [];
+
+  for (let row = 0; row < GRID_ROWS; row++) {
+    const y = GRID_Y0 + row * (gridCellHeight + GRID_CELL_GAP);
+    gridRowCenters.push(y + gridCellHeight / 2);
+  }
+
+  for (let col = 0; col < GRID_COLS; col++) {
+    const x = GRID_X0 + col * (gridCellWidth + GRID_CELL_GAP);
+    gridCellCenters.push(x + gridCellWidth / 2);
+    for (let row = 0; row < GRID_ROWS; row++) {
+      const y = GRID_Y0 + row * (gridCellHeight + GRID_CELL_GAP);
+      const rect = document.createElementNS(SVG_NS, "rect");
+      rect.setAttribute("x", x.toFixed(2));
+      rect.setAttribute("y", y.toFixed(2));
+      rect.setAttribute("width", gridCellWidth.toFixed(2));
+      rect.setAttribute("height", gridCellHeight.toFixed(2));
+      rect.setAttribute("fill", "#c2410c");
+      rect.setAttribute("opacity", "0.85");
+      gridCells.appendChild(rect);
+      gridCellEls.push(rect);
+    }
+  }
+
+  const paintGrid = (leftOuterEdge, rightOuterEdge, allowedInsideModes, totalInsideModes, leftPlateMainX, rightPlateMainX) => {
+    const insideRatio = totalInsideModes > 0 ? allowedInsideModes / totalInsideModes : 1;
+    const MIN_OPACITY = 0.06;
+    const MAX_OPACITY = 0.9;
+    const dimmedOpacity = Math.max(MIN_OPACITY, Math.min(MAX_OPACITY, insideRatio * MAX_OPACITY)).toFixed(3);
+    const fullOpacity = MAX_OPACITY.toFixed(3);
+    for (let col = 0; col < GRID_COLS; col++) {
+      const cx = gridCellCenters[col];
+      const xInGap = cx > leftOuterEdge && cx < rightOuterEdge;
+      const colStart = col * GRID_ROWS;
+      for (let row = 0; row < GRID_ROWS; row++) {
+        const cy = gridRowCenters[row];
+        const yBetweenPlates = cy > PLATE_TOP_Y && cy < PLATE_BOTTOM_Y;
+        const dimmed = xInGap && yBetweenPlates;
+        gridCellEls[colStart + row].setAttribute("opacity", dimmed ? dimmedOpacity : fullOpacity);
+      }
+    }
+    gridLeftPlate.setAttribute("x", leftPlateMainX.toFixed(1));
+    gridRightPlate.setAttribute("x", rightPlateMainX.toFixed(1));
+  };
+
+  slider.addEventListener("input", () => update(true));
+  update(true);
+})();
+`}</script>
+
+Drag the slider. As the gap shrinks, the longest allowed wavelength shrinks with it, and longer-wavelength modes drop out of the allowed set. They don't squeeze through. They don't tunnel. The geometry simply has no room for them. Meanwhile, the vacuum outside the plates is unconstrained and keeps its full spectrum.
+
+You now have two vacuums sitting next to each other with different mode content. Outside, every wavelength. Inside, every wavelength shorter than $2d$, and nothing longer. Each missing mode inside is a tiny bit of radiation pressure not pushing outward on the plate. The outside pressure pushes at full strength. The inside pressure is short by exactly the modes that don't fit. So the plates feel a net push inward.
+
+There's another way to read the same picture, and you'll see it phrased both ways in textbooks. The vacuum between the plates carries less zero-point energy than the vacuum outside, because it has fewer modes available to carry it. So when the gap shrinks, the total energy of the configuration drops. The plates fall together for the same reason a ball rolls downhill: there is somewhere lower to be.
+
+## The mode-counting argument
+
+The simplest version of the calculation is to add up the zero-point energy of every allowed mode in the gap, do the same for an equal volume of unconstrained vacuum, and take the difference. The Casimir energy is the answer to that subtraction. Squeeze the plates, watch the answer change, and you have the force.
+
+Naively, this is hopeless. The sum doesn't converge. There are arbitrarily short wavelengths in the spectrum, each carrying a sliver of energy, and the total goes to infinity. The same thing happens outside the plates. Two infinities, one inside and one outside, and ordinary subtraction won't get you anywhere.
+
+What rescues you is that both infinities come from exactly the same place: the very-short-wavelength end of the spectrum. At those wavelengths the plates barely matter. A 1-nanometre wave can't tell a boundary one micrometre away from a boundary infinitely far away. Whatever short-wavelength contribution you have inside the gap, you have an essentially identical contribution outside it. Subtract one from the other carefully and the bad parts cancel. The mathematical name for "carefully" is [zeta-function regularisation](https://en.wikipedia.org/wiki/Casimir_effect#Derivation_of_Casimir_effect_assuming_zeta-regularization). What survives the cancellation is the long-wavelength part of the spectrum, the part you watched dropping out of the widget. That part is finite. And it's negative. The clean answer for the force per unit area is:
+
+$$
+\frac{F}{A} = -\frac{\pi^2 \hbar c}{240 d^4}
+$$
+
+The minus sign tells you the force is attractive. The $1/d^4$ tells you it gets extreme fast: halve the gap and the force goes up by a factor of sixteen.
+
+<figure id="casmir-force-widget" style="margin: 2.25rem 0;">
+  <svg id="casmir-force-svg" viewBox="0 0 920 460" role="img" aria-labelledby="casmir-force-title" style="display: block; width: 100%; height: auto;">
+    <title id="casmir-force-title">Interactive log-log plot of Casimir force per area versus plate separation, with a draggable marker.</title>
+
+    <text x="48" y="28" fill="#334155" font-size="15" font-weight="700" font-family="ui-sans-serif, system-ui, sans-serif">force per area F/A</text>
+
+    <g stroke="#e2e8f0" stroke-width="1">
+      <line x1="48" y1="52" x2="900" y2="52" />
+      <line x1="48" y1="125.5" x2="900" y2="125.5" />
+      <line x1="48" y1="199" x2="900" y2="199" />
+      <line x1="48" y1="272.5" x2="900" y2="272.5" />
+      <line x1="48" y1="346" x2="900" y2="346" />
+    </g>
+
+    <g stroke="#cbd5e1" stroke-width="1.5">
+      <line x1="48" y1="52" x2="48" y2="346" />
+      <line x1="48" y1="346" x2="900" y2="346" />
+      <line x1="48" y1="346" x2="48" y2="354" />
+      <line x1="190" y1="346" x2="190" y2="354" />
+      <line x1="332" y1="346" x2="332" y2="354" />
+      <line x1="474" y1="346" x2="474" y2="354" />
+      <line x1="616" y1="346" x2="616" y2="354" />
+      <line x1="758" y1="346" x2="758" y2="354" />
+      <line x1="900" y1="346" x2="900" y2="354" />
+    </g>
+
+    <g fill="#64748b" font-size="12" font-weight="700" font-family="ui-sans-serif, system-ui, sans-serif">
+      <text x="34" y="56" text-anchor="end">10⁹</text>
+      <text x="34" y="129.5" text-anchor="end">10³</text>
+      <text x="34" y="203" text-anchor="end">10⁻³</text>
+      <text x="34" y="276.5" text-anchor="end">10⁻⁹</text>
+      <text x="34" y="350" text-anchor="end">10⁻¹⁵</text>
+    </g>
+
+    <g fill="#64748b" font-size="11.5" font-weight="700" font-family="ui-sans-serif, system-ui, sans-serif">
+      <text x="48" y="370" text-anchor="start">1 nm</text>
+      <text x="190" y="370" text-anchor="middle">10 nm</text>
+      <text x="332" y="370" text-anchor="middle">100 nm</text>
+      <text x="474" y="370" text-anchor="middle">1 μm</text>
+      <text x="616" y="370" text-anchor="middle">10 μm</text>
+      <text x="758" y="370" text-anchor="middle">100 μm</text>
+      <text x="900" y="370" text-anchor="end">1 mm</text>
+    </g>
+
+    <text x="474" y="394" fill="#64748b" font-size="12" font-weight="700" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif">plate separation d (log scale)</text>
+
+    <path id="casmir-force-curve" fill="none" stroke="#0f766e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+
+    <line id="casmir-force-guide-x" x1="0" y1="0" x2="0" y2="0" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="5 6" opacity="0.7" />
+    <line id="casmir-force-guide-y" x1="0" y1="0" x2="0" y2="0" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="5 6" opacity="0.7" />
+    <circle id="casmir-force-marker-ring" cx="0" cy="0" r="10" fill="#fff" stroke="#c2410c" stroke-width="2" />
+    <circle id="casmir-force-marker" cx="0" cy="0" r="5.5" fill="#c2410c" />
+
+    <rect id="casmir-force-scrub" x="48" y="52" width="852" height="294" fill="transparent" style="cursor: grab; touch-action: none;" />
+  </svg>
+
+  <div style="margin-top: 1rem;">
+    <label for="casmir-force-distance-slider" style="display: flex; justify-content: space-between; gap: 1rem; color: #334155; font-size: 0.96rem; font-weight: 700;">
+      <span>selected distance <code>d</code></span>
+      <output id="casmir-force-distance-output" style="font-variant-numeric: tabular-nums;">1.00 μm</output>
+    </label>
+    <input id="casmir-force-distance-slider" type="range" min="0" max="100" value="50" style="width: 100%; margin-top: 0.65rem; accent-color: #0f766e;" />
+    <div style="display: flex; justify-content: space-between; margin-top: 0.35rem; color: #64748b; font-size: 0.74rem;">
+      <span>1 nm</span>
+      <span>10 nm</span>
+      <span>100 nm</span>
+      <span>1 μm</span>
+      <span>10 μm</span>
+      <span>100 μm</span>
+      <span>1 mm</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.9rem;">
+    <label for="casmir-force-area-slider" style="display: flex; justify-content: space-between; gap: 1rem; color: #334155; font-size: 0.96rem; font-weight: 700;">
+      <span>plate area <code>A</code></span>
+      <output id="casmir-force-area-output" style="font-variant-numeric: tabular-nums;">1 cm²</output>
+    </label>
+    <input id="casmir-force-area-slider" type="range" min="0" max="3" step="1" value="2" style="width: 100%; margin-top: 0.65rem; accent-color: #0f766e;" />
+    <div style="display: flex; justify-content: space-between; margin-top: 0.35rem; color: #64748b; font-size: 0.78rem;">
+      <span>1 mm²</span>
+      <span>10 mm²</span>
+      <span>1 cm²</span>
+      <span>10 cm²</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+    <div style="padding: 0.85rem 1rem; background: #f8fafc; color: #334155;">
+      <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b;">selected distance</div>
+      <div id="casmir-force-selected-distance" style="margin-top: 0.3rem; font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums;">d = 1.00 μm</div>
+    </div>
+    <div style="padding: 0.85rem 1rem; background: #f8fafc; color: #334155;">
+      <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b;">force per area</div>
+      <div id="casmir-force-pressure-readout" style="margin-top: 0.3rem; font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums;">1.30 × 10⁻³ N/m²</div>
+    </div>
+    <div style="padding: 0.85rem 1rem; background: #f8fafc; color: #334155;">
+      <div id="casmir-force-total-label" style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b;">force on 1 cm²</div>
+      <div id="casmir-force-total-readout" style="margin-top: 0.3rem; font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums;">1.30 × 10⁻⁷ N</div>
+      <div id="casmir-force-weight-readout" style="margin-top: 0.3rem; font-size: 0.8rem; color: #64748b; font-variant-numeric: tabular-nums;">≈ weight of 13.3 μg on Earth</div>
+    </div>
+  </div>
+
+  <figcaption style="margin-top: 0.75rem; color: #475569; font-size: 0.95rem; line-height: 1.5;">
+    Drag the orange marker or use the slider. The green line is the ideal parallel-plate result on a log-log scale.
+  </figcaption>
+</figure>
+
+<script>{`
+(() => {
+  const widget = document.getElementById("casmir-force-widget");
+  if (!widget) return;
+
+  const svg = widget.querySelector("#casmir-force-svg");
+  const distanceSlider = widget.querySelector("#casmir-force-distance-slider");
+  const areaSlider = widget.querySelector("#casmir-force-area-slider");
+  const distanceOutput = widget.querySelector("#casmir-force-distance-output");
+  const areaOutput = widget.querySelector("#casmir-force-area-output");
+  const selectedDistance = widget.querySelector("#casmir-force-selected-distance");
+  const pressureReadout = widget.querySelector("#casmir-force-pressure-readout");
+  const totalLabel = widget.querySelector("#casmir-force-total-label");
+  const totalReadout = widget.querySelector("#casmir-force-total-readout");
+  const weightReadout = widget.querySelector("#casmir-force-weight-readout");
+  const curve = widget.querySelector("#casmir-force-curve");
+  const guideX = widget.querySelector("#casmir-force-guide-x");
+  const guideY = widget.querySelector("#casmir-force-guide-y");
+  const marker = widget.querySelector("#casmir-force-marker");
+  const markerRing = widget.querySelector("#casmir-force-marker-ring");
+  const scrub = widget.querySelector("#casmir-force-scrub");
+
+  const HBAR = 1.054571817e-34;
+  const C = 299792458;
+  const GRAVITY = 9.80665;
+  const SVG_WIDTH = 920;
+  const plot = { left: 48, top: 52, width: 852, height: 294 };
+  plot.right = plot.left + plot.width;
+  plot.bottom = plot.top + plot.height;
+  const pressureConstant = (Math.PI ** 2 * HBAR * C) / 240;
+  const yLogMin = -15;
+  const yLogMax = 9;
+  const areaPresets = [
+    { label: "1 mm²", areaM2: 1e-6, swatch: 18 },
+    { label: "10 mm²", areaM2: 1e-5, swatch: 28 },
+    { label: "1 cm²", areaM2: 1e-4, swatch: 40 },
+    { label: "10 cm²", areaM2: 1e-3, swatch: 62 }
+  ];
+  const massAnchors = [
+    { massKg: 1e-18, label: "a virus particle" },
+    { massKg: 1e-15, label: "a bacterium" },
+    { massKg: 1e-12, label: "a human cell" },
+    { massKg: 1e-10, label: "a dust grain" },
+    { massKg: 1e-7, label: "a grain of sand" },
+    { massKg: 2.5e-6, label: "a mosquito" },
+    { massKg: 3e-5, label: "a grain of rice" },
+    { massKg: 1e-3, label: "a paperclip" },
+    { massKg: 2.4e-2, label: "an AA battery" },
+    { massKg: 1.8e-1, label: "an apple" },
+    { massKg: 4, label: "a house cat" },
+    { massKg: 70, label: "an adult person" },
+    { massKg: 1500, label: "a small car" },
+    { massKg: 6000, label: "an elephant" }
+  ];
+  const distanceDecades = 6;
+
+  const formatDistance = (nm) => {
+    if (nm >= 1e6) return (nm / 1e6).toFixed(2) + " mm";
+    if (nm >= 1000) return (nm / 1000).toFixed(2) + " μm";
+    if (nm >= 100) return Math.round(nm) + " nm";
+    if (nm >= 10) return nm.toFixed(1).replace(/\.0$/, "") + " nm";
+    return nm.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1") + " nm";
+  };
+
+  const superscriptInt = (value) => String(value)
+    .replaceAll("-", "⁻")
+    .replaceAll("0", "⁰")
+    .replaceAll("1", "¹")
+    .replaceAll("2", "²")
+    .replaceAll("3", "³")
+    .replaceAll("4", "⁴")
+    .replaceAll("5", "⁵")
+    .replaceAll("6", "⁶")
+    .replaceAll("7", "⁷")
+    .replaceAll("8", "⁸")
+    .replaceAll("9", "⁹");
+
+  const formatScientific = (value, unit) => {
+    if (!Number.isFinite(value) || value === 0) return "0 " + unit;
+    const exponent = Math.floor(Math.log10(Math.abs(value)));
+    const mantissa = value / (10 ** exponent);
+    return mantissa.toFixed(2) + " × 10" + superscriptInt(exponent) + " " + unit;
+  };
+
+  const formatPressure = (value) => {
+    const abs = Math.abs(value);
+    if (!Number.isFinite(value) || abs === 0) return "0 N/m²";
+    if (abs >= 1e8 || abs < 1e-2) return formatScientific(value, "N/m²");
+    const digits = abs >= 1000 ? 0 : abs >= 10 ? 1 : abs >= 1 ? 2 : 3;
+    return value.toLocaleString(undefined, { maximumFractionDigits: digits }) + " N/m²";
+  };
+
+  const formatForce = (value) => {
+    const abs = Math.abs(value);
+    if (!Number.isFinite(value) || abs === 0) return "0 N";
+    if (abs >= 0.01) {
+      const digits = abs >= 100 ? 0 : abs >= 10 ? 1 : abs >= 1 ? 2 : 3;
+      return value.toLocaleString(undefined, { maximumFractionDigits: digits }) + " N";
+    }
+    return formatScientific(value, "N");
+  };
+
+  const formatMass = (massKg) => {
+    if (massKg >= 1000) {
+      return (massKg / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 }) + " t";
+    }
+    if (massKg >= 1) {
+      return massKg.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " kg";
+    }
+    if (massKg >= 1e-3) {
+      return (massKg * 1000).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " g";
+    }
+    if (massKg >= 1e-6) {
+      return (massKg * 1e6).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " mg";
+    }
+    if (massKg >= 1e-9) {
+      return (massKg * 1e9).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " μg";
+    }
+    if (massKg >= 1e-12) {
+      return (massKg * 1e12).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " ng";
+    }
+    if (massKg >= 1e-15) {
+      return (massKg * 1e15).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " pg";
+    }
+    if (massKg >= 1e-18) {
+      return (massKg * 1e18).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " fg";
+    }
+    if (massKg >= 1e-21) {
+      return (massKg * 1e21).toLocaleString(undefined, { maximumFractionDigits: 1 }) + " ag";
+    }
+    return formatScientific(massKg, "kg");
+  };
+
+  const formatWeightEquivalent = (force) => {
+    const massKg = Math.abs(force) / GRAVITY;
+    const exact = "≈ " + formatMass(massKg) + " on Earth";
+    if (!Number.isFinite(massKg) || massKg === 0) return exact;
+
+    const smallest = massAnchors[0];
+    const largest = massAnchors[massAnchors.length - 1];
+    if (massKg < smallest.massKg / 3) return exact + " — far lighter than " + smallest.label;
+    if (massKg > largest.massKg * 3) return exact + " — heavier than " + largest.label;
+
+    const nearest = massAnchors.reduce((best, anchor) => {
+      const distance = Math.abs(Math.log10(massKg) - Math.log10(anchor.massKg));
+      return distance < best.distance ? { distance, anchor } : best;
+    }, { distance: Infinity, anchor: smallest }).anchor;
+
+    return exact + " — about the weight of " + nearest.label;
+  };
+
+  const snapDistanceNm = (rawNm) => {
+    const clamped = Math.min(1e6, Math.max(1, rawNm));
+    if (clamped < 20) return Math.round(clamped);
+    if (clamped < 100) return Math.round(clamped / 5) * 5;
+    if (clamped < 1000) return Math.round(clamped / 25) * 25;
+    if (clamped < 10000) return Math.round(clamped / 100) * 100;
+    if (clamped < 100000) return Math.round(clamped / 1000) * 1000;
+    return Math.round(clamped / 10000) * 10000;
+  };
+
+  const distanceNmToSliderValue = (nm) => (Math.log10(nm) / distanceDecades) * 100;
+
+  const pressureAtNm = (nm) => pressureConstant / ((nm * 1e-9) ** 4);
+
+  const xForNm = (nm) => plot.left + (Math.log10(nm) / distanceDecades) * plot.width;
+
+  const yForPressure = (pressure) => {
+    const logP = Math.log10(pressure);
+    return plot.top + ((yLogMax - logP) / (yLogMax - yLogMin)) * plot.height;
+  };
+
+  const pointsPath = (points) => points
+    .map(([x, y], index) => (index === 0 ? "M" : "L") + x.toFixed(1) + " " + y.toFixed(1))
+    .join(" ");
+
+  const curvePath = (startNm, endNm, steps = 220) => {
+    const logStart = Math.log10(startNm);
+    const logEnd = Math.log10(endNm);
+    const points = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const nm = 10 ** (logStart + (logEnd - logStart) * t);
+      points.push([xForNm(nm), yForPressure(pressureAtNm(nm))]);
+    }
+    return pointsPath(points);
+  };
+
+  const setLine = (element, x1, y1, x2, y2) => {
+    element.setAttribute("x1", x1.toFixed(1));
+    element.setAttribute("y1", y1.toFixed(1));
+    element.setAttribute("x2", x2.toFixed(1));
+    element.setAttribute("y2", y2.toFixed(1));
+  };
+
+  const update = (snapSlider = false) => {
+    const rawNm = 10 ** (distanceDecades * (Number(distanceSlider.value) / 100));
+    const dNm = snapDistanceNm(rawNm);
+    if (snapSlider) distanceSlider.value = distanceNmToSliderValue(dNm).toFixed(4);
+
+    const areaPreset = areaPresets[Number(areaSlider.value)];
+    const pressure = pressureAtNm(dNm);
+    const totalForce = pressure * areaPreset.areaM2;
+    const markerX = xForNm(dNm);
+    const markerY = yForPressure(pressure);
+
+    distanceOutput.textContent = formatDistance(dNm);
+    areaOutput.textContent = areaPreset.label;
+    selectedDistance.textContent = "d = " + formatDistance(dNm);
+    pressureReadout.textContent = formatPressure(pressure);
+    totalLabel.textContent = "force on " + areaPreset.label;
+    totalReadout.textContent = formatForce(totalForce);
+    weightReadout.textContent = formatWeightEquivalent(totalForce);
+    setLine(guideX, plot.left, markerY, markerX, markerY);
+    setLine(guideY, markerX, markerY, markerX, plot.bottom);
+    marker.setAttribute("cx", markerX.toFixed(1));
+    marker.setAttribute("cy", markerY.toFixed(1));
+    markerRing.setAttribute("cx", markerX.toFixed(1));
+    markerRing.setAttribute("cy", markerY.toFixed(1));
+  };
+
+  const updateFromClientX = (clientX) => {
+    const rect = svg.getBoundingClientRect();
+    const svgX = ((clientX - rect.left) / rect.width) * SVG_WIDTH;
+    const clampedX = Math.min(plot.right, Math.max(plot.left, svgX));
+    const rawNm = 10 ** (((clampedX - plot.left) / plot.width) * distanceDecades);
+    const snappedNm = snapDistanceNm(rawNm);
+    distanceSlider.value = distanceNmToSliderValue(snappedNm).toFixed(4);
+    update(false);
+  };
+
+  curve.setAttribute("d", curvePath(1, 1e6));
+
+  let dragging = false;
+
+  scrub.addEventListener("pointerdown", (event) => {
+    dragging = true;
+    scrub.setPointerCapture(event.pointerId);
+    scrub.style.cursor = "grabbing";
+    updateFromClientX(event.clientX);
+  });
+
+  scrub.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    updateFromClientX(event.clientX);
+  });
+
+  const stopDragging = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    scrub.style.cursor = "grab";
+    if (event && scrub.hasPointerCapture(event.pointerId)) scrub.releasePointerCapture(event.pointerId);
+  };
+
+  scrub.addEventListener("pointerup", stopDragging);
+  scrub.addEventListener("pointercancel", stopDragging);
+
+  distanceSlider.addEventListener("input", () => update(true));
+  areaSlider.addEventListener("input", () => update(true));
+
+  update(true);
+})();
+`}</script>
+
+At a 1 micrometre gap across a 1 cm² plate, the force is about $1.3 \times 10^{-7}$ newtons, roughly the weight of a grain of pollen. Detectable, but only with apparatus built specifically to detect it.
+
+Close the gap and the numbers get serious. At 10 nm the force per unit area is comparable to atmospheric pressure. At 1 nm it's about a thousand times that. [MEMS devices](https://en.wikipedia.org/wiki/Microelectromechanical_systems) — the accelerometers and micromirrors inside your phone, things a few hundred nanometres across — operate squarely in this regime, and the Casimir force is one of the dominant forces acting on their moving parts. It can pull two microscopic components together and cold-weld them into a single chunk of useless metal. Engineers call the failure mode *stiction*, and they spend real effort designing around it.
+
+## The plates attract
+
+Casimir wrote down the prediction in 1948. Marcus Sparnaay tried to measure it ten years later and got a result consistent with the formula, but his error bars were too wide to rule out alternatives. The clean experiment came in 1997, when Steve Lamoreaux at the University of Washington built a torsion balance fine enough to see the force directly and confirmed Casimir's prediction to within 5%. The experiment has since been repeated at the 1% level across dozens of geometries: sphere-plate, plate-plate, gold, aluminium, in fluids, in gases. The $1/d^4$ scaling shows up cleanly in the data. As results in quantum field theory go, the Casimir effect is about as well-tested as anything we have.
+
+{/*
+STATIC ILLUSTRATION: "Lamoreaux's measurement"
+
+A schematic of the 1997 torsion balance experiment:
+- A gold-coated spherical lens suspended near a flat plate
+- A torsion pendulum detecting the tiny attractive force
+- Laser interferometry measuring plate position to sub-nanometre precision
+- All inside a vacuum chamber
+
+Labels and a photo-realistic or diagram style sketch.
+
+GOAL: Show that confirming Casimir's prediction required a genuinely heroic
+piece of experimental work. This isn't armchair physics — real people spent
+real years building apparatus sensitive enough to see a force smaller than
+the weight of a virus.
+*/}
+
+So: two parallel plates in a vacuum chamber, no charge, no current, no material between them, no field detectable by any normal instrument. They pull on each other. The pull comes from the vacuum, which is not empty and which has a structure the plates change by being there. Closing the gap lowers the configuration's energy, and in physics, lower is where things go.
+
+Empty space had been doing all this the whole time.
+
+--
+
+*Key references:*
+
+- *Casimir, ["On the attraction between two perfectly conducting plates"](https://www.dwc.knaw.nl/DL/publications/PU00018547.pdf), Proc. K. Ned. Akad. Wet. 51, 793 (1948)*
+- *Lamoreaux, ["Demonstration of the Casimir force in the 0.6 to 6 μm range"](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.78.5), PRL 78, 5 (1997)*
+- *Mohideen & Roy, ["Precision measurement of the Casimir force from 0.1 to 0.9 μm"](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.81.4549), PRL 81, 4549 (1998)*
