@@ -29,7 +29,7 @@ It's taken me far to long to wrap my head around how bitcoin "works". For the lo
 
 A very high level overview of Bitcoin: Bitcoin is essentially a very large database that stores Transactions and Blocks. Transactions are grouped into Blocks. Blocks are linked together similar to a linked list. (Hence the potentially familiar term _Block Chain_...)
 
-![blocks](./blocks.svg)
+<img src="/2020/bitcoin-contracts/blocks.svg" alt="blocks" />
 
 A Transaction is made up of Inputs and Outputs, essentially forming a graph where each transaction is a node. The relationships between a Transactions' Outputs and Inputs are validated by a predicate; a basic script that evaluates to TRUE or FALSE.
 
