@@ -4,13 +4,13 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WorkRow from "../components/WorkRow.astro";
 import ProjectRow from "../components/ProjectRow.astro";
-import { loadAndFormatCollection } from '../../utils/util.js';
+import { loadAndFormatListedCollection } from '../utils/util.js';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 
-const posts = (await loadAndFormatCollection('blog')).sort(
+const posts = (await loadAndFormatListedCollection('blog')).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 )
 .reverse()
@@ -46,7 +46,7 @@ const posts = (await loadAndFormatCollection('blog')).sort(
                 <div class="-mx-2 mt-6 flex items-center">
                   <a
                     class="mx-2"
-                    href="https://twitter.com/wtsnz"
+                    href="https://x.com/wtsnz"
                     aria-label="Twitter"></a>
                 </div>
               </div>
@@ -78,8 +78,7 @@ const posts = (await loadAndFormatCollection('blog')).sort(
         </p>
         <p>
           You can checkout my github profile for things I&apos;m working on, and
-          my twitter profile for whatever I feel like retweeting on a given day,
-          or learn more about me.
+          my <a href="https://x.com/wtsnz">X profile</a> for whatever I feel like posting on a given day.
         </p>
       </div>
     </section>
@@ -99,7 +98,7 @@ const posts = (await loadAndFormatCollection('blog')).sort(
       {
         posts.map((post) => (
           <a
-            href={`/${post.slug}`}
+            href={`/${post.computedSlug}`}
             class="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md"
           >
             <div class="flex-1">{post.data.title}</div>
@@ -126,7 +125,7 @@ const posts = (await loadAndFormatCollection('blog')).sort(
           <p>
             The project I&apos;m most proud of was the app that started my App Store
             Career, Tides NZ. It has enjoyed being the #1 Navigation app in New
-            Zealand since it&apos;s release in May 2011. As far as I can tell its
+            Zealand for nearly 6 years since it&apos;s release in May 2011. As far as I can tell its
             since saturated the NZ market of people looking for Tide
             Predictions, received 500+ ratings with an average rating of 4.8,
             and gave me a little bit of pocket money.
@@ -183,28 +182,28 @@ const posts = (await loadAndFormatCollection('blog')).sort(
           that&apos;s led me down a path that&apos;s gotten me into the tech
           industry. Over the last decade I&apos;ve worked at a bunch of great
           companies and worked on a large variety of projects, products and
-          technologies. I&apos;ve found a niche developing on Apple platforms in
-          the industry that I thorougly enjoy, and met some great people along
-          the way.
+          technologies. I still really enjoy building for Apple platforms, and
+          these days I&apos;m especially excited about agentic development,
+          Elixir, and the BEAM.
         </p>
 
         <p>Here&apos;s a list of the companies I&apos;ve worked with:</p>
       </div>
 
       <WorkRow
-        title="Clued, Inc"
-        subtitle="Founding Engineer / 2023 - Current"
-        description="A startup working on something new."
-        url="https://clued.xyz/"
-        icon="/images/work_clued.jpeg"
-      />
-
-      <WorkRow
         title="Loft Labs Interactive Inc."
-        subtitle="Founder / 2020 - Current"
+        subtitle="Founder / Jan 2020 - Current"
         description="My own studio for apps and hardware projects."
         url="https://loftlabs.co/"
         icon="/images/work_loftlabs.png"
+      />
+
+      <WorkRow
+        title="Clued, Inc"
+        subtitle="Founding Engineer / Feb 2023 - Dec 2025"
+        description="Started by building the native iOS app from scratch, then inherited the backend systems, and eventually became responsible for pretty much every surface of the product."
+        url="https://clued.shop/"
+        icon="/images/work_clued.jpeg"
       />
 
       <WorkRow

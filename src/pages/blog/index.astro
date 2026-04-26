@@ -9,9 +9,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 
-import { loadAndFormatCollection } from "../../../utils/util.js";
+import { loadAndFormatListedCollection } from "../../utils/util.js";
 
-const posts = (await loadAndFormatCollection("blog"))
+const posts = (await loadAndFormatListedCollection("blog"))
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
   .reverse();
 ---
@@ -39,7 +39,7 @@ const posts = (await loadAndFormatCollection("blog"))
         {
           posts.map((post) => (
             <a
-              href={`/${post.slug}`}
+              href={`/${post.computedSlug}`}
               class="-mx-4 flex px-4 py-2 font-medium hover:bg-orange-50 hover:text-orange-400 md:rounded-md"
             >
               <div class="flex-1">{post.data.title}</div>
@@ -115,21 +115,13 @@ const posts = (await loadAndFormatCollection("blog"))
             naturally, that&apos;s led me down a path that&apos;s gotten me into
             the tech industry. Over the last decade I&apos;ve worked at a bunch
             of great companies and worked on a large variety of projects,
-            products and technologies. I&apos;ve found a niche developing on
-            Apple platforms in the industry that I thorougly enjoy, and met some
-            great people along the way.
+            products and technologies. I still really enjoy building for Apple
+            platforms, and these days I&apos;m especially excited about agentic
+            development, Elixir, and the BEAM.
           </p>
 
           <p>Here&apos;s a list of the companies I&apos;ve worked with:</p>
         </div>
-
-        <WorkRow
-          title="Clued, Inc"
-          subtitle="Founding Engineer / 2023 - Current"
-          description="A startup working on something new."
-          url="https://clued.xyz/"
-          icon="/images/work_clued.jpeg"
-        />
 
         <WorkRow
           title="Loft Labs Interactive Inc."
@@ -137,6 +129,14 @@ const posts = (await loadAndFormatCollection("blog"))
           description="My own studio for apps and hardware projects."
           url="https://loftlabs.co/"
           icon="/images/work_loftlabs.png"
+        />
+
+        <WorkRow
+          title="Clued, Inc"
+          subtitle="Founding Engineer / 2023 - 2025"
+          description="Started by building the native iOS app from scratch, then inherited the backend systems, and eventually became responsible for pretty much every surface of the product."
+          url="https://clued.shop/"
+          icon="/images/work_clued.jpeg"
         />
 
         <WorkRow

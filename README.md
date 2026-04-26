@@ -59,6 +59,26 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Math In Posts
+
+Blog posts support LaTeX in both `.md` and `.mdx` via KaTeX at build time.
+
+Inline:
+
+```md
+$E = mc^2$
+```
+
+Block:
+
+```md
+$$
+\int_0^\infty e^{-x}\,dx = 1
+$$
+```
+
+Literal dollar signs should be escaped as `\$`.
+
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

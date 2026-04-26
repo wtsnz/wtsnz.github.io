@@ -11,14 +11,17 @@
     "copy-images": "node --experimental-modules ./utils/copy-images.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/rss": "^2.4.4",
-    "@astrojs/sitemap": "^2.0.1",
-    "@astrojs/tailwind": "^4.0.0",
-    "astro": "^2.10.7",
-    "tailwindcss": "^3.3.3"
+    "@astrojs/mdx": "^5.0.0",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.0.2",
+    "katex": "^0.16.45",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9"
+    "@tailwindcss/typography": "^0.5.19"
   }
 }
