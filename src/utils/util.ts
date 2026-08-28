@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
 
-const includeDraftRoutes = process.env.VERCEL_ENV === 'preview';
+const includeDraftRoutes =
+	process.env.VERCEL_ENV === 'preview' || process.env.CONTEXT === 'deploy-preview';
 
 export function computeSlug(id: string): string {
 	// The glob loader uses the frontmatter `slug` field as the id when present.
