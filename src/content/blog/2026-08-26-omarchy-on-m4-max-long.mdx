@@ -1,0 +1,144 @@
+---
+title: "I want Omarchy on my M4 Max"
+description: "The longer story of getting Arch Linux to boot on Apple's unsupported J616c M4 Max MacBook Pro, on the way to Omarchy."
+pubDate: 2026-08-26 10:05:00
+categories: linux apple-silicon omarchy
+draft: true
+listed: false
+slug: "2026/omarchy-on-m4-max-long"
+---
+
+Omarchy seems to be the in thing on X right now. I get it. [Quattro](https://github.com/basecamp/omarchy/pull/6231) looks cool.
+
+The existing Omarchy shell is being replaced with one long-running, plugin-capable Quickshell process. The bar, launcher, menus, notifications, control panels, lock screen and agent shortcuts all become parts of the same thing. It is the sort of work which makes a Linux desktop feel like a computer someone has an opinion about.
+
+DHH has also been writing about [the malleable computer](https://world.hey.com/dhh/the-malleable-computer-7c187a9b). Agents change the economics of tinkering with an operating system. A normal person can ask why notifications work a certain way, find the code and change it. If the operating system is open source, the bottom of the stack is no longer a hard boundary.
+
+That sounds fun.
+
+I wanted it on my M4 Max MacBook Pro.
+
+Apple makes incredible hardware. This machine has 16 fast CPU cores, 128 GB of unified memory, great battery life and the best laptop display I've owned. It is ridiculous. macOS is good software, but it is not malleable in the same way. I can move the furniture around. I cannot knock down a wall.
+
+There was one small problem. Linux did not run on it.
+
+This is a 16-inch M4 Max, model `Mac16,5`, board `J616c`, SoC `T6041`. When I started, there was no public installer path for the machine, no J616c device tree and no Linux kernel which knew enough about this exact hardware to boot it.
+
+How hard could it be?
+
+## Asahi says no
+
+There is an awkward bit here. [Asahi Linux's generative AI policy](https://asahilinux.org/docs/project/policies/slop/) expressly forbids AI use in contributions. This includes code, documentation and engineering decisions. The project calls the tools "Slop Generators" and says a second violation gets you permanently banned from the project and its associated spaces.
+
+I understand some of this. Maintainers should not have to review piles of plausible code sent by people who cannot explain it. Asahi works on undocumented hardware and has strict clean-room rules. Code provenance matters when a leaked Apple document could poison work intended for the Linux kernel.
+
+I am not going to pretend I wrote this without agents. I am also not going to submit it against the project's rules or try to launder it through a hand-written patch. In its current form, this work cannot be an Asahi contribution.
+
+That is a shame.
+
+Development has changed forever. Whether the model itself "reasons" is not a very interesting question to me. The interesting question is whether the whole system can write a patch, compile it, put it on real hardware, observe the result and reject the patch when it fails.
+
+That is what we built.
+
+## My job was the loop
+
+I have used agents on Rails apps and TypeScript projects for a while. Give the agent the repository, a decent test suite and a browser it can inspect, and it can do a surprising amount of real work. It writes code, runs the tests, sees what broke and tries again.
+
+Linux kernel development turns out to have the same shape. The tests are louder and occasionally need a finger on the power button.
+
+My job was not typing every line of C. My job was writing loops and giving the agents systems in which they could write and test the actual code. I had to make each failure visible, define what a pass meant, keep a known-good recovery path and put hard guards around anything which could damage the machine.
+
+The agent made plenty of wrong guesses. The loop killed most of them quickly.
+
+## The camera loop
+
+The first loop was almost entirely manual.
+
+I would boot the target into macOS, change m1n1, build it, stage the payload, install it through paired Recovery, select the stub and reboot. If it failed, I went back into macOS, collected whatever evidence the boot chain left behind and started again. Getting m1n1 to load at all took a long time.
+
+For a while the output was an Apple logo followed by either a restart or nothing. Serial did not work. I added coloured squares to the framebuffer, one for each startup checkpoint. Then I took a photo of the screen with my phone and put it into the agent thread.
+
+The camera was the debug transport.
+
+It sounds stupid, but now the agent could see the result of its code. Ten squares meant m1n1 reached the proxy loop. Six meant it died earlier. A different card meant the new build had actually loaded. The agent could compare the photo with the source and choose the next small test.
+
+This was slow. Every experiment involved macOS, Recovery, a reboot and me standing in front of the laptop. It was still enough to bootstrap the next loop.
+
+## Give the agent a USB cable
+
+The breakthrough was getting m1n1's USB proxy running over the Mac's DockChannel and USB device path. The host could finally open a connection, send a `NOP` and receive a response.
+
+Once that worked, the agent could read the boot log itself. It could inspect the live device tree and memory, upload a new m1n1 build into RAM, wait for USB to reconnect and verify the version which came back. The installed copy stayed untouched as the known-good recovery point. A reboot returned to it.
+
+We proved the loop with an animated framebuffer build. The agent uploaded it, sampled the framebuffer twice and checked that the bytes changed. No camera. No argument about whether the animation was running. The test had an answer.
+
+That changed the speed of the work. Recovery installs stopped being part of every experiment. The agent could build, upload, observe and repeat while I did something else.
+
+## Then give it Linux
+
+The next step was loading a Linux kernel, device tree and initramfs through the m1n1 proxy.
+
+At first Linux still reported through the framebuffer. The camera came back out for a heartbeat, a panic and eventually a BusyBox prompt. If a failure left the machine wedged or the reset path failed, I had to hold the power button and cold-start it. Serious failures still needed a human in the room.
+
+Once Linux could reset back to the known-good m1n1 proxy, we built a supervisor around it. Upload the kernel. Wait for Linux. Run one bounded test. Save the logs. Ask the watchdog to reset the machine. Wait for m1n1 to return. Start the next case only if every check passed.
+
+The framebuffer shell and built-in keyboard were useful, but they did not remove me from the loop. USB Ethernet did. The first network setup was manual. BusyBox then started a shell on TCP port 2323. The agent could connect to the running kernel, read `dmesg`, inspect `/proc`, run a test and collect the exact result.
+
+At that point the camera became the fallback for crashes, not the main interface.
+
+## Arch and SSH
+
+BusyBox was enough for bring-up. It was not the computer I wanted.
+
+The last step was putting Arch Linux ARM on an ext4 partition on the internal NVMe drive. That added systemd, persistent logs and a real SSH server. The first boot reached a login prompt but not the network. The USB Ethernet device had renamed itself after systemd-networkd matched it. We fixed the rule, booted again and SSH appeared at `10.1.1.180`.
+
+That was the point where kernel development started to feel like the Rails and TypeScript work. The agent could boot a new kernel, wait for SSH, inspect the system, run stress tests and keep working from the result. If the machine failed before SSH, the supervisor checked the BusyBox shell, then m1n1, then stopped and asked for a cold start.
+
+The progression was simple:
+
+```text
+camera photo
+    -> m1n1 over USB
+    -> BusyBox shell over Ethernet
+    -> Arch Linux over SSH
+```
+
+Each step gave the agents a better way to see the machine. Each step removed me from another part of the loop.
+
+This obviously works for Linux kernel development. The agent does not need to be trusted. The loop needs to catch it when it is wrong.
+
+## What works, and what does not
+
+The result needs a precise description because "Linux runs on M4 Max" can imply far too much.
+
+The Mac boots a local Arch root from internal NVMe. All 16 CPUs work. CPU frequency scaling and `WFE` idle work. The framebuffer console, keyboard, trackpad, USB2 and USB Ethernet work. SMC temperature, power and fan reporting work. Repeated read and write tests on the internal root filesystem are reliable.
+
+The boot is still tethered through the installed m1n1 environment and my custom T6041 EL1 handoff. Wi-Fi PCIe work is unfinished. There is no accelerated GPU, no proper display driver, no modesetting and no backlight control. The display is a framebuffer inherited from iBoot. This is not a daily driver or a general installer.
+
+I am keeping the work experimental for now. A bad GPU driver is annoying. A bad boot or storage patch can eat someone's machine.
+
+Goal achieved.
+
+Well, the first goal.
+
+## The actual hard part
+
+Linux booting is a prerequisite for Omarchy. It is not enough to run Omarchy.
+
+Right now the desktop would have to draw through `simpledrm` into a framebuffer which somebody else set up. There is no render node for Mesa, and the display controller cannot choose a mode or recover the panel after power state changes.
+
+On this machine, accelerated graphics requires two large pieces to meet. The AGX driver needs support for the T6041 G16C GPU and its HAL200 firmware interfaces. The DCP driver needs support for the newer v195 display firmware. Buffers and fences then have to move correctly between them.
+
+The public Apple GPU stack currently stops at G14. Public DCP support targets older firmware profiles. The [Asahi M4 feature matrix](https://asahilinux.org/docs/platform/feature-support/m4/) lists the M4 Pro and Max GPU and display controller as TBA.
+
+This is the actual hard part.
+
+It also looks doable. Static work has already recovered the G16C firmware loader choices, UAT geometry, the initdata skeleton, queue and event layouts, submission doorbells, and the DCP v195 transport and boot transaction. None of that draws a triangle, but it turns an unknown device into a list of implementation jobs.
+
+The first target does not need to be a perfect Mac display stack. I want accelerated rendering on the internal panel at a fixed 60 Hz with simple linear buffers. External displays, HDR, VRR, compression and clever power states can come later.
+
+Then I can try to boot the thing I wanted in the first place.
+
+Omarchy on an M4 Max. How hard could it be?
+
+Anyway, I've got a holiday now, so I'm going AFK for a bit. I'll keep plugging away when I get back.

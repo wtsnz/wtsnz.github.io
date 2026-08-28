@@ -52,10 +52,9 @@ export function getUnlistedBlogPaths() {
 				const contents = fs.readFileSync(absolutePath, 'utf8');
 				const frontmatterMatch = contents.match(/^---\r?\n([\s\S]*?)\r?\n---/);
 				const frontmatter = frontmatterMatch?.[1] ?? '';
-				const draft = getFrontmatterValue(frontmatter, 'draft');
 				const listed = getFrontmatterValue(frontmatter, 'listed');
 
-				if (draft === 'true' || listed !== 'false') {
+				if (listed !== 'false') {
 					return null;
 				}
 

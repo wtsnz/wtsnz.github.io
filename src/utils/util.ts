@@ -1,5 +1,7 @@
 import { getCollection } from 'astro:content';
 
+const includeDraftRoutes = process.env.VERCEL_ENV === 'preview';
+
 export function computeSlug(id: string): string {
 	// The glob loader uses the frontmatter `slug` field as the id when present.
 	// Format: "2013/automagical-ios-testflight-deployments" (from frontmatter slug)
@@ -24,7 +26,7 @@ export function computeSlug(id: string): string {
 
 export async function loadAndFormatCollection(name: string) {
 	const posts = await getCollection(name, ({ data }) => {
-		return data.draft === false;
+		return data.draft === false || (includeDraftRoutes && data.listed === false);
 	});
 
 	return posts.map(post => ({

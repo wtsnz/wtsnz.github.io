@@ -1,0 +1,73 @@
+---
+title: "I want Omarchy on my M4 Max"
+description: "Booting Arch Linux on Apple's unsupported J616c M4 Max MacBook Pro was only the first step. The goal is Omarchy."
+pubDate: 2026-08-26 10:00:00
+categories: linux apple-silicon omarchy
+draft: true
+listed: false
+slug: "2026/omarchy-on-m4-max-short"
+---
+
+Omarchy seems to be the in thing on X right now. I get it. [Quattro](https://github.com/basecamp/omarchy/pull/6231) looks cool.
+
+DHH has also been writing about [the malleable computer](https://world.hey.com/dhh/the-malleable-computer-7c187a9b). The idea is that agents make an open source operating system easy to change at the level of the person using it. Don't like the notifications? Change them. Want the window manager to behave differently? Change that too.
+
+I want that.
+
+I also want it on my M4 Max MacBook Pro.
+
+Apple's hardware is incredible. This laptop has 16 fast CPU cores, 128 GB of unified memory, great battery life and the best screen I've owned. The software leaves a little to be desired. macOS is good, but it is Apple's computer in a way that Linux can avoid being.
+
+There was one small problem. Linux did not run on this machine.
+
+It does now.
+
+## What works
+
+This is a 16-inch M4 Max MacBook Pro, model `Mac16,5`, board `J616c`, SoC `T6041`.
+
+It now boots Arch Linux ARM from an ext4 partition on the internal NVMe drive. All 16 CPU cores come online. The framebuffer console, keyboard and trackpad work. USB Ethernet comes up under systemd, and I can SSH in. CPU frequency scaling works, and using `WFE` for idle brought the machine's mean idle draw down from 18.435 W to 8.940 W.
+
+That is a pretty good change from a machine which had no public installer, no device tree and no working Linux boot path.
+
+It is not a normal install yet. The machine still boots through an installed m1n1 stub and a custom handoff, then loads the kernel and device tree. There is no GPU acceleration, Wi-Fi is unfinished and the display is still the framebuffer iBoot left behind. This is a lab machine, not a daily driver.
+
+## Asahi says no
+
+There is an awkward bit here. [Asahi Linux's generative AI policy](https://asahilinux.org/docs/project/policies/slop/) expressly forbids AI use in contributions. That includes code, documentation and engineering decisions. The project calls the tools "Slop Generators" and threatens a permanent ban after one warning.
+
+I understand the maintainer problem. Nobody wants a queue full of patches from people who cannot explain what the code does. Asahi also has real clean-room and code-provenance constraints because this hardware is undocumented.
+
+Still, a blanket rejection is a shame. Development has changed forever.
+
+I am not going to hide the AI use or submit this work against their rules. It does mean this cannot be an Asahi contribution in its current form. That feels like a missed opportunity, because the work is running on the hardware.
+
+My job was not typing every line. My job was writing the loop and giving the agents a system in which they could write code, run it and see whether it worked. This works for Rails apps. It works for TypeScript. It obviously works for Linux kernel development too.
+
+## Building the loop
+
+The first version of that loop was terrible.
+
+I booted into macOS, changed and built m1n1, installed it through Recovery, rebooted the machine and watched the screen. Getting m1n1 to load at all took a long time. There was no serial output, so I added coloured framebuffer checkpoints, took a photo with my phone and put the photo into the agent thread. The camera was the debug transport.
+
+Once the USB proxy worked, the loop changed. The agents could talk to m1n1, read its output and upload a new build into RAM. A reboot returned to the known-good installed copy. We no longer needed Recovery and a camera for every test.
+
+Then we started loading Linux. A bad failure could still wedge the machine hard enough that I had to cold-start it by hand. The first useful Linux output appeared on the framebuffer. Then came a BusyBox shell. USB Ethernet gave that shell a network connection on port 2323, which meant the agents could finally inspect the running kernel themselves.
+
+Arch Linux and SSH removed the last awkward part. The agents could boot a kernel, wait for the machine to appear on the network, run tests, collect logs and prepare the next build. I still owned the machine, the recovery path and the decision about what was safe to try. The loop did the rest.
+
+At each step the agent became more useful because I gave it a better way to see the result.
+
+## The actual hard part
+
+Linux booting is only a prerequisite for Omarchy. Omarchy without an accelerated desktop is not really Omarchy.
+
+The current screen is `simpledrm` drawing into memory configured by iBoot. There is no render node, modesetting or backlight control. The M4 Max GPU is G16C, while the public Apple GPU stack currently stops at G14. The display controller is another port of its own. The [Asahi feature matrix](https://asahilinux.org/docs/platform/feature-support/m4/) still lists M4 Pro and Max GPU and display support as TBA.
+
+So yes, GPU support is the actual hard part.
+
+I also think it is doable. The firmware loads, the command paths can be traced, and the older drivers show the shape of the system. There is a lot of careful work between that and a desktop, but it is engineering work now, not a blank wall.
+
+The target is modest: accelerated rendering, a fixed 60 Hz internal display and enough of the stack to launch Omarchy. HDR, external displays and every power-management trick can wait.
+
+Anyway, I've got a holiday now, so I'm going AFK for a bit. I'll keep plugging away when I get back.
